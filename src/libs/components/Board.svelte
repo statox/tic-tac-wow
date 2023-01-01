@@ -1,13 +1,17 @@
 <script lang="ts">
+    import type { Game } from '../services/game';
+    import { selectCellInBoard } from '../services/game';
     import PiecesCell from './PiecesCell.svelte';
 
-    export let grid: number[][][];
-    export let onSelectCell: (x: number, y: number) => void;
+    export let game: Game;
+    const onSelectCell = (x: number, y: number) => {
+        selectCellInBoard(game, { x, y });
+    };
 </script>
 
 <div class="board">
     <div class="overlay">
-        {#each grid as line, y}
+        {#each game.grid as line, y}
             {#each line as cell, x}
                 <PiecesCell on:click={() => onSelectCell(x, y)} pieces={cell} />
             {/each}
