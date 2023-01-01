@@ -4,6 +4,7 @@
     import { onDestroy } from 'svelte';
     import { getNewGame } from '../services/game';
     import { drawGame } from '../services/game/drawing';
+    import Board from './Board.svelte';
     import PlayerPieces from './PlayerPieces.svelte';
 
     let _p5: p5;
@@ -31,6 +32,7 @@
 
 <div class="d-flex justify-content-center">
     <P5 {sketch} />
+    <Board grid={game.grid} />
     <PlayerPieces playerPieces={game.player1Pieces} player={1} />
     <PlayerPieces playerPieces={game.player2Pieces} player={2} />
 </div>

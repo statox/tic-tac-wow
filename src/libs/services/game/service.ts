@@ -5,13 +5,18 @@ export const getNewGame = (): Game => {
     for (let y = 0; y < 3; y++) {
         grid.push([]);
         for (let x = 0; x < 3; x++) {
-            grid[grid.length - 1].push([
-                1 * (Math.random() < 0.5 ? 1 : -1),
-                2 * (Math.random() < 0.5 ? 1 : -1),
-                3 * (Math.random() < 0.5 ? 1 : -1)
-            ]);
+            grid[grid.length - 1].push([]);
+            // grid[grid.length - 1].push([
+            //     1 * (Math.random() < 0.5 ? 1 : -1),
+            //     2 * (Math.random() < 0.5 ? 1 : -1),
+            //     3 * (Math.random() < 0.5 ? 1 : -1)
+            // ]);
         }
     }
+
+    grid[0][0] = [1, -2, 3];
+    grid[1][1] = [-1, 2, -3];
+    grid[2][2] = [1, -2, -3];
 
     const game = {
         grid,
