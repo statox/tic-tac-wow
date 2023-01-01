@@ -1,9 +1,12 @@
 <script lang="ts">
   import type p5 from 'p5';
   import P5, { type Sketch } from 'p5-svelte';
+  import { getNewGame } from '../services/game-service';
   import { onDestroy } from 'svelte';
 
   let _p5: p5;
+
+  const game = getNewGame();
 
   const sketch: Sketch = (p5) => {
     p5.setup = () => {
@@ -24,4 +27,5 @@
 
 <div class="d-flex justify-content-center">
   <P5 {sketch} />
+  {JSON.stringify(game)}
 </div>
