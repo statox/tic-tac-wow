@@ -1,8 +1,9 @@
 <script lang="ts">
     export let pieces: number[];
+    let selected = false;
 </script>
 
-<button on:click class="cell">
+<button on:click class="cell" class:selected>
     {#each pieces.reverse() as piece}
         <div
             class="piece"
@@ -22,6 +23,10 @@
         background-color: black;
         color: red;
         position: relative;
+    }
+
+    .selected {
+        background-color: #929393;
     }
 
     .player1 {
