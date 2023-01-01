@@ -1,3 +1,3 @@
 export type Game = {
-  grid: number[][];
+    grid: number[][];
 };
