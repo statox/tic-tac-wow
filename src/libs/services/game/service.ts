@@ -6,17 +6,8 @@ export const getNewGame = (): Game => {
         grid.push([]);
         for (let x = 0; x < 3; x++) {
             grid[grid.length - 1].push([]);
-            // grid[grid.length - 1].push([
-            //     1 * (Math.random() < 0.5 ? 1 : -1),
-            //     2 * (Math.random() < 0.5 ? 1 : -1),
-            //     3 * (Math.random() < 0.5 ? 1 : -1)
-            // ]);
         }
     }
-
-    grid[0][0] = [1, -2, 3];
-    grid[1][1] = [-1, 2, -3];
-    grid[2][2] = [1, -2, -3];
 
     const game = {
         grid,
@@ -25,4 +16,22 @@ export const getNewGame = (): Game => {
     };
 
     return game;
+};
+
+export const placePieceOnCell = (piece: number, cell: { x: number; y: number }, game: Game) => {
+    const { x, y } = cell;
+    if (x < 0 || x > 2 || y < 0 || y > 2) {
+        console.error('Invalid cell coordinates', cell);
+        return new Error('INVALID_CELL_COORDINATES');
+    }
+
+    if (
+        game.grid[y][x].length > 0 &&
+        Math.abs(game.grid[y][x][game.grid[y][x].length - 1]) >= Math.abs(piece)
+    ) {
+        console.error('Cant place', piece, 'over', game.grid[y][x]);
+        return new Error('INVALID_PIECE_SIZE');
+    }
+
+    game.grid[y][x].push(piece);
 };

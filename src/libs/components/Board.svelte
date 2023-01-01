@@ -2,13 +2,14 @@
     import PiecesCell from './PiecesCell.svelte';
 
     export let grid: number[][][];
+    export let onSelectCell: (x: number, y: number) => void;
 </script>
 
 <div class="board">
     <div class="overlay">
         {#each grid as line, y}
             {#each line as cell, x}
-                <PiecesCell pieces={cell} />
+                <PiecesCell on:click={() => onSelectCell(x, y)} pieces={cell} />
             {/each}
         {/each}
     </div>

@@ -3,12 +3,13 @@
 
     export let player: 1 | 2;
     export let playerPieces: number[];
+    export let onSelectPiece: (piece: number) => void;
 </script>
 
 <span>Player {player} pieces</span>
 <div class="overlay">
     {#each playerPieces as piece}
-        <PiecesCell pieces={[piece]} />
+        <PiecesCell on:click={() => onSelectPiece(piece)} pieces={[piece]} />
     {/each}
 </div>
 

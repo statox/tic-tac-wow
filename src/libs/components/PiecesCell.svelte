@@ -2,7 +2,7 @@
     export let pieces: number[];
 </script>
 
-<div class="cell">
+<button on:click class="cell">
     {#each pieces.reverse() as piece}
         <div
             class="piece"
@@ -13,7 +13,7 @@
             class:large-circle={Math.abs(piece) === 3}
         />
     {/each}
-</div>
+</button>
 
 <style>
     .cell {
