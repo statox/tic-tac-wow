@@ -22,8 +22,8 @@
 <style>
     .overlay {
         display: grid;
-        grid-template-columns: repeat(2, 200px);
-        grid-template-rows: repeat(3, 200px);
+        grid-template-columns: repeat(6, 200px);
+        grid-template-rows: repeat(1, 200px);
         grid-auto-flow: row;
     }
 </style>

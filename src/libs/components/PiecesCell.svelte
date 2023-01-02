@@ -14,7 +14,9 @@
             class:small-circle={Math.abs(piece.value) === 1}
             class:medium-circle={Math.abs(piece.value) === 2}
             class:large-circle={Math.abs(piece.value) === 3}
-        />
+        >
+            {piece.value}
+        </div>
     {/each}
 </button>
 
@@ -23,7 +25,6 @@
         border: white 1px solid;
         border-right: white 2px solid;
         background-color: black;
-        color: red;
         position: relative;
     }
 
@@ -33,28 +34,30 @@
 
     .player1 {
         border: solid #2ae4fc 2px;
+        color: #2ae4fc;
     }
     .player2 {
         border: solid #fc1a0a 2px;
+        color: #fc1a0a;
     }
     .piece {
         position: absolute;
     }
 
     .small-circle {
-        top: 40px;
-        left: 40px;
-        height: 120px;
-        width: 120px;
+        top: 50px;
+        left: 50px;
+        height: 100px;
+        width: 100px;
         border-radius: 50%;
         display: inline-block;
     }
 
     .medium-circle {
-        top: 25px;
-        left: 25px;
-        height: 150px;
-        width: 150px;
+        top: 30px;
+        left: 30px;
+        height: 140px;
+        width: 140px;
         border-radius: 50%;
         display: inline-block;
     }
