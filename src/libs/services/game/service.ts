@@ -43,7 +43,7 @@ export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) =>
         return;
     }
 
-    game.grid[y][x].push(hand.selectedPiece);
+    game.grid[y][x].push({ ...hand.selectedPiece });
 
     const pieceIndex = hand.pieces.findIndex((p) => p.selected);
     hand.pieces.splice(pieceIndex, 1);
@@ -52,6 +52,7 @@ export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) =>
     game.state.action = 'select1';
     game.state.player = game.state.player === 1 ? 2 : 1;
 
+    console.log(game.grid);
     checkWinner(game);
 };
 
@@ -150,7 +151,5 @@ const checkWinner = (game: Game) => {
     if (winner) {
         game.state.player = winner;
         game.state.action = 'winner';
-        console.log(game.state);
-        console.log(game.grid);
     }
 };
