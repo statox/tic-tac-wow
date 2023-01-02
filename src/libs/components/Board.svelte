@@ -1,12 +1,9 @@
 <script lang="ts">
     import type { Game } from '../services/game';
-    import { selectCellInBoard } from '../services/game';
     import PiecesCell from './PiecesCell.svelte';
 
     export let game: Game;
-    const onSelectCell = (x: number, y: number) => {
-        selectCellInBoard(game, { x, y });
-    };
+    export let onSelectCell: (x: number, y: number) => void;
 </script>
 
 <div class="board">

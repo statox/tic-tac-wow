@@ -1,13 +1,10 @@
 <script lang="ts">
-    import { selectPieceInHand, type Piece, type PlayerHand } from '../services/game';
+    import type { Piece, PlayerHand } from '../services/game';
+
     import PiecesCell from './PiecesCell.svelte';
 
     export let hand: PlayerHand;
-
-    const onSelectPiece = (piece: Piece) => {
-        selectPieceInHand(hand, piece);
-        hand.pieces = hand.pieces;
-    };
+    export let onSelectPiece: (hand: PlayerHand, piece: Piece) => void;
 </script>
 
 <span>Player {hand.player}</span>
@@ -15,7 +12,7 @@
 <div class="overlay">
     {#each hand.pieces as piece}
         <PiecesCell
-            on:click={() => onSelectPiece(piece)}
+            on:click={() => onSelectPiece(hand, piece)}
             pieces={[piece]}
             selected={piece.selected}
         />

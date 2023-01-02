@@ -1,3 +1,4 @@
+import type { StateAction } from './state-machine';
 import type { Game, Piece, Player, PlayerHand } from './types';
 
 const makePlayerHand = (player: Player): PlayerHand => {
@@ -12,16 +13,44 @@ const makePlayerHand = (player: Player): PlayerHand => {
     };
 };
 
-export const selectPieceInHand = (hand: PlayerHand, piece: Piece) => {
+export const selectPieceInHand = (game: Game, hand: PlayerHand, piece: Piece) => {
+    if (game.state.player !== hand.player || game.state.action !== 'select1') {
+        return;
+    }
     hand.pieces.forEach((p) => (p.selected = false));
     piece.selected = true;
     hand.selectedPiece = piece;
+    game.state.action = 'select2';
 };
 
 export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) => {
-    console.log('select cell in board');
-    console.log(game);
-    console.log(cell);
+    console.log('selectCellInBoard');
+    if (game.state.action !== 'select2') {
+        console.log('invalid state action');
+        return;
+    }
+
+    const hand = game.state.player === 1 ? game.player1 : game.player2;
+    if (!hand.selectedPiece) {
+        console.log('no selected piece');
+        return;
+    }
+    const { x, y } = cell;
+
+    const lastOnStack = game.grid[y][x][game.grid[y][x].length - 1];
+    if (Math.abs(lastOnStack?.value || 0) >= Math.abs(hand.selectedPiece.value)) {
+        console.log('invalid board cell');
+        return;
+    }
+
+    game.grid[y][x].push(hand.selectedPiece);
+
+    const pieceIndex = hand.pieces.findIndex((p) => p.selected);
+    hand.pieces.splice(pieceIndex, 1);
+    hand.selectedPiece = undefined;
+
+    game.state.action = 'select1';
+    game.state.player = game.state.player === 1 ? 2 : 1;
 };
 
 export const getNewGame = (): Game => {
@@ -34,30 +63,14 @@ export const getNewGame = (): Game => {
     }
 
     const game = {
+        state: {
+            player: 1 as Player,
+            action: 'select1' as StateAction
+        },
         grid,
         player1: makePlayerHand(1),
         player2: makePlayerHand(2)
     };
 
-    console.log(game);
-
     return game;
 };
-
-// export const placePieceOnCell = (piece: number, cell: { x: number; y: number }, game: Game) => {
-//     const { x, y } = cell;
-//     if (x < 0 || x > 2 || y < 0 || y > 2) {
-//         console.error('Invalid cell coordinates', cell);
-//         return new Error('INVALID_CELL_COORDINATES');
-//     }
-
-//     if (
-//         game.grid[y][x].length > 0 &&
-//         Math.abs(game.grid[y][x][game.grid[y][x].length - 1]) >= Math.abs(piece)
-//     ) {
-//         console.error('Cant place', piece, 'over', game.grid[y][x]);
-//         return new Error('INVALID_PIECE_SIZE');
-//     }
-
-//     game.grid[y][x].push(piece);
-// };
