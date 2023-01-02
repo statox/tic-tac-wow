@@ -9,22 +9,28 @@
     import Board from './Board.svelte';
     import PlayerHandCompoment from './PlayerHand.svelte';
 
-    const game = getNewGame();
+    let game = getNewGame();
 
     const onSelectCell = (x: number, y: number) => {
         selectCellInBoard(game, { x, y });
-        game.grid = game.grid;
+        game = game;
     };
 
     const onSelectPiece = (hand: PlayerHand, piece: Piece) => {
         selectPieceInHand(game, hand, piece);
-        game.player1 = game.player1;
-        game.player2 = game.player2;
+        game = game;
     };
 </script>
 
 <div class="d-flex justify-content-center">
     <Board {onSelectCell} {game} />
+    {#if game.state.action === 'winner'}
+        <div>
+            <span>Game over!</span>
+            <span>Winner: Player {game.state.player}</span>
+            <button on:click={() => (game = getNewGame())}>Play again</button>
+        </div>
+    {/if}
     {#if game.state.player === 1}
         <PlayerHandCompoment {onSelectPiece} hand={game.player1} />
         <PlayerHandCompoment {onSelectPiece} hand={game.player2} />

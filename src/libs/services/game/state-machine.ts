@@ -8,7 +8,7 @@
 // Check end
 
 import type { Player } from './types';
-export type StateAction = 'select1' | 'select2';
+export type StateAction = 'select1' | 'select2' | 'winner';
 
 export type State = {
     player: Player;
