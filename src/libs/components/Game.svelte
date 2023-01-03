@@ -11,9 +11,13 @@
     import PlayerHandCompoment from './PlayerHand.svelte';
 
     let game = getNewGame();
+    let autoPlayer2 = false;
 
     const onSelectCell = (x: number, y: number) => {
-        selectCellInBoard(game, { x, y });
+        const returnCode = selectCellInBoard(game, { x, y });
+        if (autoPlayer2 && returnCode === 0) {
+            makeRandomMove(game, game.player2);
+        }
         game = game;
     };
 
@@ -24,11 +28,17 @@
 
     const onSelectRandom = (hand: PlayerHand) => {
         makeRandomMove(game, hand);
+        if (autoPlayer2) {
+            makeRandomMove(game, game.player2);
+        }
         game = game;
     };
 </script>
 
 <div class="d-flex justify-content-center">
+    <button on:click={() => (autoPlayer2 = !autoPlayer2)}>
+        {autoPlayer2 ? 'Human player 2' : 'Computer player 2'}
+    </button>
     <Board {onSelectCell} {game} />
     {#if game.state.action === 'winner'}
         <div>

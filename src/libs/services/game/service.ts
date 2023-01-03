@@ -27,22 +27,21 @@ export const selectPieceInHand = (game: Game, hand: PlayerHand, piece: Piece) =>
 export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) => {
     if (game.state.action !== 'select2') {
         console.log('invalid state action');
-        return;
+        return -1;
     }
 
     const hand = game.state.player === 1 ? game.player1 : game.player2;
     if (!hand.selectedPiece) {
         console.log('no selected piece');
-        return;
+        return -1;
     }
     const { x, y } = cell;
 
     if (getGridCellLastValue(game.grid, x, y) >= Math.abs(hand.selectedPiece.value)) {
         console.log('invalid board cell');
-        return;
+        return -1;
     }
 
-    console.log('placing piece', hand.selectedPiece.value, `in spot ${x},${y}`);
     game.grid[y][x].push({
         value: hand.selectedPiece.value,
         selected: false
@@ -56,6 +55,7 @@ export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) =>
     game.state.player = game.state.player === 1 ? 2 : 1;
 
     checkWinner(game);
+    return 0;
 };
 
 export const getNewGame = (): Game => {
