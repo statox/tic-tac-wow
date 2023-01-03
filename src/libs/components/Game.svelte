@@ -6,6 +6,7 @@
         type Piece,
         selectCellInBoard
     } from '../services/game';
+    import { makeRandomMove } from '../services/game/ia';
     import Board from './Board.svelte';
     import PlayerHandCompoment from './PlayerHand.svelte';
 
@@ -20,6 +21,11 @@
         selectPieceInHand(game, hand, piece);
         game = game;
     };
+
+    const onSelectRandom = (hand: PlayerHand) => {
+        makeRandomMove(game, hand);
+        game = game;
+    };
 </script>
 
 <div class="d-flex justify-content-center">
@@ -32,10 +38,10 @@
         </div>
     {/if}
     {#if game.state.player === 1}
-        <PlayerHandCompoment {onSelectPiece} hand={game.player1} />
-        <PlayerHandCompoment {onSelectPiece} hand={game.player2} />
+        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player1} />
+        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player2} />
     {:else}
-        <PlayerHandCompoment {onSelectPiece} hand={game.player2} />
-        <PlayerHandCompoment {onSelectPiece} hand={game.player1} />
+        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player2} />
+        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player1} />
     {/if}
 </div>

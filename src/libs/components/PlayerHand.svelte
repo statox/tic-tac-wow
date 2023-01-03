@@ -5,9 +5,11 @@
 
     export let hand: PlayerHand;
     export let onSelectPiece: (hand: PlayerHand, piece: Piece) => void;
+    export let onSelectRandom: (hand: PlayerHand) => void;
 </script>
 
 <span>Player {hand.player}</span>
+<button on:click={() => onSelectRandom(hand)}>Pick random</button>
 
 <div class="overlay">
     {#each hand.pieces as piece}

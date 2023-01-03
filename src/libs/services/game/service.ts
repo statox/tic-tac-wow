@@ -1,3 +1,4 @@
+import { printGameGrid } from './helpers';
 import type { StateAction } from './state-machine';
 import type { Game, Piece, Player, PlayerHand } from './types';
 
@@ -97,6 +98,18 @@ export const getGridCellLastPlayer = (grid: Piece[][][], x: number, y: number): 
     return null;
 };
 
+export const getGridCellLastValue = (grid: Piece[][][], x: number, y: number): number | null => {
+    if (x < 0 || y < 0 || x > 2 || y > 2) {
+        throw new Error(`Invalid coordinates ${x},${y}`);
+    }
+
+    if (!grid[y][x].length) {
+        return null;
+    }
+    const lastValue = grid[y][x][grid[y][x].length - 1];
+    return Math.abs(lastValue.value);
+};
+
 // exported for tests
 export const cellsAreSamePlayer = (
     grid: Piece[][][],
@@ -112,6 +125,8 @@ export const cellsAreSamePlayer = (
 // exported for tests
 export const checkWinner = (game: Game) => {
     const { grid } = game;
+
+    printGameGrid(game);
 
     let winner;
     // Check if one of the lines has 3 times the same value
