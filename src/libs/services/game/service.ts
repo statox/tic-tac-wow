@@ -80,7 +80,7 @@ export const getNewGame = (): Game => {
 
 const getGridCellLastPlayer = (grid: Piece[][][], x: number, y: number): Player | null => {
     if (x < 0 || y < 0 || x > 2 || y > 2) {
-        throw new Error('Invalid coordinates', { x, y });
+        throw new Error(`Invalid coordinates ${x},${y}`);
     }
 
     if (!grid[y][x].length) {
