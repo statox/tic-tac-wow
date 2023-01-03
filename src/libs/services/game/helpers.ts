@@ -1,8 +1,9 @@
 import { getGridCellLastValue } from './service';
 import type { Game, Piece } from './types';
 
-export const printGameGrid = (game: Game) => {
-    console.log(game.grid.map((l) => JSON.stringify(l)).join('\n'));
+export const printGameGrid = (game: Game, message?: string) => {
+    console.log(message);
+    console.log(game.grid.map((l) => l.map((ps) => ps.map((p) => p.value)).join('\t|')).join('\n'));
 };
 
 export const findAvailableSpotsForPiece = (game: Game, piece: Piece) => {

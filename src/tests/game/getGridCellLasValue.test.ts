@@ -22,9 +22,9 @@ describe('getGridCellLastValue', () => {
             { x: 1, y: 1, expected: 3 },
             { x: 2, y: 1, expected: 3 },
 
-            { x: 0, y: 2, expected: null },
+            { x: 0, y: 2, expected: 0 },
             { x: 1, y: 2, expected: 3 },
-            { x: 2, y: 2, expected: null }
+            { x: 2, y: 2, expected: 0 }
         ];
 
         for (const test of tests) {

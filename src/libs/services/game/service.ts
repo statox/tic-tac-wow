@@ -25,7 +25,6 @@ export const selectPieceInHand = (game: Game, hand: PlayerHand, piece: Piece) =>
 };
 
 export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) => {
-    console.log('selectCellInBoard');
     if (game.state.action !== 'select2') {
         console.log('invalid state action');
         return;
@@ -38,13 +37,16 @@ export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) =>
     }
     const { x, y } = cell;
 
-    const lastOnStack = game.grid[y][x][game.grid[y][x].length - 1];
-    if (Math.abs(lastOnStack?.value || 0) >= Math.abs(hand.selectedPiece.value)) {
+    if (getGridCellLastValue(game.grid, x, y) >= Math.abs(hand.selectedPiece.value)) {
         console.log('invalid board cell');
         return;
     }
 
-    game.grid[y][x].push({ ...hand.selectedPiece });
+    console.log('placing piece', hand.selectedPiece.value, `in spot ${x},${y}`);
+    game.grid[y][x].push({
+        value: hand.selectedPiece.value,
+        selected: false
+    });
 
     const pieceIndex = hand.pieces.findIndex((p) => p.selected);
     hand.pieces.splice(pieceIndex, 1);
@@ -53,7 +55,6 @@ export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) =>
     game.state.action = 'select1';
     game.state.player = game.state.player === 1 ? 2 : 1;
 
-    console.log(game.grid);
     checkWinner(game);
 };
 
@@ -98,13 +99,13 @@ export const getGridCellLastPlayer = (grid: Piece[][][], x: number, y: number): 
     return null;
 };
 
-export const getGridCellLastValue = (grid: Piece[][][], x: number, y: number): number | null => {
+export const getGridCellLastValue = (grid: Piece[][][], x: number, y: number) => {
     if (x < 0 || y < 0 || x > 2 || y > 2) {
         throw new Error(`Invalid coordinates ${x},${y}`);
     }
 
     if (!grid[y][x].length) {
-        return null;
+        return 0;
     }
     const lastValue = grid[y][x][grid[y][x].length - 1];
     return Math.abs(lastValue.value);
@@ -126,7 +127,7 @@ export const cellsAreSamePlayer = (
 export const checkWinner = (game: Game) => {
     const { grid } = game;
 
-    printGameGrid(game);
+    printGameGrid(game, 'grid in check winner');
 
     let winner;
     // Check if one of the lines has 3 times the same value
