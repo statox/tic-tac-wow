@@ -1,5 +1,5 @@
 import { findAvailableSpotsForPiece } from './helpers';
-import { selectCellInBoard, selectPieceInHand } from './service';
+import { placeSelectedPieceInBoard, selectPieceInHand } from './service';
 import type { Game, PlayerHand } from './types';
 
 export const makeRandomMove = (game: Game, hand: PlayerHand) => {
@@ -28,5 +28,5 @@ export const makeRandomMove = (game: Game, hand: PlayerHand) => {
     }
 
     selectPieceInHand(game, hand, piece);
-    selectCellInBoard(game, spot);
+    placeSelectedPieceInBoard(game, spot);
 };

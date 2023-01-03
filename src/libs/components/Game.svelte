@@ -4,7 +4,7 @@
         selectPieceInHand,
         type PlayerHand,
         type Piece,
-        selectCellInBoard
+        placeSelectedPieceInBoard
     } from '../services/game';
     import { makeRandomMove } from '../services/game/ia';
     import Board from './Board.svelte';
@@ -14,7 +14,7 @@
     let autoPlayer2 = false;
 
     const onSelectCell = (x: number, y: number) => {
-        const returnCode = selectCellInBoard(game, { x, y });
+        const returnCode = placeSelectedPieceInBoard(game, { x, y });
         if (autoPlayer2 && returnCode === 0) {
             makeRandomMove(game, game.player2);
         }

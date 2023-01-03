@@ -24,7 +24,7 @@ export const selectPieceInHand = (game: Game, hand: PlayerHand, piece: Piece) =>
     game.state.action = 'select2';
 };
 
-export const selectCellInBoard = (game: Game, cell: { x: number; y: number }) => {
+export const placeSelectedPieceInBoard = (game: Game, cell: { x: number; y: number }) => {
     if (game.state.action !== 'select2') {
         console.log('invalid state action');
         return -1;
