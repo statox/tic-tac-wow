@@ -96,7 +96,8 @@ const getGridCellLastPlayer = (grid: Piece[][][], x: number, y: number): Player 
     return null;
 };
 
-const cellsAreSamePlayer = (
+// exported for tests
+export const cellsAreSamePlayer = (
     grid: Piece[][][],
     cell1: { x: number; y: number },
     cell2: { x: number; y: number }
