@@ -109,5 +109,17 @@ export const cases: CheckWinnerCase[] = [
             [[1, -2], [-1], []],
             [[-3], [], [2]]
         ]
+    },
+    {
+        name: 'Bug 1',
+        expectedState: {
+            player: 1,
+            action: 'winner'
+        },
+        grid: [
+            [[], [], [1]],
+            [[], [-1, 3], []],
+            [[-1, 3], [], []]
+        ]
     }
 ];
