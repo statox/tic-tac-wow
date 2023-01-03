@@ -107,7 +107,8 @@ const cellsAreSamePlayer = (
     return v1 !== null && v1 === v2;
 };
 
-const checkWinner = (game: Game) => {
+// exported for tests
+export const checkWinner = (game: Game) => {
     const { grid } = game;
 
     let winner;
