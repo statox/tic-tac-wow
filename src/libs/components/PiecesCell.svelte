@@ -7,7 +7,7 @@
 </script>
 
 <button on:click class="cell" class:selected class:disabled>
-    {#each pieces.reverse() as piece}
+    {#each [...pieces].reverse() as piece}
         <div
             class="piece"
             class:player1={piece.value > 0}
