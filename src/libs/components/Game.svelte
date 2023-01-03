@@ -38,10 +38,20 @@
         </div>
     {/if}
     {#if game.state.player === 1}
-        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player1} />
-        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player2} />
+        <PlayerHandCompoment
+            {onSelectRandom}
+            {onSelectPiece}
+            hand={game.player1}
+            disabled={false}
+        />
+        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player2} disabled={true} />
     {:else}
-        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player2} />
-        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player1} />
+        <PlayerHandCompoment
+            {onSelectRandom}
+            {onSelectPiece}
+            hand={game.player2}
+            disabled={false}
+        />
+        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player1} disabled={true} />
     {/if}
 </div>
