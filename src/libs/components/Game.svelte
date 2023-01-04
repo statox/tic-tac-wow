@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getNewGame, type PlayerHand, type Piece } from '../services/game';
-    import { makeRandomMove } from '../services/game/ia';
+    import { makeNotLosingMove, makeRandomMove } from '../services/game/ia';
     import {
         placeSelectedPieceInBoard,
         selectCellInBoard,
@@ -12,11 +12,22 @@
     let game = getNewGame();
     let autoPlayer2 = false;
 
+    const autoPlayer2Move = () => {
+        if (
+            ['winner', 'select2'].includes(game.state.action) ||
+            game.state.player !== game.player2.player ||
+            !autoPlayer2
+        ) {
+            return;
+        }
+
+        makeRandomMove(game, game.player2);
+    };
     const onSelectCell = (x: number, y: number) => {
         if (game.state.action === 'select2') {
             const returnCode = placeSelectedPieceInBoard(game, { x, y });
-            if (autoPlayer2 && returnCode === 0) {
-                makeRandomMove(game, game.player2);
+            if (returnCode === 0) {
+                autoPlayer2Move();
             }
             game = game;
             return;
@@ -31,11 +42,14 @@
         game = game;
     };
 
-    const onSelectRandom = (hand: PlayerHand) => {
-        makeRandomMove(game, hand);
-        if (autoPlayer2) {
-            makeRandomMove(game, game.player2);
+    const onSelectAuto = (hand: PlayerHand, method: 'random' | 'not_losing') => {
+        if (method === 'random') {
+            makeRandomMove(game, hand);
         }
+        if (method === 'not_losing') {
+            makeNotLosingMove(game, hand);
+        }
+        autoPlayer2Move();
         game = game;
     };
 </script>
@@ -53,20 +67,10 @@
         </div>
     {/if}
     {#if game.state.player === 1}
-        <PlayerHandCompoment
-            {onSelectRandom}
-            {onSelectPiece}
-            hand={game.player1}
-            disabled={false}
-        />
-        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player2} disabled={true} />
+        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player1} disabled={false} />
+        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player2} disabled={true} />
     {:else}
-        <PlayerHandCompoment
-            {onSelectRandom}
-            {onSelectPiece}
-            hand={game.player2}
-            disabled={false}
-        />
-        <PlayerHandCompoment {onSelectRandom} {onSelectPiece} hand={game.player1} disabled={true} />
+        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player2} disabled={false} />
+        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player1} disabled={true} />
     {/if}
 </div>

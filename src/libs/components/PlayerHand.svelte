@@ -6,12 +6,13 @@
     export let hand: PlayerHand;
     export let disabled: boolean;
     export let onSelectPiece: (hand: PlayerHand, piece: Piece) => void;
-    export let onSelectRandom: (hand: PlayerHand) => void;
+    export let onSelectAuto: (hand: PlayerHand, method: 'random' | 'not_losing') => void;
 </script>
 
 <span>Player {hand.player}</span>
 {#if !disabled}
-    <button on:click={() => onSelectRandom(hand)}>Pick random</button>
+    <button on:click={() => onSelectAuto(hand, 'random')}>Pick random</button>
+    <button on:click={() => onSelectAuto(hand, 'not_losing')}>Pick not losing</button>
 {/if}
 
 <div class="overlay">
