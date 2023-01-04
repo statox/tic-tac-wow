@@ -30,7 +30,7 @@ export const makeRandomMove = (game: Game, hand: PlayerHand) => {
     placeSelectedPieceInBoard(game, destination);
 };
 
-export const makeNotLosingMove = (game: Game, hand: PlayerHand) => {
+export const makeWinningMoveOrRandom = (game: Game, hand: PlayerHand) => {
     const possibleSelections = getHandPossibleSelection(game, hand);
     if (possibleSelections.length === 0) {
         throw Error('No move possible');

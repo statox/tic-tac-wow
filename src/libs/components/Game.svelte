@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getNewGame, type PlayerHand, type Piece } from '../services/game';
-    import { makeNotLosingMove, makeRandomMove } from '../services/game/ia';
+    import { makeWinningMoveOrRandom, makeRandomMove } from '../services/game/ia';
     import {
         placeSelectedPieceInBoard,
         selectCellInBoard,
@@ -21,7 +21,7 @@
             return;
         }
 
-        makeRandomMove(game, game.player2);
+        makeWinningMoveOrRandom(game, game.player2);
     };
     const onSelectCell = (x: number, y: number) => {
         if (game.state.action === 'select2') {
@@ -42,12 +42,12 @@
         game = game;
     };
 
-    const onSelectAuto = (hand: PlayerHand, method: 'random' | 'not_losing') => {
+    const onSelectAuto = (hand: PlayerHand, method: 'random' | 'win_or_random') => {
         if (method === 'random') {
             makeRandomMove(game, hand);
         }
-        if (method === 'not_losing') {
-            makeNotLosingMove(game, hand);
+        if (method === 'win_or_random') {
+            makeWinningMoveOrRandom(game, hand);
         }
         autoPlayer2Move();
         game = game;
