@@ -1,8 +1,8 @@
 import { checkWinner } from 'src/libs/services/game/check';
 import { describe, expect, it } from 'vitest';
-import { getNewGame } from '../../libs/services/game';
+import { getNewGame } from 'src/libs/services/game';
 import { cases } from './checkWinner.fixture';
-import { convertFixtureGridToGame } from './helpers';
+import { convertFixtureGridToGame } from '../helpers';
 
 describe('checkWinner', () => {
     it('Should not find a winner on a new game', () => {

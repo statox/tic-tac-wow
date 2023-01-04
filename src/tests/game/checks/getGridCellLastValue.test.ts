@@ -1,6 +1,6 @@
 import { getGridCellLastValue } from 'src/libs/services/game/check';
 import { describe, expect, it } from 'vitest';
-import { convertFixtureGridToGame } from './helpers';
+import { convertFixtureGridToGame } from '../helpers';
 
 describe('getGridCellLastValue', () => {
     it('Should compare the last value of each stack', () => {

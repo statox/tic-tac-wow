@@ -1,18 +1,4 @@
-import { printGameGrid } from './helpers';
 import type { Game, Piece, Player } from './types';
-
-export const findAvailableSpotsForPiece = (game: Game, piece: Piece) => {
-    const available = [];
-    for (let y = 0; y < 3; y++) {
-        for (let x = 0; x < 3; x++) {
-            const val = getGridCellLastValue(game.grid, x, y);
-            if (!val || val < Math.abs(piece.value)) {
-                available.push({ x, y });
-            }
-        }
-    }
-    return available;
-};
 
 // exported for tests
 export const getGridCellLastPlayer = (grid: Piece[][][], x: number, y: number): Player | null => {
@@ -61,8 +47,6 @@ export const cellsAreSamePlayer = (
 export const checkWinner = (game: Game) => {
     const { grid } = game;
 
-    printGameGrid(game, 'grid in check winner');
-
     let winner;
     // Check if one of the lines has 3 times the same value
     for (let y = 0; y < 3; y++) {
@@ -70,7 +54,6 @@ export const checkWinner = (game: Game) => {
             cellsAreSamePlayer(grid, { x: 0, y }, { x: 1, y }) &&
             cellsAreSamePlayer(grid, { x: 0, y }, { x: 2, y })
         ) {
-            console.log('winner on row', y);
             winner = getGridCellLastPlayer(grid, 0, y);
         }
     }
@@ -80,7 +63,6 @@ export const checkWinner = (game: Game) => {
             cellsAreSamePlayer(grid, { x, y: 0 }, { x, y: 1 }) &&
             cellsAreSamePlayer(grid, { x, y: 0 }, { x, y: 2 })
         ) {
-            console.log('winner on column', x);
             winner = getGridCellLastPlayer(grid, x, 0);
         }
     }
@@ -89,7 +71,6 @@ export const checkWinner = (game: Game) => {
         cellsAreSamePlayer(grid, { x: 0, y: 0 }, { x: 1, y: 1 }) &&
         cellsAreSamePlayer(grid, { x: 0, y: 0 }, { x: 2, y: 2 })
     ) {
-        console.log('winner on NW/SE');
         winner = getGridCellLastPlayer(grid, 0, 0);
     }
     // Check if the north-easit/south-west diagonal has 3 time the same value
@@ -97,7 +78,6 @@ export const checkWinner = (game: Game) => {
         cellsAreSamePlayer(grid, { x: 0, y: 2 }, { x: 1, y: 1 }) &&
         cellsAreSamePlayer(grid, { x: 0, y: 2 }, { x: 2, y: 0 })
     ) {
-        console.log('winner on NE/SW');
         winner = getGridCellLastPlayer(grid, 0, 2);
     }
 
