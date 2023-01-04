@@ -1,9 +1,20 @@
 import { getGridCellLastValue } from './service';
 import type { Game, Piece } from './types';
 
-export const printGameGrid = (game: Game, message?: string) => {
+export const printGameGrid = (game: Game, message?: string, showFull?: true) => {
     console.log(message);
-    console.log(game.grid.map((l) => l.map((ps) => ps.map((p) => p.value)).join('\t|')).join('\n'));
+    if (!showFull) {
+        console.log(
+            game.grid.map((l) => l.map((ps) => ps.map((p) => p.value)).join('\t|')).join('\n')
+        );
+        return;
+    }
+
+    console.log(
+        game.grid
+            .map((l) => l.map((ps) => ps.map((p) => `${p.value}-${p.selected}`)).join('\t|'))
+            .join('\n')
+    );
 };
 
 export const findAvailableSpotsForPiece = (game: Game, piece: Piece) => {

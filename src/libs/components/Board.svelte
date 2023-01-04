@@ -10,7 +10,12 @@
     <div class="overlay">
         {#each game.grid as line, y}
             {#each line as cell, x}
-                <PiecesCell on:click={() => onSelectCell(x, y)} pieces={cell} disabled={false} />
+                <PiecesCell
+                    on:click={() => onSelectCell(x, y)}
+                    pieces={cell}
+                    disabled={false}
+                    selected={cell[cell.length - 1]?.selected}
+                />
             {/each}
         {/each}
     </div>

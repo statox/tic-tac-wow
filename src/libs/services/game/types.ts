@@ -10,7 +10,7 @@ export type Piece = {
 export type PlayerHand = {
     player: Player;
     pieces: Piece[];
-    selectedPiece?: Piece;
+    selectedPiece?: Piece & { from: 'board' | 'hand' };
 };
 
 export type Game = {
