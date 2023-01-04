@@ -1,13 +1,13 @@
-import { checkWinner } from './check';
-import { copyGame } from './helpers';
+import { checkWinner } from '../check';
+import { copyGame } from '../helpers';
 import {
     findAvailableSpotsForPiece,
     getHandPossibleSelection,
     getHandsPossibleMoves,
     getPieceFromSelection
-} from './ia-helpers';
-import { placeSelectedPieceInBoard, selectCellInBoard, selectPieceInHand } from './state-machine';
-import type { Game, PlayerHand } from './types';
+} from './helpers';
+import { placeSelectedPieceInBoard, selectCellInBoard, selectPieceInHand } from '../state-machine';
+import type { Game, PlayerHand } from '../types';
 
 export const makeRandomMove = (game: Game, hand: PlayerHand) => {
     const moves = getHandsPossibleMoves(game, hand);

@@ -1,5 +1,5 @@
-import { getGridCellLastPlayer, getGridCellLastValue } from './check';
-import type { Game, Piece, PlayerHand } from './types';
+import { getGridCellLastPlayer, getGridCellLastValue } from '../check';
+import type { Game, Piece, PlayerHand } from '../types';
 
 export const findAvailableSpotsForPiece = (game: Game, piece: Piece) => {
     const available = [];
