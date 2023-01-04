@@ -1,5 +1,5 @@
-import { findAvailableSpotsForPiece } from './helpers';
-import { placeSelectedPieceInBoard, selectPieceInHand } from './service';
+import { findAvailableSpotsForPiece } from './check';
+import { placeSelectedPieceInBoard, selectPieceInHand } from './state-machine';
 import type { Game, PlayerHand } from './types';
 
 export const makeRandomMove = (game: Game, hand: PlayerHand) => {

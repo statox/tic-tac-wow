@@ -1,13 +1,11 @@
 <script lang="ts">
-    import {
-        getNewGame,
-        selectPieceInHand,
-        type PlayerHand,
-        type Piece,
-        placeSelectedPieceInBoard,
-        selectCellInBoard
-    } from '../services/game';
+    import { getNewGame, type PlayerHand, type Piece } from '../services/game';
     import { makeRandomMove } from '../services/game/ia';
+    import {
+        placeSelectedPieceInBoard,
+        selectCellInBoard,
+        selectPieceInHand
+    } from '../services/game/state-machine';
     import Board from './Board.svelte';
     import PlayerHandCompoment from './PlayerHand.svelte';
 

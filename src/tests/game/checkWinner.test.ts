@@ -1,5 +1,6 @@
+import { checkWinner } from 'src/libs/services/game/check';
 import { describe, expect, it } from 'vitest';
-import { checkWinner, getNewGame } from '../../libs/services/game';
+import { getNewGame } from '../../libs/services/game';
 import { cases } from './checkWinner.fixture';
 import { convertFixtureGridToGame } from './helpers';
 

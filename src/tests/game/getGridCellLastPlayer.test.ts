@@ -1,5 +1,5 @@
+import { getGridCellLastPlayer } from 'src/libs/services/game/check';
 import { describe, expect, it } from 'vitest';
-import { getGridCellLastPlayer } from '../../libs/services/game';
 import { convertFixtureGridToGame } from './helpers';
 
 describe('getGridCellLastPlayer', () => {
