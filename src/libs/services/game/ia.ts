@@ -1,32 +1,82 @@
-import { findAvailableSpotsForPiece } from './check';
-import { placeSelectedPieceInBoard, selectPieceInHand } from './state-machine';
+import { checkWinner } from './check';
+import { copyGame } from './helpers';
+import {
+    findAvailableSpotsForPiece,
+    getHandPossibleSelection,
+    getHandsPossibleMoves,
+    getPieceFromSelection
+} from './ia-helpers';
+import { placeSelectedPieceInBoard, selectCellInBoard, selectPieceInHand } from './state-machine';
 import type { Game, PlayerHand } from './types';
 
 export const makeRandomMove = (game: Game, hand: PlayerHand) => {
-    let piece;
-    let spot;
-    let found = false;
+    const moves = getHandsPossibleMoves(game, hand);
+    if (moves.size === 0) {
+        throw Error('No move possible');
+    }
+    const possibleSelections = Array.from(moves.keys());
+    const randSelectionIdx = Math.floor(Math.random() * possibleSelections.length);
+    const selection = possibleSelections[randSelectionIdx];
 
-    // Get the indexes in a random order
-    const pieceIndexToTry = new Array(hand.pieces.length).fill(0).map((_, index) => index);
-    pieceIndexToTry.sort(() => Math.random() - 0.5);
+    const piece = getPieceFromSelection(game, selection);
+    const randDestinationIdx = Math.floor(Math.random() * moves.get(selection).length);
+    const destination = moves.get(selection)[randDestinationIdx];
 
-    while (!found && pieceIndexToTry.length > 0) {
-        const pieceIndex = pieceIndexToTry.pop() || 0;
-        piece = hand.pieces[pieceIndex];
-        const spots = findAvailableSpotsForPiece(game, piece);
+    if (selection.from === 'hand') {
+        selectPieceInHand(game, hand, piece);
+    } else {
+        selectCellInBoard(game, hand, selection.position);
+    }
+    placeSelectedPieceInBoard(game, destination);
+};
 
-        if (spots.length) {
-            const spotIndex = Math.floor(Math.random() * spots.length);
-            spot = spots[spotIndex];
-            found = true;
+export const makeNotLosingMove = (game: Game, hand: PlayerHand) => {
+    const possibleSelections = getHandPossibleSelection(game, hand);
+    if (possibleSelections.length === 0) {
+        throw Error('No move possible');
+    }
+    const shuffledPossibleSelections = possibleSelections.sort(() => Math.random() - 0.5);
+
+    while (shuffledPossibleSelections.length) {
+        const selection = shuffledPossibleSelections.pop();
+        if (!selection) {
+            continue;
+        }
+        const piece = getPieceFromSelection(game, selection);
+        const possibleDestinations = findAvailableSpotsForPiece(game, piece);
+        const shuffledDestinations = [...possibleDestinations].sort(() => Math.random() - 0.5);
+
+        while (shuffledDestinations.length) {
+            const gameCopy = copyGame(game);
+            const handCopy = gameCopy.state.player === 1 ? gameCopy.player1 : gameCopy.player2;
+            const piece = getPieceFromSelection(gameCopy, selection);
+
+            const destination = shuffledDestinations.pop();
+            if (!destination) {
+                continue;
+            }
+            if (selection.from === 'hand') {
+                selectPieceInHand(gameCopy, handCopy, piece);
+            } else {
+                selectCellInBoard(gameCopy, handCopy, selection.position);
+            }
+            placeSelectedPieceInBoard(gameCopy, destination);
+            checkWinner(gameCopy);
+
+            if (gameCopy.state.action === 'winner' && gameCopy.state.player === hand.player) {
+                console.log('Make winning move');
+                const realPiece = getPieceFromSelection(game, selection);
+                if (selection.from === 'hand') {
+                    selectPieceInHand(game, hand, realPiece);
+                } else {
+                    selectCellInBoard(game, hand, selection.position);
+                }
+                placeSelectedPieceInBoard(game, destination);
+                return;
+            }
         }
     }
 
-    if (!piece || !spot) {
-        throw new Error('could not make a random move');
-    }
-
-    selectPieceInHand(game, hand, piece);
-    placeSelectedPieceInBoard(game, spot);
+    console.log('default to random move');
+    makeRandomMove(game, hand);
 };

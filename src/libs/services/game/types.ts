@@ -7,10 +7,13 @@ export type Piece = {
     selected: boolean;
 };
 
+export type PieceWithPosition = Piece &
+    ({ from: 'hand' } | { from: 'board'; position: { x: number; y: number } });
+
 export type PlayerHand = {
     player: Player;
     pieces: Piece[];
-    selectedPiece?: Piece & { from: 'board' | 'hand' };
+    selectedPiece?: PieceWithPosition;
 };
 
 export type Game = {

@@ -8,6 +8,7 @@
 // Check end
 
 import { checkWinner, getGridCellLastPlayer, getGridCellLastValue } from './check';
+import { printGameHands } from './helpers';
 import type { Game, Piece, Player, PlayerHand } from './types';
 export type StateAction = 'select1' | 'select2' | 'winner';
 
@@ -19,6 +20,10 @@ export type State = {
 export const selectPieceInHand = (game: Game, hand: PlayerHand, piece: Piece) => {
     if (game.state.player !== hand.player || game.state.action !== 'select1') {
         return;
+    }
+    const handIndex = hand.pieces.findIndex((p) => p.value === piece.value);
+    if (handIndex === -1) {
+        throw new Error('Tried to select a piece which is not in hand');
     }
     hand.pieces.forEach((p) => (p.selected = false));
     piece.selected = true;
@@ -45,7 +50,11 @@ export const selectCellInBoard = (game: Game, hand: PlayerHand, cell: { x: numbe
     }
     hand.pieces.forEach((p) => (p.selected = false));
     game.grid[y][x][game.grid[y][x].length - 1].selected = true;
-    hand.selectedPiece = { ...game.grid[y][x][game.grid[y][x].length - 1], from: 'board' };
+    hand.selectedPiece = {
+        ...game.grid[y][x][game.grid[y][x].length - 1],
+        from: 'board',
+        position: { x, y }
+    };
     game.state.action = 'select2';
 };
 
@@ -74,6 +83,10 @@ export const placeSelectedPieceInBoard = (game: Game, cell: { x: number; y: numb
 
     if (hand.selectedPiece.from === 'hand') {
         const pieceIndex = hand.pieces.findIndex((p) => p.selected);
+        if (pieceIndex === -1) {
+            printGameHands(game, 'Invalid piece selection', true);
+            throw new Error('Tried to move piece not in hand');
+        }
         hand.pieces.splice(pieceIndex, 1);
     }
     if (hand.selectedPiece.from === 'board') {
