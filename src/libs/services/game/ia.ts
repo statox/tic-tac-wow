@@ -9,7 +9,7 @@ export const makeRandomMove = (game: Game, hand: PlayerHand) => {
 
     // Get the indexes in a random order
     const pieceIndexToTry = new Array(hand.pieces.length).fill(0).map((_, index) => index);
-    pieceIndexToTry.sort((_, __) => Math.random() - 0.5);
+    pieceIndexToTry.sort(() => Math.random() - 0.5);
 
     while (!found && pieceIndexToTry.length > 0) {
         const pieceIndex = pieceIndexToTry.pop() || 0;
