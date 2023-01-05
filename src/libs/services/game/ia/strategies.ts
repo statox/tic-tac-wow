@@ -64,7 +64,7 @@ export const makeWinningMoveOrRandom = (game: Game, hand: PlayerHand) => {
             checkWinner(gameCopy);
 
             if (gameCopy.state.action === 'winner' && gameCopy.state.player === hand.player) {
-                console.log('Make winning move');
+                // console.log('Make winning move');
                 const realPiece = getPieceFromSelection(game, selection);
                 if (selection.from === 'hand') {
                     selectPieceInHand(game, hand, realPiece);
@@ -77,6 +77,6 @@ export const makeWinningMoveOrRandom = (game: Game, hand: PlayerHand) => {
         }
     }
 
-    console.log('default to random move');
+    // console.log('default to random move');
     makeRandomMove(game, hand);
 };
