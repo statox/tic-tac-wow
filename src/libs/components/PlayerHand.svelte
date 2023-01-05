@@ -1,12 +1,13 @@
 <script lang="ts">
     import type { Piece, PlayerHand } from '../services/game';
+    import type { Strategy } from '../services/game/ia/types';
 
     import PiecesCell from './PiecesCell.svelte';
 
     export let hand: PlayerHand;
     export let disabled: boolean;
     export let onSelectPiece: (hand: PlayerHand, piece: Piece) => void;
-    export let onSelectAuto: (hand: PlayerHand, method: 'random' | 'win_or_random') => void;
+    export let onSelectAuto: (hand: PlayerHand, method: Strategy) => void;
 </script>
 
 <span>Player {hand.player}</span>

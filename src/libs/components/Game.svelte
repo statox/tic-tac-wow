@@ -1,6 +1,7 @@
 <script lang="ts">
     import { getNewGame, type PlayerHand, type Piece } from '../services/game';
     import { makeWinningMoveOrRandom, makeRandomMove } from '../services/game/ia';
+    import type { Strategy } from '../services/game/ia/types';
     import {
         placeSelectedPieceInBoard,
         selectCellInBoard,
@@ -42,7 +43,7 @@
         game = game;
     };
 
-    const onSelectAuto = (hand: PlayerHand, method: 'random' | 'win_or_random') => {
+    const onSelectAuto = (hand: PlayerHand, method: Strategy) => {
         if (method === 'random') {
             makeRandomMove(game, hand);
         }
