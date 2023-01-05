@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Piece, PlayerHand } from '../services/game';
-    import type { Strategy } from '../services/game/ia/types';
+    import type { Strategy } from '../services/game/ia//strategies/types';
 
     import PiecesCell from './PiecesCell.svelte';
 

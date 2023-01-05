@@ -1,4 +1,4 @@
-import type { Strategy } from 'src/libs/services/game/ia/types';
+import type { Strategy } from 'src/libs/services/game/ia/strategies/types';
 import { playAGame } from '../libs/services/game/engine';
 
 const compareStrats = (p1Strat: Strategy, p2Strat: Strategy, numberOfGames: number) => {

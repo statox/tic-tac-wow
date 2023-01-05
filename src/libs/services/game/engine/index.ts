@@ -1,4 +1,4 @@
-import type { Strategy, StrategyFunction } from '../ia/types';
+import type { Strategy, StrategyFunction } from '../ia/strategies/types';
 import type { State } from '../state-machine';
 
 import { checkWinner } from '../check';

@@ -1,34 +1,18 @@
-import { checkWinner } from '../check';
-import { copyGame } from '../helpers';
+import type { Game, PlayerHand } from '../../types';
 import {
     findAvailableSpotsForPiece,
     getHandPossibleSelection,
-    getHandsPossibleMoves,
     getPieceFromSelection
-} from './helpers';
-import { placeSelectedPieceInBoard, selectCellInBoard, selectPieceInHand } from '../state-machine';
-import type { Game, PlayerHand } from '../types';
+} from '../helpers';
 
-export const makeRandomMove = (game: Game, hand: PlayerHand) => {
-    const moves = getHandsPossibleMoves(game, hand);
-    if (moves.size === 0) {
-        throw Error('No move possible');
-    }
-    const possibleSelections = Array.from(moves.keys());
-    const randSelectionIdx = Math.floor(Math.random() * possibleSelections.length);
-    const selection = possibleSelections[randSelectionIdx];
-
-    const piece = getPieceFromSelection(game, selection);
-    const randDestinationIdx = Math.floor(Math.random() * moves.get(selection).length);
-    const destination = moves.get(selection)[randDestinationIdx];
-
-    if (selection.from === 'hand') {
-        selectPieceInHand(game, hand, piece);
-    } else {
-        selectCellInBoard(game, hand, selection.position);
-    }
-    placeSelectedPieceInBoard(game, destination);
-};
+import {
+    placeSelectedPieceInBoard,
+    selectCellInBoard,
+    selectPieceInHand
+} from '../../state-machine';
+import { copyGame } from '../../helpers';
+import { checkWinner } from '../../check';
+import { makeRandomMove } from './makeRandomMove';
 
 export const makeWinningMoveOrRandom = (game: Game, hand: PlayerHand) => {
     const possibleSelections = getHandPossibleSelection(game, hand);

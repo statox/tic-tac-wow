@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getNewGame, type PlayerHand, type Piece } from '../services/game';
     import { makeWinningMoveOrRandom, makeRandomMove } from '../services/game/ia';
-    import type { Strategy } from '../services/game/ia/types';
+    import type { Strategy } from '../services/game/ia/strategies/types';
     import {
         placeSelectedPieceInBoard,
         selectCellInBoard,
