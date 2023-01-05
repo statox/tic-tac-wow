@@ -47,14 +47,15 @@ export const cellsAreSamePlayer = (
 export const checkWinner = (game: Game) => {
     const { grid } = game;
 
-    let winner;
+    const wins = new Set<Player | null>();
     // Check if one of the lines has 3 times the same value
     for (let y = 0; y < 3; y++) {
         if (
             cellsAreSamePlayer(grid, { x: 0, y }, { x: 1, y }) &&
             cellsAreSamePlayer(grid, { x: 0, y }, { x: 2, y })
         ) {
-            winner = getGridCellLastPlayer(grid, 0, y);
+            const winner = getGridCellLastPlayer(grid, 0, y);
+            wins.add(winner);
         }
     }
     // Check if one of the colimns has 3 times the same value
@@ -63,7 +64,8 @@ export const checkWinner = (game: Game) => {
             cellsAreSamePlayer(grid, { x, y: 0 }, { x, y: 1 }) &&
             cellsAreSamePlayer(grid, { x, y: 0 }, { x, y: 2 })
         ) {
-            winner = getGridCellLastPlayer(grid, x, 0);
+            const winner = getGridCellLastPlayer(grid, x, 0);
+            wins.add(winner);
         }
     }
     // Check if the north-west/south-east diagonal has 3 time the same value
@@ -71,18 +73,27 @@ export const checkWinner = (game: Game) => {
         cellsAreSamePlayer(grid, { x: 0, y: 0 }, { x: 1, y: 1 }) &&
         cellsAreSamePlayer(grid, { x: 0, y: 0 }, { x: 2, y: 2 })
     ) {
-        winner = getGridCellLastPlayer(grid, 0, 0);
+        const winner = getGridCellLastPlayer(grid, 0, 0);
+        wins.add(winner);
     }
     // Check if the north-easit/south-west diagonal has 3 time the same value
     if (
         cellsAreSamePlayer(grid, { x: 0, y: 2 }, { x: 1, y: 1 }) &&
         cellsAreSamePlayer(grid, { x: 0, y: 2 }, { x: 2, y: 0 })
     ) {
-        winner = getGridCellLastPlayer(grid, 0, 2);
+        const winner = getGridCellLastPlayer(grid, 0, 2);
+        wins.add(winner);
     }
 
-    if (winner) {
-        game.state.player = winner;
+    wins.delete(null);
+    if (wins.size === 1) {
+        game.state.player = [...wins.values()][0] as Player;
         game.state.action = 'winner';
+        return;
+    }
+    if (wins.size === 2) {
+        game.state.player = 1;
+        game.state.action = 'draw';
+        return;
     }
 };

@@ -111,15 +111,15 @@ export const cases: CheckWinnerCase[] = [
         ]
     },
     {
-        name: 'Bug 1',
+        name: 'Should detect a draw',
         expectedState: {
             player: 1,
-            action: 'winner'
+            action: 'draw'
         },
         grid: [
-            [[], [], [1]],
-            [[], [-1, 3], []],
-            [[-1, 3], [], []]
+            [[2], [1], [1]],
+            [[-2], [-1], [-1]],
+            [[], [], []]
         ]
     }
 ];

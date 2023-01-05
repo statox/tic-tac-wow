@@ -10,7 +10,7 @@
 import { checkWinner, getGridCellLastPlayer, getGridCellLastValue } from './check';
 import { printGameHands } from './helpers';
 import type { Game, Piece, Player, PlayerHand } from './types';
-export type StateAction = 'select1' | 'select2' | 'winner';
+export type StateAction = 'select1' | 'select2' | 'winner' | 'draw';
 
 export type State = {
     player: Player;
