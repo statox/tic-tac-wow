@@ -16,20 +16,17 @@ describe('makeWinningMoveOrRandom', () => {
         expect(game.grid[2][0][0]).toBe(1);
     });
 
-    // it('should pick a winning move with the right piece', () => {
-    //     const game = convertFixtureGridToGame([
-    //         [[1], [], []],
-    //         [[-1, 2], [], []],
-    //         [[-1], [], [-3]]
-    //     ]);
-    //     printGameGrid(game, 'first');
+    it('should pick a winning move with the right piece', () => {
+        const game = convertFixtureGridToGame([
+            [[1], [], []],
+            [[1, -2], [], []],
+            [[-2], [], [3]]
+        ]);
+        game.state.player = 2;
 
-    //     game.player1.pieces = [
-    //         { value: 1, selected: false },
-    //         { value: 2, selected: false }
-    //     ];
-    //     makeWinningMoveOrRandom(game, game.player1);
-    //     expect(game.grid[2][0]).toHaveLength(2);
-    //     expect(game.grid[2][0][1]?.value).toBe(2);
-    // });
+        game.player2.unselectableIndexes = new Set([0, 2, 4, 5]);
+        makeWinningMoveOrRandom(game, game.player2);
+        expect(game.grid[0][0]).toHaveLength(2);
+        expect(game.grid[0][0][1]).toBe(-2);
+    });
 });

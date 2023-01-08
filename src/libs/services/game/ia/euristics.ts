@@ -15,7 +15,7 @@ export const scoreGame = (game: Game) => {
     const movesp1 = getHandsPossibleMoves(game, game.player1);
     const movesp2 = getHandsPossibleMoves(game, game.player2);
 
-    if (movesp1.size === 0 && movesp2.size === 0) {
+    if (movesp1.length === 0 && movesp2.length === 0) {
         return Number.MAX_SAFE_INTEGER / 2;
     }
 
