@@ -13,6 +13,7 @@ import {
     getGridCellLastValue,
     getGridCellPiece
 } from './check';
+import { getGameCurrentHand } from './helpers';
 import type { BoardPosition, Game, Player, PlayerHand } from './types';
 export type StateAction = 'select1' | 'select2' | 'winner' | 'draw';
 
@@ -80,7 +81,7 @@ export const placeSelectedPieceInBoard = (game: Game, target: BoardPosition) => 
         throw new Error('invalid_step');
     }
 
-    const hand = game.state.player === 1 ? game.player1 : game.player2;
+    const hand = getGameCurrentHand(game);
     if (hand.selectedPiece === null) {
         throw new Error('no_selection_in_hand');
     }

@@ -1,4 +1,4 @@
-import type { Game } from './types';
+import type { Game, PlayerHand } from './types';
 
 export const copyGame = (game: Game): Game => {
     const p1Unselectable = game.player1.unselectableIndexes;
@@ -7,6 +7,14 @@ export const copyGame = (game: Game): Game => {
     newGame.player1.unselectableIndexes = new Set([...p1Unselectable.values()]);
     newGame.player2.unselectableIndexes = new Set([...p2Unselectable.values()]);
     return newGame;
+};
+
+export const getGameCurrentHand = (game: Game): PlayerHand => {
+    return game.state.player === 1 ? game.player1 : game.player2;
+};
+
+export const getGameOtherHand = (game: Game): PlayerHand => {
+    return game.state.player === 1 ? game.player2 : game.player1;
 };
 
 export const gameGridAsString = (game: Game, showFull?: true) => {

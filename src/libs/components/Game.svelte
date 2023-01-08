@@ -1,5 +1,6 @@
 <script lang="ts">
     import { getNewGame, type BoardPosition, type PlayerHand } from '../services/game';
+    import { getGameCurrentHand, getGameOtherHand } from '../services/game/helpers';
     import {
         makeWinningMoveOrRandom,
         makeRandomMove,
@@ -42,7 +43,7 @@
                 game = game;
                 return;
             }
-            const hand = game.state.player === 1 ? game.player1 : game.player2;
+            const hand = getGameCurrentHand(game);
             selectCellInBoard(game, hand, { x, y });
             game = game;
             game.grid = game.grid;
@@ -91,35 +92,18 @@
             <button on:click={() => (game = getNewGame())}>Play again</button>
         </div>
     {/if}
-    {#if game.state.player === 1}
-        {#key game}
-            <PlayerHandCompoment
-                {onSelectAuto}
-                {onSelectPiece}
-                hand={game.player1}
-                disabled={false}
-            />
-            <PlayerHandCompoment
-                {onSelectAuto}
-                {onSelectPiece}
-                hand={game.player2}
-                disabled={true}
-            />
-        {/key}
-    {:else}
-        {#key game}
-            <PlayerHandCompoment
-                {onSelectAuto}
-                {onSelectPiece}
-                hand={game.player2}
-                disabled={false}
-            />
-            <PlayerHandCompoment
-                {onSelectAuto}
-                {onSelectPiece}
-                hand={game.player1}
-                disabled={true}
-            />
-        {/key}
-    {/if}
+    {#key game}
+        <PlayerHandCompoment
+            {onSelectAuto}
+            {onSelectPiece}
+            hand={getGameCurrentHand(game)}
+            disabled={false}
+        />
+        <PlayerHandCompoment
+            {onSelectAuto}
+            {onSelectPiece}
+            hand={getGameOtherHand(game)}
+            disabled={true}
+        />
+    {/key}
 </div>
