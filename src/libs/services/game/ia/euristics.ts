@@ -24,9 +24,9 @@ export const scoreGame = (game: Game) => {
     // Check middle spot owner
     const middleLastPlayer = getGridCellLastPlayer(game.grid, 1, 1);
     if (middleLastPlayer === game.player1.player) {
-        score += 1;
+        score += 2;
     } else if (middleLastPlayer === game.player2.player) {
-        score -= 1;
+        score -= 2;
     }
 
     const cornersPlayers = [

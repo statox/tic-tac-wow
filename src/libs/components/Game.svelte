@@ -26,7 +26,8 @@
             return;
         }
 
-        makeWinningMoveOrRandom(game, game.player2);
+        // makeWinningMoveOrRandom(game, game.player2);
+        makeBestMoveByEuristic(game, game.player2);
     };
     const onSelectCell = ({ x, y }: BoardPosition) => {
         try {

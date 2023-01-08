@@ -58,7 +58,7 @@ describe('scoreGame', () => {
             [[], [], []]
         ]);
         const score = scoreGame(game);
-        expect(score).toBe(1);
+        expect(score).toBe(2);
     });
 
     it('Should return -1 for a middle spot owned by player 2', () => {
@@ -68,7 +68,7 @@ describe('scoreGame', () => {
             [[], [], []]
         ]);
         const score = scoreGame(game);
-        expect(score).toBe(-1);
+        expect(score).toBe(-2);
     });
 
     it('Should return count corners according to owner - 1', () => {
