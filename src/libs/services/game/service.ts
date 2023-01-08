@@ -13,7 +13,7 @@ const makePlayerHand = (player: Player): PlayerHand => {
     };
 };
 
-export const getNewGame = (): Game => {
+export const getNewGame = (params?: { player2Start: boolean }): Game => {
     const grid: PieceStack[][] = [];
     for (let y = 0; y < 3; y++) {
         grid.push([]);
@@ -31,6 +31,10 @@ export const getNewGame = (): Game => {
         player1: makePlayerHand(1),
         player2: makePlayerHand(2)
     };
+
+    if (params?.player2Start) {
+        game.state.player = 2;
+    }
 
     return game;
 };

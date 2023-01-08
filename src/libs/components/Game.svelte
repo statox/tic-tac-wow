@@ -78,6 +78,13 @@
         autoPlayer2Move();
         game = game;
     };
+
+    const resetGame = () => {
+        game = getNewGame({ player2Start: Math.random() < 0.5 });
+        if (game.state.player === 2 && $gameSettings.player2Auto) {
+            autoPlayer2Move();
+        }
+    };
 </script>
 
 <div class="d-flex justify-content-center">
@@ -89,7 +96,7 @@
         <div>
             <span>Game over!</span>
             <span>Winner: Player {game.state.player}</span>
-            <button on:click={() => (game = getNewGame())}>Play again</button>
+            <button on:click={resetGame}>Play again</button>
         </div>
     {/if}
     {#key game}
