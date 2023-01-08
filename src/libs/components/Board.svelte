@@ -1,20 +1,35 @@
 <script lang="ts">
-    import type { Game } from '../services/game';
+    import type { BoardPosition, Game } from '../services/game';
     import PiecesCell from './PiecesCell.svelte';
 
     export let game: Game;
-    export let onSelectCell: (x: number, y: number) => void;
+    export let onSelectCell: (cell: BoardPosition) => void;
+
+    const isCellSelected = (cell: BoardPosition) => {
+        for (const hand of [game.player1, game.player2]) {
+            const { selectedPiece } = hand;
+            if (
+                selectedPiece?.from === 'board' &&
+                selectedPiece.position.x === cell.x &&
+                selectedPiece.position.y === cell.y
+            ) {
+                return true;
+            }
+        }
+        return false;
+    };
 </script>
 
 <div class="board">
+    <div>{JSON.stringify(game.state)}</div>
     <div class="overlay">
         {#each game.grid as line, y}
             {#each line as cell, x}
                 <PiecesCell
-                    on:click={() => onSelectCell(x, y)}
+                    on:click={() => onSelectCell({ x, y })}
                     pieces={cell}
                     disabled={false}
-                    selected={cell[cell.length - 1]?.selected}
+                    selected={isCellSelected({ x, y })}
                 />
             {/each}
         {/each}

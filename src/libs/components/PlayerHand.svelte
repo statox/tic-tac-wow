@@ -1,12 +1,12 @@
 <script lang="ts">
-    import type { Piece, PlayerHand } from '../services/game';
+    import type { PlayerHand } from '../services/game';
     import type { Strategy } from '../services/game/ia//strategies/types';
 
     import PiecesCell from './PiecesCell.svelte';
 
     export let hand: PlayerHand;
     export let disabled: boolean;
-    export let onSelectPiece: (hand: PlayerHand, piece: Piece) => void;
+    export let onSelectPiece: (hand: PlayerHand, pieceSelectionIndex: number) => void;
     export let onSelectAuto: (hand: PlayerHand, method: Strategy) => void;
 </script>
 
@@ -17,12 +17,12 @@
 {/if}
 
 <div class="overlay">
-    {#each hand.pieces as piece}
+    {#each hand.pieces as piece, index}
         <PiecesCell
-            {disabled}
-            on:click={() => onSelectPiece(hand, piece)}
+            disabled={disabled || hand.unselectableIndexes.has(index)}
+            on:click={() => onSelectPiece(hand, index)}
             pieces={[piece]}
-            selected={piece.selected}
+            selected={hand.selectedPiece?.from === 'hand' && hand.selectedPiece.index === index}
         />
     {/each}
 </div>

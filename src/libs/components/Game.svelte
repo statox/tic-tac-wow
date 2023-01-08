@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { getNewGame, type PlayerHand, type Piece } from '../services/game';
+    import { getNewGame, type BoardPosition, type PlayerHand } from '../services/game';
     import { makeWinningMoveOrRandom, makeRandomMove } from '../services/game/ia';
     import type { Strategy } from '../services/game/ia/strategies/types';
     import {
@@ -24,22 +24,35 @@
 
         makeWinningMoveOrRandom(game, game.player2);
     };
-    const onSelectCell = (x: number, y: number) => {
-        if (game.state.action === 'select2') {
-            const returnCode = placeSelectedPieceInBoard(game, { x, y });
-            if (returnCode === 0) {
-                autoPlayer2Move();
+    const onSelectCell = ({ x, y }: BoardPosition) => {
+        try {
+            if (game.state.action === 'select2') {
+                const returnCode = placeSelectedPieceInBoard(game, { x, y });
+                if (returnCode === 0) {
+                    autoPlayer2Move();
+                }
+                game = game;
+                return;
             }
+            const hand = game.state.player === 1 ? game.player1 : game.player2;
+            selectCellInBoard(game, hand, { x, y });
             game = game;
-            return;
+            game.grid = game.grid;
+        } catch (e) {
+            console.error('Could not select cell');
+            console.error(e);
+            console.error('Game should be able to keep working');
         }
-        const hand = game.state.player === 1 ? game.player1 : game.player2;
-        selectCellInBoard(game, hand, { x, y });
-        game = game;
     };
 
-    const onSelectPiece = (hand: PlayerHand, piece: Piece) => {
-        selectPieceInHand(game, hand, piece);
+    const onSelectPiece = (hand: PlayerHand, pieceSelectionIndex: number) => {
+        try {
+            selectPieceInHand(game, hand, pieceSelectionIndex);
+        } catch (e) {
+            console.error('Could not select piece');
+            console.error(e);
+            console.error('Game should be able to keep working');
+        }
         game = game;
     };
 
@@ -59,7 +72,9 @@
     <button on:click={() => (autoPlayer2 = !autoPlayer2)}>
         {autoPlayer2 ? 'Human player 2' : 'Computer player 2'}
     </button>
-    <Board {onSelectCell} {game} />
+    {#key game}
+        <Board {onSelectCell} {game} />
+    {/key}
     {#if game.state.action === 'winner'}
         <div>
             <span>Game over!</span>
@@ -68,10 +83,34 @@
         </div>
     {/if}
     {#if game.state.player === 1}
-        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player1} disabled={false} />
-        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player2} disabled={true} />
+        {#key game}
+            <PlayerHandCompoment
+                {onSelectAuto}
+                {onSelectPiece}
+                hand={game.player1}
+                disabled={false}
+            />
+            <PlayerHandCompoment
+                {onSelectAuto}
+                {onSelectPiece}
+                hand={game.player2}
+                disabled={true}
+            />
+        {/key}
     {:else}
-        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player2} disabled={false} />
-        <PlayerHandCompoment {onSelectAuto} {onSelectPiece} hand={game.player1} disabled={true} />
+        {#key game}
+            <PlayerHandCompoment
+                {onSelectAuto}
+                {onSelectPiece}
+                hand={game.player2}
+                disabled={false}
+            />
+            <PlayerHandCompoment
+                {onSelectAuto}
+                {onSelectPiece}
+                hand={game.player1}
+                disabled={true}
+            />
+        {/key}
     {/if}
 </div>

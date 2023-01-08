@@ -1,12 +1,10 @@
-import { getNewGame } from '../../libs/services/game';
+import { getNewGame, type Piece, type PieceStack } from '../../libs/services/game';
 
-export const convertFixtureGridToGame = (grid: number[][][]) => {
+export const convertFixtureGridToGame = (grid: PieceStack[][]) => {
     const game = getNewGame();
     for (let y = 0; y < 3; y++) {
         for (let x = 0; x < 3; x++) {
-            game.grid[y][x] = grid[y][x].map((value) => {
-                return { value, selected: false };
-            });
+            game.grid[y][x] = [...grid[y][x]];
         }
     }
 
@@ -14,24 +12,18 @@ export const convertFixtureGridToGame = (grid: number[][][]) => {
 };
 
 export const convertFixtureGridAndHandsToGame = (
-    grid: number[][][],
-    p1: number[],
-    p2: number[]
+    grid: PieceStack[][],
+    p1: Piece[],
+    p2: Piece[]
 ) => {
     const game = getNewGame();
     for (let y = 0; y < 3; y++) {
         for (let x = 0; x < 3; x++) {
-            game.grid[y][x] = grid[y][x].map((value) => {
-                return { value, selected: false };
-            });
+            game.grid[y][x] = [...grid[y][x]];
         }
     }
-    game.player1.pieces = p1.map((value) => {
-        return { value, selected: false };
-    });
-    game.player2.pieces = p2.map((value) => {
-        return { value, selected: false };
-    });
+    game.player1.pieces = [...p1];
+    game.player2.pieces = [...p2];
 
     return game;
 };

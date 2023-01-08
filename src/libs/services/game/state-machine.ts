@@ -7,9 +7,13 @@
 // Player 2 - Select destination cell on board
 // Check end
 
-import { checkWinner, getGridCellLastPlayer, getGridCellLastValue } from './check';
-import { printGameHands } from './helpers';
-import type { Game, Piece, Player, PlayerHand } from './types';
+import {
+    checkWinner,
+    getGridCellLastPlayer,
+    getGridCellLastValue,
+    getGridCellPiece
+} from './check';
+import type { BoardPosition, Game, Player, PlayerHand } from './types';
 export type StateAction = 'select1' | 'select2' | 'winner' | 'draw';
 
 export type State = {
@@ -17,89 +21,98 @@ export type State = {
     action: StateAction;
 };
 
-export const selectPieceInHand = (game: Game, hand: PlayerHand, piece: Piece) => {
+export const selectPieceInHand = (game: Game, hand: PlayerHand, pieceSelectionIndex: number) => {
     if (game.state.player !== hand.player || game.state.action !== 'select1') {
-        return;
+        throw new Error('invalid_step');
     }
-    const handIndex = hand.pieces.findIndex((p) => p.value === piece.value);
-    if (handIndex === -1) {
-        throw new Error('Tried to select a piece which is not in hand');
+    if (pieceSelectionIndex >= hand.pieces.length || pieceSelectionIndex < 0) {
+        throw new Error('oob_selection_index');
     }
-    hand.pieces.forEach((p) => (p.selected = false));
-    piece.selected = true;
-    hand.selectedPiece = { ...piece, from: 'hand' };
+    if (hand.selectedPiece !== null) {
+        throw new Error('previous_selection_in_hand');
+    }
+    if (hand.unselectableIndexes.has(pieceSelectionIndex)) {
+        throw new Error('piece_already_used');
+    }
+
+    hand.selectedPiece = {
+        from: 'hand',
+        index: pieceSelectionIndex
+    };
+
     game.state.action = 'select2';
 };
 
-export const selectCellInBoard = (game: Game, hand: PlayerHand, cell: { x: number; y: number }) => {
+export const selectCellInBoard = (game: Game, hand: PlayerHand, boardPosition: BoardPosition) => {
     if (game.state.player !== hand.player || game.state.action !== 'select1') {
-        return;
+        throw new Error('invalid_step');
     }
 
-    const { x, y } = cell;
+    const { x, y } = boardPosition;
     if (x < 0 || y < 0 || x > 2 || y > 2) {
         throw new Error(`Invalid coordinates ${x},${y}`);
     }
 
-    if (game.grid[y][x].length === 0) {
-        return;
+    // Tried to select a piece in board with previous selection
+    if (hand.selectedPiece !== null) {
+        throw new Error('previous_selection_in_hand');
     }
 
-    if (getGridCellLastPlayer(game.grid, x, y) !== hand.player) {
-        return;
+    // Tried to select an empty stack
+    if (game.grid[y][x].length === 0) {
+        throw new Error('empty_stack_selection');
     }
-    hand.pieces.forEach((p) => (p.selected = false));
-    game.grid[y][x][game.grid[y][x].length - 1].selected = true;
+
+    // Tried to select opponent's hand
+    if (getGridCellLastPlayer(game.grid, x, y) !== hand.player) {
+        throw new Error('opponent_owned_selection');
+    }
+
     hand.selectedPiece = {
-        ...game.grid[y][x][game.grid[y][x].length - 1],
         from: 'board',
         position: { x, y }
     };
     game.state.action = 'select2';
 };
 
-export const placeSelectedPieceInBoard = (game: Game, cell: { x: number; y: number }) => {
+export const placeSelectedPieceInBoard = (game: Game, target: BoardPosition) => {
     if (game.state.action !== 'select2') {
-        console.log('invalid state action');
-        return -1;
+        throw new Error('invalid_step');
     }
 
     const hand = game.state.player === 1 ? game.player1 : game.player2;
-    if (!hand.selectedPiece) {
-        console.log('no selected piece');
-        return -1;
+    if (hand.selectedPiece === null) {
+        throw new Error('no_selection_in_hand');
     }
-    const { x, y } = cell;
+    const { x, y } = target;
 
-    if (getGridCellLastValue(game.grid, x, y) >= Math.abs(hand.selectedPiece.value)) {
-        console.log('invalid board cell');
-        return -1;
+    const pieceValue =
+        hand.selectedPiece.from === 'hand'
+            ? hand.pieces[hand.selectedPiece.index]
+            : getGridCellPiece(
+                  game.grid,
+                  hand.selectedPiece.position.x,
+                  hand.selectedPiece.position.y
+              );
+
+    if (pieceValue === null) {
+        throw new Error('selected_piece_is_null');
     }
 
-    game.grid[y][x].push({
-        value: hand.selectedPiece.value,
-        selected: false
-    });
+    if (getGridCellLastValue(game.grid, x, y) >= Math.abs(pieceValue)) {
+        throw new Error('destination_bigger_than_piece');
+    }
+
+    game.grid[target.y][target.x].push(pieceValue);
 
     if (hand.selectedPiece.from === 'hand') {
-        const pieceIndex = hand.pieces.findIndex((p) => p.selected);
-        if (pieceIndex === -1) {
-            printGameHands(game, 'Invalid piece selection', true);
-            throw new Error('Tried to move piece not in hand');
-        }
-        hand.pieces.splice(pieceIndex, 1);
+        hand.unselectableIndexes.add(hand.selectedPiece.index);
     }
     if (hand.selectedPiece.from === 'board') {
-        for (let y = 0; y < 3; y++) {
-            for (let x = 0; x < 3; x++) {
-                if (game.grid[y][x][game.grid[y][x].length - 1]?.selected) {
-                    game.grid[y][x].pop();
-                }
-            }
-        }
+        game.grid[hand.selectedPiece.position.y][hand.selectedPiece.position.x].pop();
     }
-    hand.selectedPiece = undefined;
 
+    hand.selectedPiece = null;
     game.state.action = 'select1';
     game.state.player = game.state.player === 1 ? 2 : 1;
 

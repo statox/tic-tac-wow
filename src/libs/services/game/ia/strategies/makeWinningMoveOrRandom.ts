@@ -1,4 +1,5 @@
 import type { Game, PlayerHand } from '../../types';
+/*
 import {
     findAvailableSpotsForPiece,
     getHandPossibleSelection,
@@ -12,9 +13,11 @@ import {
 } from '../../state-machine';
 import { copyGame } from '../../helpers';
 import { checkWinner } from '../../check';
+*/
 import { makeRandomMove } from './makeRandomMove';
 
 export const makeWinningMoveOrRandom = (game: Game, hand: PlayerHand) => {
+    /*
     const possibleSelections = getHandPossibleSelection(game, hand);
     if (possibleSelections.length === 0) {
         throw Error('No move possible');
@@ -60,6 +63,7 @@ export const makeWinningMoveOrRandom = (game: Game, hand: PlayerHand) => {
             }
         }
     }
+    */
 
     // console.log('default to random move');
     makeRandomMove(game, hand);

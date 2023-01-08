@@ -1,39 +1,43 @@
 import type { Game } from './types';
 
 export const copyGame = (game: Game): Game => {
-    return JSON.parse(JSON.stringify(game));
+    const p1Unselectable = game.player1.unselectableIndexes;
+    const p2Unselectable = game.player2.unselectableIndexes;
+    const newGame = JSON.parse(JSON.stringify(game));
+    newGame.player1.unselectableIndexes = new Set([...p1Unselectable.values()]);
+    newGame.player2.unselectableIndexes = new Set([...p2Unselectable.values()]);
+    return newGame;
 };
 
+export const gameGridAsString = (game: Game, showFull?: true) => {
+    if (showFull) {
+        // Todo print the selected piece when I have decided how I'll store that
+        return game.grid.map((l) => l.map((ps) => ps.join(',')).join('\t|')).join('\n');
+    }
+    return game.grid.map((l) => l.map((ps) => ps.join(',')).join('\t|')).join('\n');
+};
 export const printGameGrid = (game: Game, message?: string, showFull?: true) => {
     message && console.log(message);
-    if (!showFull) {
-        console.log(
-            game.grid.map((l) => l.map((ps) => ps.map((p) => p.value)).join('\t|')).join('\n')
-        );
-        return;
-    }
-
-    console.log(
-        game.grid
-            .map((l) => l.map((ps) => ps.map((p) => `${p.value}-${p.selected}`)).join('\t|'))
-            .join('\n')
-    );
+    console.log(gameGridAsString(game, showFull));
+    console.log();
 };
 
-export const printGameHands = (game: Game, message?: string, showFull?: true) => {
-    message && console.log(message);
+export const gameHandsAsString = (game: Game, showFull?: true) => {
+    const lines = [];
     for (const hand of [game.player1, game.player2]) {
         if (showFull) {
-            console.log(
-                `P${hand.player}:`,
-                hand.pieces.map((p) => `${p.value}-${p.selected}`),
-                hand.selectedPiece
-            );
+            // Todo print the selected piece when I have decided how I'll store that
+            lines.push(`P${hand.player}: ` + hand.pieces.join(', '));
+            lines.push(JSON.stringify(hand.selectedPiece));
             continue;
         }
-        console.log(
-            `P${hand.player}:`,
-            hand.pieces.map((p) => p.value)
-        );
+        lines.push(`P${hand.player}: ` + hand.pieces.join(', '));
     }
+
+    return lines.join('\n');
+};
+export const printGameHands = (game: Game, message?: string, showFull?: true) => {
+    message && console.log(message);
+    console.log(gameHandsAsString(game, showFull));
+    console.log();
 };

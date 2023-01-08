@@ -1,9 +1,10 @@
+import type { PieceStack } from 'src/libs/services/game';
 import type { State } from 'src/libs/services/game/state-machine';
 
 type CheckWinnerCase = {
     name: string;
     expectedState: State;
-    grid: number[][][];
+    grid: PieceStack[][];
 };
 export const cases: CheckWinnerCase[] = [
     {

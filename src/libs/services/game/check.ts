@@ -1,22 +1,28 @@
-import type { Game, Piece, Player } from './types';
+import type { Game, Piece, PieceStack, Player } from './types';
 
+export const getGridCellPiece = (grid: PieceStack[][], x: number, y: number): Piece | null => {
+    const stack = grid[y][x];
+    if (!stack.length) {
+        return null;
+    }
+
+    return stack[stack.length - 1];
+};
 // exported for tests
 export const getGridCellLastPlayer = (grid: Piece[][][], x: number, y: number): Player | null => {
     if (x < 0 || y < 0 || x > 2 || y > 2) {
         throw new Error(`Invalid coordinates ${x},${y}`);
     }
 
-    if (!grid[y][x].length) {
+    const piece = getGridCellPiece(grid, x, y);
+
+    if (piece === null) {
         return null;
     }
-    const lastValue = grid[y][x][grid[y][x].length - 1];
-    if (lastValue.value > 0) {
+    if (piece > 0) {
         return 1;
     }
-    if (lastValue.value < 0) {
-        return 2;
-    }
-    return null;
+    return 2;
 };
 
 export const getGridCellLastValue = (grid: Piece[][][], x: number, y: number) => {
@@ -24,11 +30,11 @@ export const getGridCellLastValue = (grid: Piece[][][], x: number, y: number) =>
         throw new Error(`Invalid coordinates ${x},${y}`);
     }
 
-    if (!grid[y][x].length) {
+    const piece = getGridCellPiece(grid, x, y);
+    if (piece === null) {
         return 0;
     }
-    const lastValue = grid[y][x][grid[y][x].length - 1];
-    return Math.abs(lastValue.value);
+    return Math.abs(piece);
 };
 
 // exported for tests

@@ -10,13 +10,13 @@
     {#each [...pieces].reverse() as piece}
         <div
             class="piece"
-            class:player1={piece.value > 0}
-            class:player2={piece.value < 0}
-            class:small-circle={Math.abs(piece.value) === 1}
-            class:medium-circle={Math.abs(piece.value) === 2}
-            class:large-circle={Math.abs(piece.value) === 3}
+            class:player1={piece > 0}
+            class:player2={piece < 0}
+            class:small-circle={Math.abs(piece) === 1}
+            class:medium-circle={Math.abs(piece) === 2}
+            class:large-circle={Math.abs(piece) === 3}
         >
-            {piece.value}
+            {piece}
         </div>
     {/each}
 </button>

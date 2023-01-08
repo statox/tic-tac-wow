@@ -1,5 +1,5 @@
 import type { Game, PlayerHand } from '../../types';
-import { getHandsPossibleMoves, getPieceFromSelection } from '../helpers';
+import { getHandsPossibleMoves } from '../helpers';
 
 import {
     placeSelectedPieceInBoard,
@@ -9,21 +9,17 @@ import {
 
 export const makeRandomMove = (game: Game, hand: PlayerHand) => {
     const moves = getHandsPossibleMoves(game, hand);
-    if (moves.size === 0) {
-        throw Error('No move possible');
+    if (moves.length === 0) {
+        throw new Error('no_move_possible');
     }
-    const possibleSelections = Array.from(moves.keys());
-    const randSelectionIdx = Math.floor(Math.random() * possibleSelections.length);
-    const selection = possibleSelections[randSelectionIdx];
 
-    const piece = getPieceFromSelection(game, selection);
-    const randDestinationIdx = Math.floor(Math.random() * moves.get(selection).length);
-    const destination = moves.get(selection)[randDestinationIdx];
+    const randMoveIndex = Math.floor(Math.random() * moves.length);
+    const move = moves[randMoveIndex];
 
-    if (selection.from === 'hand') {
-        selectPieceInHand(game, hand, piece);
+    if (move.from.from === 'hand') {
+        selectPieceInHand(game, hand, move.from.index);
     } else {
-        selectCellInBoard(game, hand, selection.position);
+        selectCellInBoard(game, hand, move.from.position);
     }
-    placeSelectedPieceInBoard(game, destination);
+    placeSelectedPieceInBoard(game, move.to);
 };

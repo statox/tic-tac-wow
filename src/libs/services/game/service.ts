@@ -1,20 +1,20 @@
 import type { StateAction } from './state-machine';
-import type { Game, Piece, Player, PlayerHand } from './types';
+import type { Game, Piece, PieceStack, Player, PlayerHand } from './types';
 
 const makePlayerHand = (player: Player): PlayerHand => {
     const multiplier = player === 1 ? 1 : -1;
-    const pieces = [1, 1, 2, 2, 3, 3].map((value) => {
-        return { value: value * multiplier, selected: false };
-    });
+    const pieces = [1, 1, 2, 2, 3, 3].map((value) => value * multiplier) as Piece[];
 
     return {
         player,
-        pieces
+        pieces,
+        unselectableIndexes: new Set<number>(),
+        selectedPiece: null
     };
 };
 
 export const getNewGame = (): Game => {
-    const grid: Piece[][][] = [];
+    const grid: PieceStack[][] = [];
     for (let y = 0; y < 3; y++) {
         grid.push([]);
         for (let x = 0; x < 3; x++) {
