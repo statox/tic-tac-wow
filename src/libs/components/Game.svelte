@@ -3,7 +3,8 @@
     import {
         makeWinningMoveOrRandom,
         makeRandomMove,
-        makeBestMoveByEuristic
+        makeBestMoveByEuristic,
+        strategyFunctions
     } from '../services/game/ia';
     import type { Strategy } from '../services/game/ia/strategies/types';
     import {
@@ -11,24 +12,26 @@
         selectCellInBoard,
         selectPieceInHand
     } from '../services/game/state-machine';
+    import { gameSettings } from '../stores';
     import Board from './Board.svelte';
+    import GameSettings from './GameSettings.svelte';
     import PlayerHandCompoment from './PlayerHand.svelte';
 
     let game = getNewGame();
-    let autoPlayer2 = false;
 
     const autoPlayer2Move = () => {
         if (
             ['winner', 'select2'].includes(game.state.action) ||
             game.state.player !== game.player2.player ||
-            !autoPlayer2
+            !$gameSettings.player2Auto
         ) {
             return;
         }
 
-        // makeWinningMoveOrRandom(game, game.player2);
-        makeBestMoveByEuristic(game, game.player2);
+        const playerFunction = strategyFunctions[$gameSettings.player2Strat];
+        playerFunction(game, game.player2);
     };
+
     const onSelectCell = ({ x, y }: BoardPosition) => {
         try {
             if (game.state.action === 'select2') {
@@ -77,9 +80,7 @@
 </script>
 
 <div class="d-flex justify-content-center">
-    <button on:click={() => (autoPlayer2 = !autoPlayer2)}>
-        {autoPlayer2 ? 'Human player 2' : 'Computer player 2'}
-    </button>
+    <GameSettings />
     {#key game}
         <Board {onSelectCell} {game} />
     {/key}

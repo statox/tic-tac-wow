@@ -1,16 +1,10 @@
-import type { Strategy, StrategyFunction } from '../ia/strategies/types';
+import type { Strategy } from '../ia/strategies/types';
 import type { State } from '../state-machine';
 
 import { checkWinner } from '../check';
-import { makeBestMoveByEuristic, makeRandomMove, makeWinningMoveOrRandom } from '../ia';
+import { strategyFunctions } from '../ia';
 import { getNewGame } from '../service';
 import { printGameGrid, printGameHands } from '../helpers';
-
-const strategyFunctions: Record<Strategy, StrategyFunction> = {
-    random: makeRandomMove,
-    win_or_random: makeWinningMoveOrRandom,
-    euristic: makeBestMoveByEuristic
-};
 
 export type GameStats = {
     nbMoves: number;
