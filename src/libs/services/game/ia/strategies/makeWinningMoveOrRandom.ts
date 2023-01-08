@@ -1,23 +1,9 @@
-import type { Game, Move, PlayerHand } from '../../types';
-import { getHandsPossibleMoves } from '../helpers';
+import type { Game, PlayerHand } from '../../types';
+import { doMove, getHandsPossibleMoves } from '../helpers';
 
-import {
-    placeSelectedPieceInBoard,
-    selectCellInBoard,
-    selectPieceInHand
-} from '../../state-machine';
 import { copyGame } from '../../helpers';
 import { checkWinner } from '../../check';
 import { makeRandomMove } from './makeRandomMove';
-
-const doMove = (game: Game, hand: PlayerHand, move: Move) => {
-    if (move.from.from === 'hand') {
-        selectPieceInHand(game, hand, move.from.index);
-    } else {
-        selectCellInBoard(game, hand, move.from.position);
-    }
-    placeSelectedPieceInBoard(game, move.to);
-};
 
 export const makeWinningMoveOrRandom = (game: Game, hand: PlayerHand) => {
     const moves = getHandsPossibleMoves(game, hand);
