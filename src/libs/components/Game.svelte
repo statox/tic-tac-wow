@@ -1,6 +1,10 @@
 <script lang="ts">
     import { getNewGame, type BoardPosition, type PlayerHand } from '../services/game';
-    import { makeWinningMoveOrRandom, makeRandomMove } from '../services/game/ia';
+    import {
+        makeWinningMoveOrRandom,
+        makeRandomMove,
+        makeBestMoveByEuristic
+    } from '../services/game/ia';
     import type { Strategy } from '../services/game/ia/strategies/types';
     import {
         placeSelectedPieceInBoard,
@@ -62,6 +66,9 @@
         }
         if (method === 'win_or_random') {
             makeWinningMoveOrRandom(game, hand);
+        }
+        if (method === 'euristic') {
+            makeBestMoveByEuristic(game, hand);
         }
         autoPlayer2Move();
         game = game;

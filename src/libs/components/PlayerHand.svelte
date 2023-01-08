@@ -14,6 +14,7 @@
 {#if !disabled}
     <button on:click={() => onSelectAuto(hand, 'random')}>Random</button>
     <button on:click={() => onSelectAuto(hand, 'win_or_random')}>Win or random</button>
+    <button on:click={() => onSelectAuto(hand, 'euristic')}>Euristic</button>
 {/if}
 
 <div class="overlay">

@@ -20,7 +20,10 @@ const compareStrats = (p1Strat: Strategy, p2Strat: Strategy, numberOfGames: numb
 
     const start = Date.now();
     for (let _ = 0; _ < stats.totalGame; _++) {
-        const { finalState, nbMoves } = playAGame(stats.p1Strat, stats.p2Strat);
+        const { finalState, nbMoves } = playAGame({
+            player1Strat: stats.p1Strat,
+            player2Strat: stats.p2Strat
+        });
         stats.totalMoves += nbMoves;
         finalStates.push(finalState);
         if (finalState.action === 'winner') {
@@ -44,8 +47,7 @@ const compareStrats = (p1Strat: Strategy, p2Strat: Strategy, numberOfGames: numb
     console.log(stats);
 };
 
-const NB_GAMES = 100;
+const NB_GAMES = 1000;
 compareStrats('random', 'random', NB_GAMES);
-// compareStrats('win_or_random', 'random', NB_GAMES);
-// compareStrats('random', 'win_or_random', NB_GAMES);
-// compareStrats('win_or_random', 'win_or_random', NB_GAMES);
+compareStrats('random', 'win_or_random', NB_GAMES);
+compareStrats('random', 'euristic', NB_GAMES);
