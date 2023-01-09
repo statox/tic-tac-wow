@@ -21,7 +21,8 @@
 <div class="overlay">
     {#each hand.pieces as piece, index}
         <PiecesCell
-            disabled={disabled || hand.unselectableIndexes.has(index)}
+            disabledHand={disabled}
+            disabledCell={hand.unselectableIndexes.has(index)}
             on:click={() => onSelectPiece(hand, index)}
             pieces={[piece]}
             selected={hand.selectedPiece?.from === 'hand' && hand.selectedPiece.index === index}

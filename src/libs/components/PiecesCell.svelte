@@ -3,10 +3,11 @@
 
     export let pieces: Piece[];
     export let selected = false;
-    export let disabled: boolean;
+    export let disabledCell: boolean;
+    export let disabledHand: boolean;
 </script>
 
-<button on:click class="cell" class:selected class:disabled>
+<button on:click class="cell" class:selected class:disabledHand class:disabledCell>
     {#each [...pieces].reverse() as piece}
         <div
             class="piece"
@@ -34,8 +35,16 @@
         border-right: green 8px solid;
     }
 
-    .disabled {
-        background-color: #4b4d4f;
+    .disabledHand {
+        background-color: #666666;
+    }
+
+    .disabledHand.disabledCell {
+        background-color: #770a0a;
+    }
+
+    .disabledCell {
+        background-color: #770a0a;
     }
 
     .player1 {
