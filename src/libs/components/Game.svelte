@@ -1,12 +1,7 @@
 <script lang="ts">
     import { getNewGame, type BoardPosition, type PlayerHand } from '../services/game';
     import { getGameCurrentHand, getGameOtherHand } from '../services/game/helpers';
-    import {
-        makeWinningMoveOrRandom,
-        makeRandomMove,
-        makeBestMoveByEuristic,
-        strategyFunctions
-    } from '../services/game/ia';
+    import { strategyFunctions } from '../services/game/ia';
     import type { Strategy } from '../services/game/ia/strategies/types';
     import {
         placeSelectedPieceInBoard,
@@ -66,15 +61,8 @@
     };
 
     const onSelectAuto = (hand: PlayerHand, method: Strategy) => {
-        if (method === 'random') {
-            makeRandomMove(game, hand);
-        }
-        if (method === 'win_or_random') {
-            makeWinningMoveOrRandom(game, hand);
-        }
-        if (method === 'euristic') {
-            makeBestMoveByEuristic(game, hand);
-        }
+        const playerFunction = strategyFunctions[method];
+        playerFunction(game, hand);
         autoPlayer2Move();
         game = game;
     };

@@ -36,7 +36,8 @@ export const gameHandsAsString = (game: Game, showFull?: true) => {
         if (showFull) {
             // Todo print the selected piece when I have decided how I'll store that
             lines.push(`P${hand.player}: ` + hand.pieces.join(', '));
-            lines.push(JSON.stringify(hand.selectedPiece));
+            lines.push('selection: ' + JSON.stringify(hand.selectedPiece));
+            lines.push('already used: ' + [...hand.unselectableIndexes.values()].join(','));
             continue;
         }
         lines.push(`P${hand.player}: ` + hand.pieces.join(', '));
