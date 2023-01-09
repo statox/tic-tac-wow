@@ -14,6 +14,7 @@
     import PlayerHandCompoment from './PlayerHand.svelte';
 
     let game = getNewGame();
+    let gamePlayed = 0;
 
     const autoPlayer2Move = () => {
         if (
@@ -72,8 +73,10 @@
     };
 
     const resetGame = () => {
-        game = getNewGame({ player2Start: Math.random() < 0.5 });
-        if (game.state.player === 2 && $gameSettings.player2Auto) {
+        gamePlayed++;
+        const player2Start = gamePlayed % 2 === 1;
+        game = getNewGame({ player2Start });
+        if (player2Start && $gameSettings.player2Auto) {
             autoPlayer2Move();
         }
     };
