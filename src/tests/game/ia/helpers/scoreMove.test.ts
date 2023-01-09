@@ -17,7 +17,7 @@ describe('scoreMove', () => {
                         from: 'hand',
                         index: 0
                     },
-                    to: { x: 0, y: 0 }
+                    to: { x: 1, y: 0 }
                 },
                 expected: 1
             },
@@ -27,7 +27,7 @@ describe('scoreMove', () => {
                         from: 'board',
                         position: { x: 0, y: 0 }
                     },
-                    to: { x: 0, y: 0 }
+                    to: { x: 1, y: 0 }
                 },
                 expected: 11
             }
@@ -51,7 +51,7 @@ describe('scoreMove', () => {
                         from: 'hand',
                         index: 0
                     },
-                    to: { x: 0, y: 0 }
+                    to: { x: 1, y: 0 }
                 },
                 expected: 1
             },
@@ -61,7 +61,7 @@ describe('scoreMove', () => {
                         from: 'hand',
                         index: 2
                     },
-                    to: { x: 0, y: 0 }
+                    to: { x: 1, y: 0 }
                 },
                 expected: 2
             },
@@ -71,9 +71,53 @@ describe('scoreMove', () => {
                         from: 'hand',
                         index: 4
                     },
-                    to: { x: 0, y: 0 }
+                    to: { x: 1, y: 0 }
                 },
                 expected: 3
+            }
+        ];
+
+        for (const test of tests) {
+            expect(scoreMove(game, game.player1, test.move)).toBe(test.expected);
+        }
+    });
+
+    it('Should destination by its quality (center, corner, other)', () => {
+        const game = convertFixtureGridToGame([
+            [[1], [], []],
+            [[], [], []],
+            [[], [], []]
+        ]);
+        const tests: { move: Move; expected: number }[] = [
+            {
+                move: {
+                    from: {
+                        from: 'hand',
+                        index: 0
+                    },
+                    to: { x: 0, y: 0 }
+                },
+                expected: 4
+            },
+            {
+                move: {
+                    from: {
+                        from: 'hand',
+                        index: 0
+                    },
+                    to: { x: 1, y: 0 }
+                },
+                expected: 1
+            },
+            {
+                move: {
+                    from: {
+                        from: 'hand',
+                        index: 0
+                    },
+                    to: { x: 1, y: 1 }
+                },
+                expected: 6
             }
         ];
 

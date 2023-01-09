@@ -11,5 +11,19 @@ export const scoreMove = (game: Game, hand: PlayerHand, move: Move) => {
 
     score += Math.abs(pieceFrom);
 
+    // Center
+    if (move.to.x === 1 && move.to.y === 1) {
+        score += 5;
+    }
+    // Corner
+    if (
+        (move.to.x === 0 && move.to.y === 0) ||
+        (move.to.x === 2 && move.to.y === 0) ||
+        (move.to.x === 0 && move.to.y === 2) ||
+        (move.to.x === 2 && move.to.y === 2)
+    ) {
+        score += 3;
+    }
+
     return score;
 };
