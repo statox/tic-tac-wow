@@ -1,4 +1,5 @@
 import { makeAlphabetaMove } from './alphabeta';
+import { makeAlphabetaOrderedMove } from './alphabeta_with_order';
 import { makeBestMoveByEuristic } from './euristic_no_depth';
 import { makeMinmaxMove } from './minmax';
 import { makeNegamaxMove } from './negamax';
@@ -15,5 +16,6 @@ export const strategyFunctions: Record<Strategy, StrategyFunction> = {
     euristic: makeBestMoveByEuristic,
     minmax: makeMinmaxMove,
     negamax: makeNegamaxMove,
-    alphabeta: makeAlphabetaMove
+    alphabeta: makeAlphabetaMove,
+    alphabeta_ordered: makeAlphabetaOrderedMove
 };
