@@ -35,7 +35,12 @@ export const gameHandsAsString = (game: Game, showFull?: true) => {
     for (const hand of [game.player1, game.player2]) {
         if (showFull) {
             // Todo print the selected piece when I have decided how I'll store that
-            lines.push(`P${hand.player}: ` + hand.pieces.join(', '));
+            lines.push(
+                `P${hand.player}: ` +
+                    hand.pieces
+                        .filter((_, index) => !hand.unselectableIndexes.has(index))
+                        .join(', ')
+            );
             lines.push('selection: ' + JSON.stringify(hand.selectedPiece));
             lines.push('already used: ' + [...hand.unselectableIndexes.values()].join(','));
             continue;
@@ -49,4 +54,11 @@ export const printGameHands = (game: Game, message?: string, showFull?: true) =>
     message && console.log(message);
     console.log(gameHandsAsString(game, showFull));
     console.log();
+};
+
+export const printGameComplete = (game: Game, message?: string) => {
+    message && console.log(message);
+    console.log('State:', game.state.action, game.state.player);
+    printGameGrid(game, '', true);
+    printGameHands(game, '', true);
 };
