@@ -18,11 +18,24 @@ const compareStrats = (p1Strat: Strategy, p2Strat: Strategy, numberOfGames: numb
         timeSeconds: 0
     };
 
+    const computeStats = () => {
+        const end = Date.now();
+        stats.timeSeconds = (end - start) / 1000;
+
+        stats.p1WinPercent = stats.p1Win / stats.totalGame;
+        stats.p2WinPercent = stats.p2Win / stats.totalGame;
+        stats.drawPercent = stats.draw / stats.totalGame;
+        stats.avgMovesByGame = stats.totalMoves / stats.totalGame;
+    };
+
     const start = Date.now();
     for (let _ = 0; _ < stats.totalGame; _++) {
+        // console.log('Game', p1Strat, 'vs.', p2Strat, _);
         const { finalState, nbMoves } = playAGame({
             player1Strat: stats.p1Strat,
-            player2Strat: stats.p2Strat
+            player2Strat: stats.p2Strat,
+            showSteps: false,
+            showFinalGame: false
         });
         stats.totalMoves += nbMoves;
         finalStates.push(finalState);
@@ -35,19 +48,15 @@ const compareStrats = (p1Strat: Strategy, p2Strat: Strategy, numberOfGames: numb
         } else {
             stats.draw++;
         }
+        // computeStats();
+        // console.log(stats);
     }
-    const end = Date.now();
-    stats.timeSeconds = (end - start) / 1000;
 
-    stats.p1WinPercent = stats.p1Win / stats.totalGame;
-    stats.p2WinPercent = stats.p2Win / stats.totalGame;
-    stats.drawPercent = stats.draw / stats.totalGame;
-    stats.avgMovesByGame = stats.totalMoves / stats.totalGame;
-
+    computeStats();
     console.log(stats);
 };
 
-const NB_GAMES = 300;
+const NB_GAMES = 100;
 // compareStrats('random', 'random', NB_GAMES);
 compareStrats('random', 'win_or_random', NB_GAMES);
 // compareStrats('random', 'euristic', NB_GAMES);

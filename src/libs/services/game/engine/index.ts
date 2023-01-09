@@ -4,7 +4,7 @@ import type { State } from '../state-machine';
 import { checkWinner } from '../check';
 import { strategyFunctions } from '../ia';
 import { getNewGame } from '../service';
-import { printGameGrid, printGameHands } from '../helpers';
+import { printGameComplete, printGameGrid, printGameHands } from '../helpers';
 
 export type GameStats = {
     nbMoves: number;
@@ -14,10 +14,16 @@ export type GameStats = {
 export type GameParams = {
     player1Strat: Strategy;
     player2Strat: Strategy;
-    showSteps?: true;
+    showSteps?: boolean;
+    showFinalGame?: boolean;
 };
 
-export const playAGame = ({ player1Strat, player2Strat, showSteps }: GameParams): GameStats => {
+export const playAGame = ({
+    player1Strat,
+    player2Strat,
+    showSteps,
+    showFinalGame
+}: GameParams): GameStats => {
     const p1Function = strategyFunctions[player1Strat];
     const p2Function = strategyFunctions[player2Strat];
 
@@ -43,6 +49,10 @@ export const playAGame = ({ player1Strat, player2Strat, showSteps }: GameParams)
             printGameHands(game);
             console.log();
         }
+    }
+
+    if (showFinalGame) {
+        printGameComplete(game);
     }
 
     return {
