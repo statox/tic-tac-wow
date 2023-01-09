@@ -8,7 +8,7 @@ export type GameSettings = {
 
 const defaultGameSettings: GameSettings = {
     player2Auto: true,
-    player2Strat: 'minmax'
+    player2Strat: 'negamax'
 };
 
 export const gameSettings = writable<GameSettings>(defaultGameSettings);

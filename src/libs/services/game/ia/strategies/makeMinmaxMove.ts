@@ -1,5 +1,5 @@
 import { checkWinner } from '../../check';
-import { copyGame, getGameCurrentHand, getGameOtherHand, printGameComplete } from '../../helpers';
+import { copyGame, getGameCurrentHand, getGameOtherHand } from '../../helpers';
 import type { Game, Move, PlayerHand } from '../../types';
 import { scoreGame } from '../euristics';
 import { doMove, getHandsPossibleMoves } from '../helpers';
@@ -74,7 +74,7 @@ const minmax = (game: Game, hand: PlayerHand, depth: number): MinMaxResult => {
 };
 
 export const makeMinmaxMove = (game: Game, hand: PlayerHand) => {
-    const minmaxResult = minmax(game, hand, 3);
+    const minmaxResult = minmax(game, hand, 2);
 
     if (!minmaxResult.move) {
         throw new Error('no_move_possible');

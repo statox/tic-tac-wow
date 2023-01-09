@@ -47,9 +47,9 @@ const compareStrats = (p1Strat: Strategy, p2Strat: Strategy, numberOfGames: numb
     console.log(stats);
 };
 
-const NB_GAMES = 100;
-compareStrats('random', 'random', NB_GAMES);
-compareStrats('random', 'win_or_random', NB_GAMES);
-compareStrats('random', 'euristic', NB_GAMES);
+const NB_GAMES = 300;
+// compareStrats('random', 'random', NB_GAMES);
+// compareStrats('random', 'win_or_random', NB_GAMES);
+// compareStrats('random', 'euristic', NB_GAMES);
 compareStrats('random', 'minmax', NB_GAMES);
-compareStrats('minmax', 'euristic', NB_GAMES);
+compareStrats('random', 'negamax', NB_GAMES);
