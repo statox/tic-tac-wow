@@ -25,7 +25,11 @@
         }
 
         const playerFunction = strategyFunctions[$gameSettings.player2Strat];
-        playerFunction(game, game.player2);
+        // Use a timeout so that the move looks separate from the previous one
+        setTimeout(() => {
+            playerFunction(game, game.player2);
+            game = game;
+        }, 500);
     };
 
     const onSelectCell = ({ x, y }: BoardPosition) => {
