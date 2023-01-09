@@ -1,6 +1,6 @@
-import { checkWinner, getGridCellLastPlayer } from '../check';
-import type { Game } from '../types';
-import { getHandsPossibleMoves } from './helpers';
+import { checkWinner, getGridCellLastPlayer } from '../../check';
+import type { Game } from '../../types';
+import { getHandsPossibleMoves } from '../helpers';
 
 export const scoreGame = (game: Game) => {
     checkWinner(game);
