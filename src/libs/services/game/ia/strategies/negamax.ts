@@ -4,6 +4,15 @@ import type { Game, Move, PlayerHand } from '../../types';
 import { scoreGame } from '../euristics';
 import { doMove, getHandsPossibleMoves } from '../helpers';
 
+/*
+ * The negamax version of minmax
+ * https://en.wikipedia.org/wiki/Negamax
+ * Sample results, simpler code
+ *
+ * No pruning is implemented yet so with a depth above 3 the response time
+ * gets very long
+ */
+
 type MinMaxResult = {
     score: number;
     move: Move | null;

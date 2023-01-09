@@ -4,6 +4,13 @@ import type { Game, Move, PlayerHand } from '../../types';
 import { scoreGame } from '../euristics';
 import { doMove, getHandsPossibleMoves } from '../helpers';
 
+/*
+ * A classical minmax strategy.
+ * https://en.wikipedia.org/wiki/Minimax
+ * No pruning is implemented yet so with a depth above 3 the response time
+ * gets very long
+ */
+
 type MinMaxResult = {
     score: number;
     move: Move | null;

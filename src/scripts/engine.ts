@@ -49,7 +49,7 @@ const compareStrats = (p1Strat: Strategy, p2Strat: Strategy, numberOfGames: numb
 
 const NB_GAMES = 300;
 // compareStrats('random', 'random', NB_GAMES);
-// compareStrats('random', 'win_or_random', NB_GAMES);
+compareStrats('random', 'win_or_random', NB_GAMES);
 // compareStrats('random', 'euristic', NB_GAMES);
-compareStrats('random', 'minmax', NB_GAMES);
-compareStrats('random', 'negamax', NB_GAMES);
+// compareStrats('random', 'minmax', NB_GAMES);
+// compareStrats('random', 'negamax', NB_GAMES);

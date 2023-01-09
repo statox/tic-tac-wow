@@ -1,12 +1,12 @@
-import { makeBestMoveByEuristic } from './makeBestMoveByEuristic';
-import { makeMinmaxMove } from './makeMinmaxMove';
-import { makeNegamaxMove } from './makeNegamaxMove';
-import { makeRandomMove } from './makeRandomMove';
-import { makeWinningMoveOrRandom } from './makeWinningMoveOrRandom';
+import { makeBestMoveByEuristic } from './euristic_no_depth';
+import { makeMinmaxMove } from './minmax';
+import { makeNegamaxMove } from './negamax';
+import { makeRandomMove } from './random';
+import { makeWinningMoveOrRandom } from './random_with_win';
 import type { Strategy, StrategyFunction } from './types';
 
 // exported for tests
-export * from './makeWinningMoveOrRandom';
+export * from './random_with_win';
 
 export const strategyFunctions: Record<Strategy, StrategyFunction> = {
     random: makeRandomMove,
