@@ -3,8 +3,8 @@
 
     export let pieces: Piece[];
     export let selected = false;
-    export let disabledCell: boolean;
-    export let disabledHand: boolean;
+    export let disabledCell = false;
+    export let disabledHand = false;
 </script>
 
 <button on:click class="cell" class:selected class:disabledHand class:disabledCell>

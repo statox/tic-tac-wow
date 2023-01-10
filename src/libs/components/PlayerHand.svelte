@@ -16,6 +16,7 @@
     <button on:click={() => onSelectAuto(hand, 'win_or_random')}>Win or random</button>
     <button on:click={() => onSelectAuto(hand, 'euristic')}>Euristic</button>
     <button on:click={() => onSelectAuto(hand, 'minmax')}>MinMax</button>
+    <button on:click={() => onSelectAuto(hand, 'alphabeta_ordered')}>AlphaBeta ordered</button>
 {/if}
 
 <div class="overlay">

@@ -28,7 +28,6 @@
                 <PiecesCell
                     on:click={() => onSelectCell({ x, y })}
                     pieces={cell}
-                    disabled={false}
                     selected={isCellSelected({ x, y })}
                 />
             {/each}
