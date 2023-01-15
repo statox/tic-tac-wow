@@ -82,30 +82,29 @@
     };
 </script>
 
-<div class="d-flex justify-content-center">
-    <GameSettings />
-    {#key game}
-        <Board {onSelectCell} {game} />
-    {/key}
-    {#if game.state.action === 'winner'}
-        <div>
-            <span>Game over!</span>
-            <span>Winner: Player {game.state.player}</span>
-            <button on:click={resetGame}>Play again</button>
-        </div>
-    {/if}
-    {#key game}
-        <PlayerHandCompoment
-            {onSelectAuto}
-            {onSelectPiece}
-            hand={getGameCurrentHand(game)}
-            disabled={false}
-        />
-        <PlayerHandCompoment
-            {onSelectAuto}
-            {onSelectPiece}
-            hand={getGameOtherHand(game)}
-            disabled={true}
-        />
-    {/key}
-</div>
+<h2>Game</h2>
+<GameSettings />
+{#key game}
+    <Board {onSelectCell} {game} />
+{/key}
+{#if game.state.action === 'winner'}
+    <div>
+        <span>Game over!</span>
+        <span>Winner: Player {game.state.player}</span>
+        <button on:click={resetGame}>Play again</button>
+    </div>
+{/if}
+{#key game}
+    <PlayerHandCompoment
+        {onSelectAuto}
+        {onSelectPiece}
+        hand={getGameCurrentHand(game)}
+        disabled={false}
+    />
+    <PlayerHandCompoment
+        {onSelectAuto}
+        {onSelectPiece}
+        hand={getGameOtherHand(game)}
+        disabled={true}
+    />
+{/key}
