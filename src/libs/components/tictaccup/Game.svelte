@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { getNewGame, type BoardPosition, type PlayerHand } from '../services/tictaccup';
-    import { getGameCurrentHand, getGameOtherHand } from '../services/tictaccup/helpers';
-    import { strategyFunctions } from '../services/tictaccup/ia';
-    import type { Strategy } from '../services/tictaccup/ia/strategies/types';
+    import { getNewGame, type BoardPosition, type PlayerHand } from '../../services/tictaccup';
+    import { getGameCurrentHand, getGameOtherHand } from '../../services/tictaccup/helpers';
+    import { strategyFunctions } from '../../services/tictaccup/ia';
+    import type { Strategy } from '../../services/tictaccup/ia/strategies/types';
     import {
         placeSelectedPieceInBoard,
         selectCellInBoard,
         selectPieceInHand
-    } from '../services/tictaccup/state-machine';
-    import { gameSettings } from '../stores';
+    } from '../../services/tictaccup/state-machine';
+    import { gameSettings } from '../../stores';
     import Board from './Board.svelte';
     import GameSettings from './GameSettings.svelte';
     import PlayerHandCompoment from './PlayerHand.svelte';
@@ -16,7 +16,7 @@
     import Modal from 'svelte-simple-modal';
     import GameHistoryModal from './GameHistoryModal.svelte';
 
-    let game = getNewGame({historyEnabled: true});
+    let game = getNewGame({ historyEnabled: true });
     let gamePlayed = 0;
 
     const autoPlayer2Move = () => {
@@ -88,7 +88,7 @@
 <h2>Game</h2>
 <GameSettings />
 
-<Modal><GameHistoryModal {game}/></Modal>
+<Modal><GameHistoryModal {game} /></Modal>
 
 {#key game}
     <Board {onSelectCell} {game} />

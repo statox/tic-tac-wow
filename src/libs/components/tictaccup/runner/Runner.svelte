@@ -2,10 +2,13 @@
     import * as async from 'async';
     import { Circle } from 'svelte-loading-spinners';
     import Stats from './Stats.svelte';
-    import { compareStrats, type StratsStats } from '../../services/tictaccup/engine/compareStrats';
+    import {
+        compareStrats,
+        type StratsStats
+    } from '../../../services/tictaccup/engine/compareStrats';
 
-    import { strategyFunctions } from '../../services/tictaccup/ia';
-    import type { Strategy } from '../../services/tictaccup/ia/strategies/types';
+    import { strategyFunctions } from '../../../services/tictaccup/ia';
+    import type { Strategy } from '../../../services/tictaccup/ia/strategies/types';
 
     let player1Strat: Strategy = 'random';
     let player2Strat: Strategy = 'random';

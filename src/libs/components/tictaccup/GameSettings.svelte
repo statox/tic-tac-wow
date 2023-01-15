@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { strategyFunctions } from '../services/tictaccup/ia';
-    import { gameSettings } from '../stores';
+    import { strategyFunctions } from '../../services/tictaccup/ia';
+    import { gameSettings } from '../../stores';
 </script>
 
 <div>
