@@ -1,5 +1,5 @@
-import type { PieceStack } from 'src/libs/services/game';
-import type { State } from 'src/libs/services/game/state-machine';
+import type { PieceStack } from 'src/libs/services/tictaccup';
+import type { State } from 'src/libs/services/tictaccup/state-machine';
 
 type CheckWinnerCase = {
     name: string;

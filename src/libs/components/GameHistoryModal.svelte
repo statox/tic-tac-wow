@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getContext } from 'svelte';
-    import type { Game } from '../services/game';
+    import type { Game } from '../services/tictaccup';
     import GameHistory from './GameHistory.svelte';
     const { open } = getContext('simple-modal');
     const showHistory = () => open(GameHistory, { game });

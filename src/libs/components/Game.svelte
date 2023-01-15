@@ -1,13 +1,13 @@
 <script lang="ts">
-    import { getNewGame, type BoardPosition, type PlayerHand } from '../services/game';
-    import { getGameCurrentHand, getGameOtherHand } from '../services/game/helpers';
-    import { strategyFunctions } from '../services/game/ia';
-    import type { Strategy } from '../services/game/ia/strategies/types';
+    import { getNewGame, type BoardPosition, type PlayerHand } from '../services/tictaccup';
+    import { getGameCurrentHand, getGameOtherHand } from '../services/tictaccup/helpers';
+    import { strategyFunctions } from '../services/tictaccup/ia';
+    import type { Strategy } from '../services/tictaccup/ia/strategies/types';
     import {
         placeSelectedPieceInBoard,
         selectCellInBoard,
         selectPieceInHand
-    } from '../services/game/state-machine';
+    } from '../services/tictaccup/state-machine';
     import { gameSettings } from '../stores';
     import Board from './Board.svelte';
     import GameSettings from './GameSettings.svelte';

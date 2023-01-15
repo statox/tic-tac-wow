@@ -1,4 +1,4 @@
-import { getHandsPossibleMoves } from 'src/libs/services/game/ia/helpers';
+import { getHandsPossibleMoves } from 'src/libs/services/tictaccup/ia/helpers';
 import { describe, expect, it } from 'vitest';
 import { convertFixtureGridToGame } from '../../helpers';
 

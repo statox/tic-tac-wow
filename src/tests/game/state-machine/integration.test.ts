@@ -1,9 +1,9 @@
-import { getNewGame } from 'src/libs/services/game';
+import { getNewGame } from 'src/libs/services/tictaccup';
 import {
     placeSelectedPieceInBoard,
     selectCellInBoard,
     selectPieceInHand
-} from 'src/libs/services/game/state-machine';
+} from 'src/libs/services/tictaccup/state-machine';
 import { describe, expect, it } from 'vitest';
 
 describe('state-machine', () => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { strategyFunctions } from '../services/game/ia';
+    import { strategyFunctions } from '../services/tictaccup/ia';
     import { gameSettings } from '../stores';
 </script>
 

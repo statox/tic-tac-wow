@@ -1,4 +1,4 @@
-import { makeWinningMoveOrRandom } from 'src/libs/services/game/ia';
+import { makeWinningMoveOrRandom } from 'src/libs/services/tictaccup/ia';
 import { describe, expect, it } from 'vitest';
 import { convertFixtureGridToGame } from '../helpers';
 

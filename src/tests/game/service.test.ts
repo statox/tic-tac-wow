@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getNewGame } from '../../libs/services/game';
+import { getNewGame } from '../../libs/services/tictaccup';
 import { convertFixtureGridAndHandsToGame, convertFixtureGridToGame } from './helpers';
 
 describe('getNewGame', () => {

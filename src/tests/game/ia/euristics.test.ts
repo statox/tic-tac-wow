@@ -1,4 +1,4 @@
-import { scoreGame } from 'src/libs/services/game/ia/euristics';
+import { scoreGame } from 'src/libs/services/tictaccup/ia/euristics';
 import { describe, expect, it } from 'vitest';
 import { convertFixtureGridAndHandsToGame, convertFixtureGridToGame } from '../helpers';
 

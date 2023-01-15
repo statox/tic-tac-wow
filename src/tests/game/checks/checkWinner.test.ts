@@ -1,6 +1,6 @@
-import { checkWinner } from 'src/libs/services/game/check';
+import { checkWinner } from 'src/libs/services/tictaccup/check';
 import { describe, expect, it } from 'vitest';
-import { getNewGame } from 'src/libs/services/game';
+import { getNewGame } from 'src/libs/services/tictaccup';
 import { cases } from './checkWinner.fixture';
 import { convertFixtureGridToGame } from '../helpers';
 

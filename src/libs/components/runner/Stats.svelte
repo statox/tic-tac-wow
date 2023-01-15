@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { StratsStats } from 'src/libs/services/game/engine/compareStrats';
+    import type { StratsStats } from 'src/libs/services/tictaccup/engine/compareStrats';
 
     export let statsHistory: StratsStats[];
 </script>

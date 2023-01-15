@@ -1,6 +1,6 @@
-import { getNewGame } from 'src/libs/services/game';
-import { copyGame } from 'src/libs/services/game/helpers';
-import { makeRandomMove } from 'src/libs/services/game/ia/strategies/random';
+import { getNewGame } from 'src/libs/services/tictaccup';
+import { copyGame } from 'src/libs/services/tictaccup/helpers';
+import { makeRandomMove } from 'src/libs/services/tictaccup/ia/strategies/random';
 import { describe, expect, it } from 'vitest';
 
 describe('copyGame', () => {

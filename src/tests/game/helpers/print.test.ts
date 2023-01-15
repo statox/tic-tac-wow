@@ -1,5 +1,5 @@
-import { getNewGame } from 'src/libs/services/game';
-import { gameGridAsString, gameHandsAsString } from 'src/libs/services/game/helpers';
+import { getNewGame } from 'src/libs/services/tictaccup';
+import { gameGridAsString, gameHandsAsString } from 'src/libs/services/tictaccup/helpers';
 import { describe, expect, it } from 'vitest';
 import { convertFixtureGridToGame } from '../helpers';
 

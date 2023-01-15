@@ -1,4 +1,4 @@
-import { getGridCellLastValue } from 'src/libs/services/game/check';
+import { getGridCellLastValue } from 'src/libs/services/tictaccup/check';
 import { describe, expect, it } from 'vitest';
 import { convertFixtureGridToGame } from '../helpers';
 

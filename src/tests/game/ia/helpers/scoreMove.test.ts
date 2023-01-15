@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { Move } from 'src/libs/services/game';
-import { scoreMove } from 'src/libs/services/game/ia/euristics';
+import type { Move } from 'src/libs/services/tictaccup';
+import { scoreMove } from 'src/libs/services/tictaccup/ia/euristics';
 import { convertFixtureGridToGame } from '../../helpers';
 
 describe('scoreMove', () => {

@@ -1,4 +1,4 @@
-import { getNewGame, type Piece, type PieceStack } from '../../libs/services/game';
+import { getNewGame, type Piece, type PieceStack } from '../../libs/services/tictaccup';
 
 export const convertFixtureGridToGame = (grid: PieceStack[][]) => {
     const game = getNewGame();

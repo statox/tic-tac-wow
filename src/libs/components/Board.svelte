@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { BoardPosition, Game } from '../services/game';
+    import type { BoardPosition, Game } from '../services/tictaccup';
     import PiecesCell from './PiecesCell.svelte';
 
     export let game: Game;
