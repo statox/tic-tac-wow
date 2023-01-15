@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="./_app/immutable/assets/_page-1a81c1bf.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-b9b2f22c.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-a8714b72.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-80149790.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-cb4b137e.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-e1ef86ea.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/runner/_page.svelte-9d3aad06.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-ed39f6af.js">
+</head>
+
+
+<style>
+    body {
+        background-color: #6169d8;
+        color: white;
+    }
+</style>
+
+<body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+
+
+<h1>Tic Tac Wow</h1>
+
+<nav><a href="/">Game</a>
+    <a href="/runner">Runner</a></nav>
+
+<h2>Runner</h2>
+
+<div><label for="nbGames">Number of games to play</label>
+    <input id="nbGames" type="number" min="1"  value="10">
+
+    <label for="player1Strat">Player 1 algorithm</label>
+    <select id="player1Strat" ><option value="random">random
+            </option><option value="win_or_random">win_or_random
+            </option><option value="euristic">euristic
+            </option><option value="minmax">minmax
+            </option><option value="negamax">negamax
+            </option><option value="alphabeta">alphabeta
+            </option><option value="alphabeta_ordered">alphabeta_ordered
+            </option></select>
+
+    <label for="player2Strat">Player 2 algorithm</label>
+    <select id="player2Strat" ><option value="random">random
+            </option><option value="win_or_random">win_or_random
+            </option><option value="euristic">euristic
+            </option><option value="minmax">minmax
+            </option><option value="negamax">negamax
+            </option><option value="alphabeta">alphabeta
+            </option><option value="alphabeta_ordered">alphabeta_ordered
+            </option></select></div>
+
+<div><span><button>Start runner</button>
+        <button>Start all strats</button>
+
+        </span></div>
+
+
+
+
+		<script type="module" data-sveltekit-hydrate="163mqmn">
+			import { start } from "./_app/immutable/start-b9b2f22c.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="163mqmn"]').parentNode,
+				version: "1673816389165",
+				hydrate: {
+					node_ids: [0, 3],
+					data: [null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+</body>
+
+</html>
