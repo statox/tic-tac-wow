@@ -13,7 +13,10 @@
     import GameSettings from './GameSettings.svelte';
     import PlayerHandCompoment from './PlayerHand.svelte';
 
-    let game = getNewGame();
+    import Modal from 'svelte-simple-modal';
+    import GameHistoryModal from './GameHistoryModal.svelte';
+
+    let game = getNewGame({historyEnabled: true});
     let gamePlayed = 0;
 
     const autoPlayer2Move = () => {
@@ -75,7 +78,7 @@
     const resetGame = () => {
         gamePlayed++;
         const player2Start = gamePlayed % 2 === 1;
-        game = getNewGame({ player2Start });
+        game = getNewGame({ player2Start, historyEnabled: true });
         if (player2Start && $gameSettings.player2Auto) {
             autoPlayer2Move();
         }
@@ -84,6 +87,9 @@
 
 <h2>Game</h2>
 <GameSettings />
+
+<Modal><GameHistoryModal {game}/></Modal>
+
 {#key game}
     <Board {onSelectCell} {game} />
 {/key}
