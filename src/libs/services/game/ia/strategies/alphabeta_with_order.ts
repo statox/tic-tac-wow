@@ -107,7 +107,7 @@ const alphabeta = (
 };
 
 export const makeAlphabetaOrderedMove = (game: Game, hand: PlayerHand) => {
-    const minmaxResult = alphabeta(game, hand, 4, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+    const minmaxResult = alphabeta(game, hand, 3, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
 
     if (!minmaxResult.move) {
         throw new Error('no_move_possible');
