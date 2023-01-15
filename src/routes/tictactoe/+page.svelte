@@ -1,1 +1,5 @@
-<p>Here shall be tic tac toe</p>
+<script lang="ts">
+    import TicTacToe from '../../libs/components/tictactoe/Game.svelte';
+</script>
+
+<TicTacToe />
