@@ -17,6 +17,11 @@ export type PlayerHand = {
     unselectableIndexes: Set<number>;
 };
 
+export type HistoryRecord = {
+    move: Move;
+    state: State;
+};
+
 export type PieceStack = Piece[];
 
 export type Game = {
@@ -24,6 +29,8 @@ export type Game = {
     grid: PieceStack[][];
     player1: PlayerHand;
     player2: PlayerHand;
+    historyEnabled: boolean;
+    history: HistoryRecord[];
 };
 
 export type Move = {

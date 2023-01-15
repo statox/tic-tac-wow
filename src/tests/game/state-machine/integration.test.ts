@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 
 describe('state-machine', () => {
     it('Should work for complete flow', () => {
-        const game = getNewGame();
+        const game = getNewGame({ historyEnabled: true });
         const { player1, player2 } = game;
 
         // FAIL player 2 try to select from hand and from board before their turn
@@ -105,5 +105,7 @@ describe('state-machine', () => {
         expect(game.grid[1][1]).toHaveLength(0);
         expect(game.grid[1][2][0]).toBe(piece3);
         expect(game.grid[2][2][0]).toBe(piece4);
+
+        expect(game.history).toHaveLength(5);
     });
 });

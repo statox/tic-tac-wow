@@ -13,7 +13,7 @@ const makePlayerHand = (player: Player): PlayerHand => {
     };
 };
 
-export const getNewGame = (params?: { player2Start: boolean }): Game => {
+export const getNewGame = (params?: { player2Start?: boolean; historyEnabled?: boolean }): Game => {
     const grid: PieceStack[][] = [];
     for (let y = 0; y < 3; y++) {
         grid.push([]);
@@ -29,7 +29,9 @@ export const getNewGame = (params?: { player2Start: boolean }): Game => {
         },
         grid,
         player1: makePlayerHand(1),
-        player2: makePlayerHand(2)
+        player2: makePlayerHand(2),
+        historyEnabled: params?.historyEnabled || false,
+        history: []
     };
 
     if (params?.player2Start) {

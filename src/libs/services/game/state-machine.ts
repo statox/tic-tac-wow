@@ -86,15 +86,12 @@ export const placeSelectedPieceInBoard = (game: Game, target: BoardPosition) => 
         throw new Error('no_selection_in_hand');
     }
     const { x, y } = target;
+    const selectedPiece = { ...hand.selectedPiece };
 
     const pieceValue =
-        hand.selectedPiece.from === 'hand'
-            ? hand.pieces[hand.selectedPiece.index]
-            : getGridCellPiece(
-                  game.grid,
-                  hand.selectedPiece.position.x,
-                  hand.selectedPiece.position.y
-              );
+        selectedPiece.from === 'hand'
+            ? hand.pieces[selectedPiece.index]
+            : getGridCellPiece(game.grid, selectedPiece.position.x, selectedPiece.position.y);
 
     if (pieceValue === null) {
         throw new Error('selected_piece_is_null');
@@ -106,11 +103,11 @@ export const placeSelectedPieceInBoard = (game: Game, target: BoardPosition) => 
 
     game.grid[target.y][target.x].push(pieceValue);
 
-    if (hand.selectedPiece.from === 'hand') {
-        hand.unselectableIndexes.add(hand.selectedPiece.index);
+    if (selectedPiece.from === 'hand') {
+        hand.unselectableIndexes.add(selectedPiece.index);
     }
-    if (hand.selectedPiece.from === 'board') {
-        game.grid[hand.selectedPiece.position.y][hand.selectedPiece.position.x].pop();
+    if (selectedPiece.from === 'board') {
+        game.grid[selectedPiece.position.y][selectedPiece.position.x].pop();
     }
 
     hand.selectedPiece = null;
@@ -118,5 +115,17 @@ export const placeSelectedPieceInBoard = (game: Game, target: BoardPosition) => 
     game.state.player = game.state.player === 1 ? 2 : 1;
 
     checkWinner(game);
+
+    if (game.historyEnabled) {
+        game.history.push({
+            move: {
+                from: selectedPiece,
+                to: target
+            },
+            state: {
+                ...game.state
+            }
+        });
+    }
     return 0;
 };
