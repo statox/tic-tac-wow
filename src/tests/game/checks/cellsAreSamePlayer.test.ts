@@ -1,4 +1,4 @@
-import { cellsAreSamePlayer } from 'src/libs/services/game/check';
+import { cellsAreSamePlayer } from 'src/libs/services/tictaccup/check';
 import { describe, expect, it } from 'vitest';
 
 import { convertFixtureGridToGame } from '../helpers';

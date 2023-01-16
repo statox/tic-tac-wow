@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Piece } from '../services/tictaccup';
+    import type { Piece } from '../../services/tictaccup';
 
     export let pieces: Piece[];
     export let selected = false;

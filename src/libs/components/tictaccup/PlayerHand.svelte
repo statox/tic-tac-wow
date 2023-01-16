@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { PlayerHand } from '../services/tictaccup';
-    import type { Strategy } from '../services/tictaccup/ia/strategies/types';
+    import type { PlayerHand } from '../../services/tictaccup';
+    import type { Strategy } from '../../services/tictaccup/ia/strategies/types';
 
     import PiecesCell from './PiecesCell.svelte';
 
