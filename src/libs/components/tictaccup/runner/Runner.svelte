@@ -67,7 +67,7 @@
     };
 </script>
 
-<h2>Runner</h2>
+<h2>Tic Tac Cup - Runner</h2>
 
 <div>
     <label for="nbGames">Number of games to play</label>

@@ -234,6 +234,7 @@
     });
 </script>
 
+<h2>Tic Tac Toe</h2>
 <div class="d-flex justify-content-center">
     <P5 {sketch} />
 </div>

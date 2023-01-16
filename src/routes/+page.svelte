@@ -1,5 +1,15 @@
-<script>
-    import TicTacCup from '../libs/components/tictaccup/Game.svelte';
-</script>
+<p>This is my Tic Tac Toe based games playground</p>
 
-<TicTacCup />
+<p>
+    Try <a href="/tictaccup">Tic Tac Cup</a> a tic tac toe game with pieces of different dimensions.
+    You can play against different level of AIs.
+</p>
+
+<p>
+    On <a href="/runner">the runner page</a> you can simulate several games of tic tac cup with different
+    AIs playing against each other
+</p>
+
+<p>
+    The <a href="/tictactoe">Tic Tac Toe</a> page is unsurprisingly a classical tic tac toe game.
+</p>
