@@ -13,3 +13,12 @@
 <p>
     The <a href="/tictactoe">Tic Tac Toe</a> page is unsurprisingly a classical tic tac toe game.
 </p>
+
+<br />
+
+<p>
+    I'm getting inspiration from
+    <a href="https://en.wikipedia.org/wiki/Tic-tac-toe_variants" target="noopener">
+        this wiki page
+    </a>.
+</p>
