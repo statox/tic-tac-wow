@@ -2,13 +2,12 @@
     import type p5 from 'p5';
     import P5, { type Sketch } from 'p5-svelte';
     import {
+        BoardCell,
         boardHasFreeSpots,
         checkWinner,
-        COMPUTER,
-        DRAW,
         drawBoard,
+        GameResult,
         getNewBoard,
-        PLAYER,
         screenCoordsToGridCoords,
         type Board
     } from '../../services/tictactoe';
@@ -21,10 +20,10 @@
 
     // Put the player value in the board if the user clicked an empty cell
     function playerRound(x: number, y: number) {
-        if (board[y][x] !== 0) {
+        if (board[y][x] !== BoardCell.EMPTY) {
             return;
         }
-        board[y][x] = PLAYER;
+        board[y][x] = BoardCell.PLAYER;
     }
 
     // Randomly select a cell to put the computer value in the board
@@ -44,7 +43,7 @@
 
         const randIndex = Math.floor(Math.random() * openPositions.length);
         const { x, y } = openPositions[randIndex];
-        board[y][x] = COMPUTER;
+        board[y][x] = BoardCell.COMPUTER;
     }
 
     function reset() {
@@ -103,20 +102,20 @@
                 computerRound();
             }
 
-            let winner = checkWinner(board);
-            if (winner) {
-                if (winner === DRAW) {
-                    winnerSpan.html('Draw. Game will reset in 4 seconds');
-                } else {
-                    winnerSpan.html(
-                        (winner === PLAYER ? 'Player' : 'Computer') +
-                            ' wins. Game will reset in 4 seconds'
-                    );
-                }
-
-                gameOver = true;
-                setTimeout(reset, 4000);
+            let result = checkWinner(board);
+            if (result === GameResult.NOT_OVER) {
+                return;
             }
+
+            if (result === GameResult.DRAW) {
+                winnerSpan.html('Draw. Game will reset in 4 seconds');
+            } else {
+                const winner = result === GameResult.PLAYER ? 'Player' : ' Computer';
+                winnerSpan.html(winner + ' wins. Game will reset in 4 seconds');
+            }
+
+            gameOver = true;
+            setTimeout(reset, 4000);
         };
     };
 

@@ -1,6 +1,14 @@
-export type Board = number[][];
+export type Board = BoardCell[][];
 
-// These constants are also in the global scope
-export const PLAYER = 1;
-export const COMPUTER = -1;
-export const DRAW = 2;
+export enum BoardCell {
+    EMPTY = 0,
+    PLAYER = 1,
+    COMPUTER = -1
+}
+
+export enum GameResult {
+    NOT_OVER = 0,
+    PLAYER = 1,
+    COMPUTER = -1,
+    DRAW = 2
+}
