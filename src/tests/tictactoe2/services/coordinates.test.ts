@@ -1,4 +1,4 @@
-import { indexToXY, xyToIndex } from 'src/libs/services/tictactoe2/coordinates';
+import { indexToXY, xyToIndex } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
 
 describe('xyToIndex', () => {

@@ -1,4 +1,4 @@
-import { matchMask } from 'src/libs/services/tictactoe2/mask';
+import { matchMask } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
 
 const cases = {

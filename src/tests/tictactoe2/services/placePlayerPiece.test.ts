@@ -1,5 +1,5 @@
 import type { BoardCoord, PlayerPieces } from 'src/libs/services/tictactoe2';
-import { placePlayerPiece } from 'src/libs/services/tictactoe2/player';
+import { placePlayerPiece } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
 
 const cases = {

@@ -1,16 +1,5 @@
-import { playerAligned3 } from 'src/libs/services/tictactoe2/player';
+import { playerAligned3 } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
-
-const winMasks = [
-    // Rows
-    0b111000000, 0b000111000, 0b000000111,
-    // Columns
-    0b100100100, 0b010010010, 0b001001001,
-    // NW/SE
-    0b100010001,
-    // NE/SW
-    0b001010100
-];
 
 const cases = {
     'Row 1 - Simple': {

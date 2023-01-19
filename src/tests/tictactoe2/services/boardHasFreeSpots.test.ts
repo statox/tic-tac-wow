@@ -1,4 +1,4 @@
-import { boardHasFreeSpots } from 'src/libs/services/tictactoe2/board';
+import { boardHasFreeSpots } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
 
 const cases = {
