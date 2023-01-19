@@ -2,10 +2,19 @@ import { xyToIndex } from './coordinates';
 import { matchMask, winMasks } from './mask';
 import type { BoardCoord, PlayerPieces } from './types';
 
+export function spotIsFree(player: PlayerPieces, pos: BoardCoord) {
+    const index = xyToIndex(pos);
+    // https://stackoverflow.com/a/62246924
+    if ((player & (1 << index)) === 0) {
+        return true;
+    }
+    return false;
+}
+
 export function placePlayerPiece(player: PlayerPieces, pos: BoardCoord) {
     const i = xyToIndex(pos);
 
-    return player + 2 ** (8 - i);
+    return player + 2 ** i;
 }
 
 export const playerAligned3 = (player: PlayerPieces) => {

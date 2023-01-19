@@ -5,7 +5,7 @@ export function xyToIndex(pos: BoardCoord) {
     if (x < 0 || x > 2 || y < 0 || y > 2) {
         throw new Error(`Invalid coords (${x},${y})`);
     }
-    return 3 * y + x;
+    return 8 - (3 * y + x);
 }
 
 export function indexToXY(i: number) {
@@ -14,7 +14,7 @@ export function indexToXY(i: number) {
     }
 
     return {
-        x: i % 3,
-        y: Math.floor(i / 3)
+        x: 2 - (i % 3),
+        y: 2 - Math.floor(i / 3)
     };
 }
