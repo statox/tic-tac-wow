@@ -23,3 +23,5 @@ export enum Player {
     player = 1,
     computer = 2
 }
+
+export type GameState = 'player_win' | 'computer_win' | 'draw' | 'not_over';

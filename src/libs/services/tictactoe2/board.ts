@@ -1,5 +1,5 @@
-import { placePlayerPiece, spotIsFree } from './player';
-import { Player, type Board, type BoardCoord } from './types';
+import { placePlayerPiece, playerAligned3, spotIsFree } from './player';
+import { Player, type Board, type BoardCoord, type GameState } from './types';
 
 // Return a new board filled with zeroes
 export function getNewBoard(): Board {
@@ -7,6 +7,22 @@ export function getNewBoard(): Board {
         player: 0,
         computer: 0
     };
+}
+
+export function getGameState(board: Board): GameState {
+    const p1Win = playerAligned3(board.player);
+    const p2Win = playerAligned3(board.computer);
+
+    if (p1Win && p2Win) {
+        return 'draw';
+    }
+    if (p1Win) {
+        return 'player_win';
+    }
+    if (p2Win) {
+        return 'computer_win';
+    }
+    return 'not_over';
 }
 
 export function makeMoveOnBoard(board: Board, player: Player, pos: BoardCoord) {
