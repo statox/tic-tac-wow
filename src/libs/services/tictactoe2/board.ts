@@ -1,5 +1,5 @@
-import { spotIsFree } from './player';
-import type { Board, BoardCoord, Player } from './types';
+import { placePlayerPiece, spotIsFree } from './player';
+import { Player, type Board, type BoardCoord } from './types';
 
 // Return a new board filled with zeroes
 export function getNewBoard(): Board {
@@ -7,6 +7,22 @@ export function getNewBoard(): Board {
         player: 0,
         computer: 0
     };
+}
+
+export function makeMoveOnBoard(board: Board, player: Player, pos: BoardCoord) {
+    if (!isValidMove(board, pos)) {
+        throw new Error(
+            `Impossible move. player: ${board?.player}, computer: ${
+                board?.computer
+            }, ${JSON.stringify(pos)} `
+        );
+    }
+
+    if (player === Player.player) {
+        board.player = placePlayerPiece(board.player, pos);
+    } else {
+        board.computer = placePlayerPiece(board.computer, pos);
+    }
 }
 
 export function isValidMove(board: Board, pos: BoardCoord) {
