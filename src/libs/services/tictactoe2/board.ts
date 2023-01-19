@@ -1,4 +1,5 @@
-import type { Board } from './types';
+import { spotIsFree } from './player';
+import type { Board, BoardCoord, Player } from './types';
 
 // Return a new board filled with zeroes
 export function getNewBoard(): Board {
@@ -6,6 +7,10 @@ export function getNewBoard(): Board {
         player: 0,
         computer: 0
     };
+}
+
+export function isValidMove(board: Board, pos: BoardCoord) {
+    return spotIsFree(board.player, pos) && spotIsFree(board.computer, pos);
 }
 
 // Check if there are some empty cells in the board
