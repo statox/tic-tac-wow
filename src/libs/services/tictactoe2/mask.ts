@@ -1,4 +1,4 @@
-// https://rclayton.silvrback.com/winner-in-tic-tac-toe
+import type { PlayerPieces } from './types';
 
 const winMasks = [
     // Rows
@@ -11,9 +11,9 @@ const winMasks = [
     0b001010100
 ];
 
-export const checkPlayerWin = (piecesOnBoard: number) => {
+export const playerAligned3 = (player: PlayerPieces) => {
     for (const mask of winMasks) {
-        if (matchMask(piecesOnBoard, mask)) {
+        if (matchMask(player, mask)) {
             return true;
         }
     }
