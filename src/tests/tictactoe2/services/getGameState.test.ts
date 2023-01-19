@@ -41,6 +41,11 @@ const cases = {
         player: 0b010010010,
         comput: 0b001001001,
         result: 'draw'
+    },
+    'Invalid 1': {
+        player: 0b010010010,
+        comput: 0b011001001,
+        result: 'invalid_board'
     }
 } as {
     [key: string]: {

@@ -2,6 +2,15 @@ import { xyToIndex } from './coordinates';
 import { matchMask, winMasks } from './mask';
 import type { BoardCoord, PlayerPieces } from './types';
 
+export function countPlacedPieces(player: PlayerPieces) {
+    let n = player;
+    let count = 0;
+    while (n) {
+        count += n & 1;
+        n >>= 1;
+    }
+    return count;
+}
 export function spotIsFree(player: PlayerPieces, pos: BoardCoord) {
     const index = xyToIndex(pos);
     // https://stackoverflow.com/a/62246924
