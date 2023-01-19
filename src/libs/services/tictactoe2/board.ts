@@ -1,5 +1,4 @@
-import { xyToIndex } from './coordinates';
-import type { Board, BoardCoord, PlayerPieces } from './types';
+import type { Board } from './types';
 
 // Return a new board filled with zeroes
 export function getNewBoard(): Board {
@@ -7,12 +6,6 @@ export function getNewBoard(): Board {
         player: 0,
         computer: 0
     };
-}
-
-export function placePiece(player: PlayerPieces, pos: BoardCoord) {
-    const i = xyToIndex(pos);
-
-    return player + 2 ** (8 - i);
 }
 
 // Check if there are some empty cells in the board

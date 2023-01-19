@@ -1,4 +1,5 @@
-import { placePiece, type BoardCoord, type PlayerPieces } from 'src/libs/services/tictactoe2';
+import type { BoardCoord, PlayerPieces } from 'src/libs/services/tictactoe2';
+import { placePlayerPiece } from 'src/libs/services/tictactoe2/player';
 import { describe, expect, it } from 'vitest';
 
 const cases = {
@@ -55,11 +56,11 @@ const cases = {
     };
 };
 
-describe('matchMask', () => {
+describe('placePlayerPiece', () => {
     for (const test of Object.keys(cases) as string[]) {
         const { pieces, pos, result } = cases[test];
         it(test, () => {
-            expect(placePiece(pieces, pos)).toBe(result);
+            expect(placePlayerPiece(pieces, pos)).toBe(result);
         });
     }
 });

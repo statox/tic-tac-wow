@@ -1,4 +1,4 @@
-import { playerAligned3 } from 'src/libs/services/tictactoe2/mask';
+import { playerAligned3 } from 'src/libs/services/tictactoe2/player';
 import { describe, expect, it } from 'vitest';
 
 const winMasks = [
