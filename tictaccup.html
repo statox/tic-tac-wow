@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="./_app/immutable/assets/_layout-463a3aa1.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/_page-6eb394b3.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-f9a5fff6.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-1d785069.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-da70a5cb.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-c5a64178.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-41c905a7.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-9a0568c9.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/tictaccup/_page.svelte-8b4228c3.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/service-a0b0a97b.js">
+</head>
+
+
+<style>
+    body {
+        background-color: #6169d8;
+        color: white;
+    }
+</style>
+
+<body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+
+
+<h1>Tic Tac Wow</h1>
+
+<nav><a href="/" class="svelte-zosj2x">Home</a> |
+    <a href="/tictaccup" class="svelte-zosj2x">Tic Tac Cup</a> |
+    <a href="/runner" class="svelte-zosj2x">Tic Tac Cup Runner</a> |
+    <a href="/tictactoe" class="svelte-zosj2x">Tic Tac Toe</a> |
+    <a href="/tictactoe2" class="svelte-zosj2x">Tic Tac Toe 2</a></nav>
+
+<h2>Tic Tac Cup</h2>
+<div><button>Human player 2</button>
+    <select><option value="random">random
+            </option><option value="win_or_random">win_or_random
+            </option><option value="euristic">euristic
+            </option><option value="minmax">minmax
+            </option><option value="negamax">negamax
+            </option><option value="alphabeta">alphabeta
+            </option><option value="alphabeta_ordered">alphabeta_ordered
+            </option></select></div>
+
+
+
+
+<button>Show game history</button>
+
+<div class="board svelte-1n6jeyv"><div>{"player":1,"action":"select1"}</div>
+    <div class="overlay svelte-1n6jeyv"><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button><button class="cell svelte-950i0e">
+</button></div>
+</div>
+
+<span>Player 1</span>
+<button>Random</button>
+    <button>Win or random</button>
+    <button>Euristic</button>
+    <button>MinMax</button>
+    <button>AlphaBeta ordered</button>
+
+<div class="overlay svelte-rwgxl1"><button class="cell svelte-950i0e"><div class="piece svelte-950i0e player1  small-circle">1
+        </div>
+</button><button class="cell svelte-950i0e"><div class="piece svelte-950i0e player1  small-circle">1
+        </div>
+</button><button class="cell svelte-950i0e"><div class="piece svelte-950i0e player1   medium-circle">2
+        </div>
+</button><button class="cell svelte-950i0e"><div class="piece svelte-950i0e player1   medium-circle">2
+        </div>
+</button><button class="cell svelte-950i0e"><div class="piece svelte-950i0e player1    large-circle">3
+        </div>
+</button><button class="cell svelte-950i0e"><div class="piece svelte-950i0e player1    large-circle">3
+        </div>
+</button>
+</div>
+    <span>Player 2</span>
+
+
+<div class="overlay svelte-rwgxl1"><button class="cell svelte-950i0e  disabledHand"><div class="piece svelte-950i0e  player2 small-circle">-1
+        </div>
+</button><button class="cell svelte-950i0e  disabledHand"><div class="piece svelte-950i0e  player2 small-circle">-1
+        </div>
+</button><button class="cell svelte-950i0e  disabledHand"><div class="piece svelte-950i0e  player2  medium-circle">-2
+        </div>
+</button><button class="cell svelte-950i0e  disabledHand"><div class="piece svelte-950i0e  player2  medium-circle">-2
+        </div>
+</button><button class="cell svelte-950i0e  disabledHand"><div class="piece svelte-950i0e  player2   large-circle">-3
+        </div>
+</button><button class="cell svelte-950i0e  disabledHand"><div class="piece svelte-950i0e  player2   large-circle">-3
+        </div>
+</button>
+</div>
+
+
+		<script type="module" data-sveltekit-hydrate="1jcsme3">
+			import { start } from "./_app/immutable/start-f9a5fff6.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="1jcsme3"]').parentNode,
+				version: "1674222571927",
+				hydrate: {
+					node_ids: [0, 4],
+					data: [null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+</body>
+
+</html>
