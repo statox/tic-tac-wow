@@ -1,4 +1,5 @@
 import type p5 from 'p5';
+import { spotIsFree } from './player';
 import type { Board } from './types';
 
 export function drawBoard(p5: p5, board: Board) {
@@ -17,7 +18,7 @@ export function drawBoard(p5: p5, board: Board) {
     // For each grid in the board show the corresonding tile
     for (let y = 0; y < 3; y++) {
         for (let x = 0; x < 3; x++) {
-            if (board[y][x] === 1) {
+            if (!spotIsFree(board.player, { x, y })) {
                 p5.stroke('blue');
                 p5.circle(
                     x * cellWidth + cellWidth / 2,
@@ -25,7 +26,7 @@ export function drawBoard(p5: p5, board: Board) {
                     cellHeight / 2
                 );
             }
-            if (board[y][x] === -1) {
+            if (!spotIsFree(board.computer, { x, y })) {
                 p5.stroke('red');
                 p5.line(
                     x * cellWidth + cellWidth * 0.3,
@@ -48,16 +49,9 @@ export function drawBoard(p5: p5, board: Board) {
 // the height and width of the canvas (screenWidth, screenHeight)
 // and the height and width of the board (boardWidth, boardHeight) which should be 3x3
 // and return the corresponding coordinates in the board
-export function screenCoordsToGridCoords(
-    p5: p5,
-    mouseX: number,
-    mouseY: number,
-    screenWidth: number,
-    screenHeight: number,
-    boardWidth: number,
-    boardHeight: number
-) {
-    const x = Math.floor(p5.map(mouseX, 0, screenWidth, 0, boardWidth));
-    const y = Math.floor(p5.map(mouseY, 0, screenHeight, 0, boardHeight));
+export function screenCoordsToGridCoords(p5: p5) {
+    const { mouseX, mouseY, width, height } = p5;
+    const x = Math.floor(p5.map(mouseX, 0, width, 0, 3));
+    const y = Math.floor(p5.map(mouseY, 0, height, 0, 3));
     return { x, y };
 }
