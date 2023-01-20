@@ -16,8 +16,8 @@ export function getPlayerPiecesFromBoard(board: Board, player: Player) {
     return board.computer;
 }
 
-export function getGameState(board: Board): GameState {
-    if (!isValidBoard(board)) {
+export function getGameState(board: Board, ignoreInvalidState?: boolean): GameState {
+    if (!ignoreInvalidState && !isValidBoard(board)) {
         return 'invalid_board';
     }
     const p1Win = playerAligned3(board.player);
@@ -31,6 +31,10 @@ export function getGameState(board: Board): GameState {
     }
     if (p2Win) {
         return 'computer_win';
+    }
+
+    if (!boardHasFreeSpots(board)) {
+        return 'over';
     }
     return 'not_over';
 }

@@ -42,24 +42,36 @@ const cases = {
         comput: 0b001001001,
         result: 'draw'
     },
+    'Over 1': {
+        player: 0b100011010,
+        comput: 0b011100101,
+        result: 'over'
+    },
     'Invalid 1': {
         player: 0b010010010,
         comput: 0b011001001,
         result: 'invalid_board'
+    },
+    'Invalid ignore 1': {
+        player: 0b010000000,
+        comput: 0b011101001,
+        ignoreInvalid: true,
+        result: 'computer_win'
     }
 } as {
     [key: string]: {
         player: PlayerPieces;
         comput: PlayerPieces;
+        ignoreInvalid?: boolean;
         result: GameState;
     };
 };
 
 describe('getGameState', () => {
     for (const test of Object.keys(cases) as string[]) {
-        const { player, comput, result } = cases[test];
+        const { player, comput, ignoreInvalid, result } = cases[test];
         it(test, () => {
-            expect(getGameState({ player, computer: comput })).toBe(result);
+            expect(getGameState({ player, computer: comput }, ignoreInvalid)).toBe(result);
         });
     }
 });
