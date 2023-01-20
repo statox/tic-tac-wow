@@ -24,24 +24,26 @@
     let secondsBeforeReset = 0;
 
     // Put the player value in the board if the user clicked an empty cell
-    function playerRound(pos: BoardCoord) {
+    function manualRound(player: Player, pos: BoardCoord) {
         if ($gameState !== 'not_over') {
             return;
         }
-        makeMoveOnBoard(board, Player.player, pos);
+        makeMoveOnBoard(board, player, pos);
         gameState.set(getGameState(board));
         switchCurrentPlayer();
     }
 
     // Randomly select a cell to put the computer value in the board
-    function computerRound() {
+    function automaticRound(player: Player) {
         if ($gameState !== 'not_over') {
             return;
         }
-        const pos = getMoveRandom(board);
-        makeMoveOnBoard(board, Player.computer, pos);
-        gameState.set(getGameState(board));
-        switchCurrentPlayer();
+        setTimeout(() => {
+            const pos = getMoveRandom(board);
+            makeMoveOnBoard(board, player, pos);
+            gameState.set(getGameState(board));
+            switchCurrentPlayer();
+        }, 500);
     }
 
     function switchCurrentPlayer() {
@@ -70,9 +72,8 @@
         p5.mousePressed = () => {
             if (currentPlayer === Player.player) {
                 const boardPos = screenCoordsToGridCoords(p5);
-                playerRound(boardPos);
-
-                setTimeout(computerRound, 500);
+                manualRound(Player.player, boardPos);
+                automaticRound(Player.computer);
             }
         };
     };
