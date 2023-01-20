@@ -1,7 +1,6 @@
 <script lang="ts">
     import type p5 from 'p5';
     import P5, { type Sketch } from 'p5-svelte';
-    import { writable } from 'svelte/store';
     import { onDestroy } from 'svelte';
     import {
         drawBoard,
@@ -14,36 +13,18 @@
         type BoardCoord,
         type GameState
     } from '../../services/tictactoe2';
-    import { getMoveRandom } from '../../services/tictactoe2/ia';
 
     let _p5: p5;
 
     let board: Board; // Holds the 2D array representing our game
-    let currentPlayer: Player;
-    const gameState = writable<GameState>();
-    let secondsBeforeReset = 0;
+    let currentPlayer = Player.player;
+    let gameState: GameState;
 
     // Put the player value in the board if the user clicked an empty cell
     function manualRound(player: Player, pos: BoardCoord) {
-        if ($gameState !== 'not_over') {
-            return;
-        }
         makeMoveOnBoard(board, player, pos);
-        gameState.set(getGameState(board));
+        gameState = getGameState(board);
         switchCurrentPlayer();
-    }
-
-    // Randomly select a cell to put the computer value in the board
-    function automaticRound(player: Player) {
-        if ($gameState !== 'not_over') {
-            return;
-        }
-        setTimeout(() => {
-            const pos = getMoveRandom(board);
-            makeMoveOnBoard(board, player, pos);
-            gameState.set(getGameState(board));
-            switchCurrentPlayer();
-        }, 500);
     }
 
     function switchCurrentPlayer() {
@@ -52,8 +33,7 @@
 
     function reset() {
         board = getNewBoard();
-        currentPlayer = Player.player;
-        gameState.set(getGameState(board));
+        gameState = getGameState(board);
     }
 
     const sketch: Sketch = (p5) => {
@@ -70,28 +50,10 @@
             drawBoard(p5, board);
         };
         p5.mousePressed = () => {
-            if (currentPlayer === Player.player) {
-                const boardPos = screenCoordsToGridCoords(p5);
-                manualRound(Player.player, boardPos);
-                automaticRound(Player.computer);
-            }
+            const boardPos = screenCoordsToGridCoords(p5);
+            manualRound(currentPlayer, boardPos);
         };
     };
-
-    gameState.subscribe((newState) => {
-        if (!newState || newState === 'not_over') {
-            return;
-        }
-
-        secondsBeforeReset = 4;
-        const resetInterval = setInterval(() => {
-            secondsBeforeReset--;
-            if (secondsBeforeReset === 0) {
-                reset();
-                clearInterval(resetInterval);
-            }
-        }, 1000);
-    });
 
     onDestroy(() => {
         _p5?.remove();
@@ -102,17 +64,28 @@
 <div>
     <P5 {sketch} />
     <div>
-        {#if $gameState === 'player_win'}
+        {#if gameState === 'not_over'}
+            <span>Not over</span>
+        {/if}
+        {#if gameState === 'player_win'}
             <span>Player wins!</span>
         {/if}
-        {#if $gameState === 'computer_win'}
+        {#if gameState === 'computer_win'}
             <span>Computer wins!</span>
         {/if}
-        {#if $gameState === 'draw'}
+        {#if gameState === 'draw'}
             <span>Draw</span>
         {/if}
-        {#if secondsBeforeReset > 0}
-            <span>Restarting in {secondsBeforeReset} seconds</span>
-        {/if}
+    </div>
+    <div>
+        <button
+            on:click={() => (currentPlayer = Player.player)}
+            disabled={currentPlayer === Player.player}>Play O</button
+        >
+        <button
+            on:click={() => (currentPlayer = Player.computer)}
+            disabled={currentPlayer === Player.computer}>Play X</button
+        >
+        <button on:click={reset}>Reset</button>
     </div>
 </div>
