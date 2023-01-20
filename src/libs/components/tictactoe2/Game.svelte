@@ -11,6 +11,7 @@
         type BoardCoord
     } from '../../services/tictactoe2';
     import { onDestroy } from 'svelte';
+    import { getMoveRandom } from '../../services/tictactoe2/ia';
     let _p5: p5;
 
     let board: Board; // Holds the 2D array representing our game
@@ -19,11 +20,14 @@
     // Put the player value in the board if the user clicked an empty cell
     function playerRound(pos: BoardCoord) {
         makeMoveOnBoard(board, Player.player, pos);
+        switchCurrentPlayer();
     }
 
     // Randomly select a cell to put the computer value in the board
-    function computerRound(pos: BoardCoord) {
+    function computerRound() {
+        const pos = getMoveRandom(board);
         makeMoveOnBoard(board, Player.computer, pos);
+        switchCurrentPlayer();
     }
 
     function switchCurrentPlayer() {
@@ -49,13 +53,12 @@
             drawBoard(p5, board);
         };
         p5.mousePressed = () => {
-            const boardPos = screenCoordsToGridCoords(p5);
             if (currentPlayer === Player.player) {
+                const boardPos = screenCoordsToGridCoords(p5);
                 playerRound(boardPos);
-            } else {
-                computerRound(boardPos);
+
+                setTimeout(computerRound, 1000);
             }
-            switchCurrentPlayer();
         };
     };
 
