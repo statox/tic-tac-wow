@@ -16,6 +16,7 @@
 
     let _p5: p5;
 
+    let boardHistory: Board[];
     let board: Board; // Holds the 2D array representing our game
     let currentPlayer = Player.player;
     let gameState: GameState;
@@ -23,6 +24,8 @@
     // Put the player value in the board if the user clicked an empty cell
     function manualRound(player: Player, pos: BoardCoord) {
         makeMoveOnBoard(board, player, pos);
+        boardHistory.push({ ...board });
+        boardHistory = boardHistory;
         gameState = getGameState(board);
         switchCurrentPlayer();
     }
@@ -34,6 +37,16 @@
     function reset() {
         board = getNewBoard();
         gameState = getGameState(board);
+        boardHistory = [{ ...board }];
+    }
+
+    function previous() {
+        if (boardHistory.length <= 1) {
+            return;
+        }
+        boardHistory.pop();
+        boardHistory = boardHistory;
+        board = { ...boardHistory[boardHistory.length - 1] };
     }
 
     const sketch: Sketch = (p5) => {
@@ -50,6 +63,9 @@
             drawBoard(p5, board);
         };
         p5.mousePressed = () => {
+            if (p5.mouseX < 0 || p5.mouseX > p5.width || p5.mouseY < 0 || p5.mouseY > p5.height) {
+                return;
+            }
             const boardPos = screenCoordsToGridCoords(p5);
             manualRound(currentPlayer, boardPos);
         };
@@ -64,18 +80,7 @@
 <div>
     <P5 {sketch} />
     <div>
-        {#if gameState === 'not_over'}
-            <span>Not over</span>
-        {/if}
-        {#if gameState === 'player_win'}
-            <span>Player wins!</span>
-        {/if}
-        {#if gameState === 'computer_win'}
-            <span>Computer wins!</span>
-        {/if}
-        {#if gameState === 'draw'}
-            <span>Draw</span>
-        {/if}
+        <span>{gameState}</span>
     </div>
     <div>
         <button
@@ -86,6 +91,7 @@
             on:click={() => (currentPlayer = Player.computer)}
             disabled={currentPlayer === Player.computer}>Play X</button
         >
+        <button on:click={previous} disabled={(boardHistory || []).length < 2}>Previous</button>
         <button on:click={reset}>Reset</button>
     </div>
 </div>

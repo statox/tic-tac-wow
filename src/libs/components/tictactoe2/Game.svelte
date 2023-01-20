@@ -70,6 +70,9 @@
             drawBoard(p5, board);
         };
         p5.mousePressed = () => {
+            if (p5.mouseX < 0 || p5.mouseX > p5.width || p5.mouseY < 0 || p5.mouseY > p5.height) {
+                return;
+            }
             if (currentPlayer === Player.player) {
                 const boardPos = screenCoordsToGridCoords(p5);
                 manualRound(Player.player, boardPos);
