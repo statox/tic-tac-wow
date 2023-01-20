@@ -20,22 +20,22 @@
             <span>Player 2 (computer, X)</span>
 
             <div class="grid2cols">
-                <span>{board.player.toString(2).padStart(9, '0')}</span>
+                <span>0b{board.player.toString(2).padStart(9, '0')}</span>
                 <span>{board.player}</span>
 
-                <span>Wins</span><span>{playerWins(board, Player.player)}</span>
+                <span>Wins</span><span>{playerWins(board, Player.player) ? '✅' : '❌'}</span>
 
                 <span>Blocks opponent</span>
-                <span>{playerBlocksOpponent(board, Player.player)}</span>
+                <span>{playerBlocksOpponent(board, Player.player) ? '✅' : '❌'}</span>
             </div>
             <div class="grid2cols">
-                <span>{board.computer.toString(2).padStart(9, '0')}</span>
+                <span>0b{board.computer.toString(2).padStart(9, '0')}</span>
                 <span>{board.computer}</span>
 
-                <span>Wins</span><span>{playerWins(board, Player.computer)}</span>
+                <span>Wins</span><span>{playerWins(board, Player.computer) ? '✅' : '❌'}</span>
 
                 <span>Blocks opponent</span>
-                <span>{playerBlocksOpponent(board, Player.computer)}</span>
+                <span>{playerBlocksOpponent(board, Player.computer) ? '✅' : '❌'}</span>
             </div>
         </div>
     {/if}

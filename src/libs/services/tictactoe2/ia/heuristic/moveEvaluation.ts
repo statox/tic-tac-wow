@@ -1,4 +1,12 @@
-import { getPlayerPiecesFromBoard, playerAligned3, type Board, type Player } from '../../game';
+import {
+    blockMasks,
+    getOpponentPiecesFromBoard,
+    getPlayerPiecesFromBoard,
+    matchMask,
+    playerAligned3,
+    type Board,
+    type Player
+} from '../../game';
 
 // The board contains a winning position for the player
 export function playerWins(board: Board, player: Player) {
@@ -8,5 +16,14 @@ export function playerWins(board: Board, player: Player) {
 
 // The opponent has two in a row, the player has the third to block the opponent
 export function playerBlocksOpponent(board: Board, player: Player) {
-    return new Error('not implemented');
+    const playerPieces = getPlayerPiecesFromBoard(board, player);
+    const opponentPieces = getOpponentPiecesFromBoard(board, player);
+
+    for (const { o, p } of blockMasks) {
+        if (matchMask(playerPieces, p) && matchMask(opponentPieces, o)) {
+            return true;
+        }
+    }
+
+    return false;
 }
