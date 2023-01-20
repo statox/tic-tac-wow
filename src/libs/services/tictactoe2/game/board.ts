@@ -9,6 +9,13 @@ export function getNewBoard(): Board {
     };
 }
 
+export function getPlayerPiecesFromBoard(board: Board, player: Player) {
+    if (player === Player.player) {
+        return board.player;
+    }
+    return board.computer;
+}
+
 export function getGameState(board: Board): GameState {
     if (!isValidBoard(board)) {
         return 'invalid_board';
