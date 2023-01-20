@@ -104,7 +104,7 @@
     });
 </script>
 
-<h2>Tic Tac Toe binary</h2>
+<h2>Game</h2>
 <div>
     <P5 {sketch} />
     <div>
