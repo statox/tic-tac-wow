@@ -1,3 +1,5 @@
+// https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
+
 import {
     blockMasks,
     getOpponentPiecesFromBoard,
@@ -5,6 +7,7 @@ import {
     matchMask,
     playerAligned3,
     type Board,
+    type BoardCoord,
     type Player
 } from '../../game';
 
@@ -26,4 +29,8 @@ export function playerBlocksOpponent(board: Board, player: Player) {
     }
 
     return false;
+}
+
+export function moveTargetsCenter(move: BoardCoord) {
+    return move?.y === 1 && move?.x === 1;
 }

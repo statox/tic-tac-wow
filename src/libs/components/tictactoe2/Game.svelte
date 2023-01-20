@@ -21,6 +21,7 @@
 
     let board: Board; // Holds the 2D array representing our game
     let currentPlayer: Player;
+    let lastMove: BoardCoord;
     const gameState = writable<GameState>();
     let secondsBeforeReset = 0;
 
@@ -30,6 +31,7 @@
             return;
         }
         makeMoveOnBoard(board, player, pos);
+        lastMove = pos;
         board = board;
         gameState.set(getGameState(board));
         switchCurrentPlayer();
@@ -42,6 +44,7 @@
         }
         setTimeout(() => {
             const pos = getMoveRandom(board);
+            lastMove = pos;
             makeMoveOnBoard(board, player, pos);
             board = board;
             gameState.set(getGameState(board));
@@ -57,6 +60,7 @@
         board = getNewBoard();
         currentPlayer = Player.player;
         gameState.set(getGameState(board));
+        lastMove = { x: -1, y: -1 };
     }
 
     const sketch: Sketch = (p5) => {
@@ -121,5 +125,5 @@
             <span>Restarting in {secondsBeforeReset} seconds</span>
         {/if}
     </div>
-    <BoardInfo {board} />
+    <BoardInfo {board} {lastMove} />
 </div>

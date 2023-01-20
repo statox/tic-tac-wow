@@ -1,12 +1,14 @@
 <script lang="ts">
     import {
+        moveTargetsCenter,
         playerBlocksOpponent,
         playerWins
     } from '../../services/tictactoe2/ia/heuristic/moveEvaluation';
 
-    import { getGameState, Player, type Board } from '../../services/tictactoe2';
+    import { getGameState, Player, type Board, type BoardCoord } from '../../services/tictactoe2';
 
     export let board: Board;
+    export let lastMove: BoardCoord;
 </script>
 
 <div>
@@ -16,10 +18,14 @@
             <span>State:</span>
             <span>{getGameState(board)}</span>
 
-            <span>Player 1 (player, O)</span>
-            <span>Player 2 (computer, X)</span>
+            <span>Last move</span>
+            <span>
+                {lastMove?.x},{lastMove?.y}
+                (center {moveTargetsCenter(lastMove) ? '✅' : '❌'})
+            </span>
 
             <div class="grid2cols">
+                <span>Player 1</span><span>Player, O</span>
                 <span>0b{board.player.toString(2).padStart(9, '0')}</span>
                 <span>{board.player}</span>
 
@@ -29,6 +35,7 @@
                 <span>{playerBlocksOpponent(board, Player.player) ? '✅' : '❌'}</span>
             </div>
             <div class="grid2cols">
+                <span>Player 2</span><span>Computer, X</span>
                 <span>0b{board.computer.toString(2).padStart(9, '0')}</span>
                 <span>{board.computer}</span>
 
