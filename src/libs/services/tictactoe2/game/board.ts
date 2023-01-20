@@ -71,3 +71,27 @@ export function boardHasFreeSpots(board: Board) {
     }
     return true;
 }
+
+export function getBoardFreeSpots(board: Board): number[] {
+    // Add one 1 at the beginning so that the while loop count them all
+    let combinedPieces = board.player | board.computer;
+
+    if (combinedPieces === 0) {
+        return [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    }
+
+    if (combinedPieces === 0b111111111) {
+        return [];
+    }
+
+    const availableIndices = [];
+    let i = 0;
+    while (i < 9) {
+        if ((combinedPieces & 1) === 0) {
+            availableIndices.push(i);
+        }
+        i++;
+        combinedPieces >>= 1;
+    }
+    return availableIndices;
+}
