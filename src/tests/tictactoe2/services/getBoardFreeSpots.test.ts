@@ -1,4 +1,4 @@
-import { getBoardFreeSpots, type GameState, type PlayerPieces } from 'src/libs/services/tictactoe2';
+import { getBoardFreeSpots, type PlayerPieces } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
 
 const cases = {
