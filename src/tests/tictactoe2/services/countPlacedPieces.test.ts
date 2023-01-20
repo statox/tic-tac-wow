@@ -1,4 +1,4 @@
-import { countPlacedPieces, Player } from 'src/libs/services/tictactoe2';
+import { countPlacedPieces } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
 
 describe('countPlacedPieces', () => {
