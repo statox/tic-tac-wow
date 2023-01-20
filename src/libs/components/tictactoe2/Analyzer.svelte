@@ -58,7 +58,11 @@
         };
         p5.draw = () => {
             p5.background(0);
-            drawBoard(p5, board);
+            drawBoard(p5, board, {
+                drawSelection: true,
+                selection: screenCoordsToGridCoords(p5),
+                currentPlayer
+            });
         };
         p5.mousePressed = () => {
             if (p5.mouseX < 0 || p5.mouseX > p5.width || p5.mouseY < 0 || p5.mouseY > p5.height) {

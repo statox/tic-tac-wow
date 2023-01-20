@@ -1,12 +1,17 @@
 import type p5 from 'p5';
 import { spotIsFree } from './player';
-import type { Board } from './types';
+import { Player, type Board, type BoardCoord } from './types';
 
-export function drawBoard(p5: p5, board: Board) {
+export function drawBoard(
+    p5: p5,
+    board: Board,
+    params?: { drawSelection: boolean; selection: BoardCoord; currentPlayer: Player }
+) {
     const cellWidth = p5.width / 3;
     const cellHeight = p5.height / 3;
 
     const { height, width } = p5;
+    const { drawSelection, selection, currentPlayer } = params || {};
     // Draw the 4 lines of the board in white
     p5.noFill();
     p5.stroke(255);
@@ -18,7 +23,13 @@ export function drawBoard(p5: p5, board: Board) {
     // For each grid in the board show the corresonding tile
     for (let y = 0; y < 3; y++) {
         for (let x = 0; x < 3; x++) {
-            if (!spotIsFree(board.player, { x, y })) {
+            if (
+                !spotIsFree(board.player, { x, y }) ||
+                (drawSelection &&
+                    currentPlayer === Player.player &&
+                    selection?.x === x &&
+                    selection?.y === y)
+            ) {
                 p5.stroke('blue');
                 p5.circle(
                     x * cellWidth + cellWidth / 2,
@@ -26,7 +37,13 @@ export function drawBoard(p5: p5, board: Board) {
                     cellHeight / 2
                 );
             }
-            if (!spotIsFree(board.computer, { x, y })) {
+            if (
+                !spotIsFree(board.computer, { x, y }) ||
+                (drawSelection &&
+                    currentPlayer === Player.computer &&
+                    selection?.x === x &&
+                    selection?.y === y)
+            ) {
                 p5.stroke('red');
                 p5.line(
                     x * cellWidth + cellWidth * 0.3,
