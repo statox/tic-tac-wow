@@ -1,6 +1,8 @@
 <script lang="ts">
     import type p5 from 'p5';
     import P5, { type Sketch } from 'p5-svelte';
+    import { writable } from 'svelte/store';
+    import { onDestroy } from 'svelte';
     import {
         drawBoard,
         getGameState,
@@ -12,32 +14,33 @@
         type BoardCoord,
         type GameState
     } from '../../services/tictactoe2';
-    import { onDestroy } from 'svelte';
     import { getMoveRandom } from '../../services/tictactoe2/ia';
+
     let _p5: p5;
 
     let board: Board; // Holds the 2D array representing our game
     let currentPlayer: Player;
-    let gameState: GameState;
+    const gameState = writable<GameState>();
+    let secondsBeforeReset = 0;
 
     // Put the player value in the board if the user clicked an empty cell
     function playerRound(pos: BoardCoord) {
-        if (gameState !== 'not_over') {
+        if ($gameState !== 'not_over') {
             return;
         }
         makeMoveOnBoard(board, Player.player, pos);
-        gameState = getGameState(board);
+        gameState.set(getGameState(board));
         switchCurrentPlayer();
     }
 
     // Randomly select a cell to put the computer value in the board
     function computerRound() {
-        if (gameState !== 'not_over') {
+        if ($gameState !== 'not_over') {
             return;
         }
         const pos = getMoveRandom(board);
         makeMoveOnBoard(board, Player.computer, pos);
-        gameState = getGameState(board);
+        gameState.set(getGameState(board));
         switchCurrentPlayer();
     }
 
@@ -48,7 +51,7 @@
     function reset() {
         board = getNewBoard();
         currentPlayer = Player.player;
-        gameState = getGameState(board);
+        gameState.set(getGameState(board));
     }
 
     const sketch: Sketch = (p5) => {
@@ -74,6 +77,21 @@
         };
     };
 
+    gameState.subscribe((newState) => {
+        if (!newState || newState === 'not_over') {
+            return;
+        }
+
+        secondsBeforeReset = 4;
+        const resetInterval = setInterval(() => {
+            secondsBeforeReset--;
+            if (secondsBeforeReset === 0) {
+                reset();
+                clearInterval(resetInterval);
+            }
+        }, 1000);
+    });
+
     onDestroy(() => {
         _p5?.remove();
     });
@@ -83,14 +101,17 @@
 <div>
     <P5 {sketch} />
     <div>
-        {#if gameState === 'player_win'}
+        {#if $gameState === 'player_win'}
             <span>Player wins!</span>
         {/if}
-        {#if gameState === 'computer_win'}
+        {#if $gameState === 'computer_win'}
             <span>Computer wins!</span>
         {/if}
-        {#if gameState === 'draw'}
+        {#if $gameState === 'draw'}
             <span>Draw</span>
+        {/if}
+        {#if secondsBeforeReset > 0}
+            <span>Restarting in {secondsBeforeReset} seconds</span>
         {/if}
     </div>
 </div>
