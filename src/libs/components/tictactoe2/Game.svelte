@@ -15,6 +15,7 @@
         type GameState
     } from '../../services/tictactoe2';
     import { getMoveRandom } from '../../services/tictactoe2/ia';
+    import BoardInfo from './BoardInfo.svelte';
 
     let _p5: p5;
 
@@ -29,6 +30,7 @@
             return;
         }
         makeMoveOnBoard(board, player, pos);
+        board = board;
         gameState.set(getGameState(board));
         switchCurrentPlayer();
     }
@@ -41,6 +43,7 @@
         setTimeout(() => {
             const pos = getMoveRandom(board);
             makeMoveOnBoard(board, player, pos);
+            board = board;
             gameState.set(getGameState(board));
             switchCurrentPlayer();
         }, 500);
@@ -118,4 +121,5 @@
             <span>Restarting in {secondsBeforeReset} seconds</span>
         {/if}
     </div>
+    <BoardInfo {board} />
 </div>
