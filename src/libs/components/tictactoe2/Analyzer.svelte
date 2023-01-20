@@ -4,29 +4,28 @@
     import { onDestroy } from 'svelte';
     import {
         drawBoard,
-        getGameState,
         getNewBoard,
         makeMoveOnBoard,
         Player,
         screenCoordsToGridCoords,
         type Board,
-        type BoardCoord,
-        type GameState
+        type BoardCoord
     } from '../../services/tictactoe2';
+    import BoardInfo from './BoardInfo.svelte';
 
     let _p5: p5;
 
     let boardHistory: Board[];
     let board: Board; // Holds the 2D array representing our game
     let currentPlayer = Player.player;
-    let gameState: GameState;
 
     // Put the player value in the board if the user clicked an empty cell
     function manualRound(player: Player, pos: BoardCoord) {
         makeMoveOnBoard(board, player, pos);
+        board = board;
+
         boardHistory.push({ ...board });
         boardHistory = boardHistory;
-        gameState = getGameState(board);
         switchCurrentPlayer();
     }
 
@@ -36,7 +35,6 @@
 
     function reset() {
         board = getNewBoard();
-        gameState = getGameState(board);
         boardHistory = [{ ...board }];
     }
 
@@ -80,9 +78,7 @@
 <div>
     <P5 {sketch} />
     <div>
-        <span>{gameState}</span>
-    </div>
-    <div>
+        <h4>Controls</h4>
         <button
             on:click={() => (currentPlayer = Player.player)}
             disabled={currentPlayer === Player.player}>Play O</button
@@ -94,4 +90,5 @@
         <button on:click={previous} disabled={(boardHistory || []).length < 2}>Previous</button>
         <button on:click={reset}>Reset</button>
     </div>
+    <BoardInfo {board} />
 </div>
