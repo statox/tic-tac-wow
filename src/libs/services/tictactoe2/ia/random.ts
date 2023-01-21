@@ -9,5 +9,11 @@ export function getMoveRandom(board: Board): BoardCoord {
 
     const randIndex = Math.floor(Math.random() * freeSpots.length);
     const moveAsIndex = freeSpots[randIndex];
-    return indexToXY(moveAsIndex);
+
+    const move = indexToXY(moveAsIndex);
+
+    if (move instanceof Error) {
+        throw move;
+    }
+    return move;
 }

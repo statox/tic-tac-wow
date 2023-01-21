@@ -11,8 +11,20 @@ export function countPlacedPieces(player: PlayerPieces) {
     }
     return count;
 }
+
 export function spotIsFree(player: PlayerPieces, pos: BoardCoord) {
     const index = xyToIndex(pos);
+    if (index instanceof Error) {
+        throw index;
+    }
+    // https://stackoverflow.com/a/62246924
+    if ((player & (1 << index)) === 0) {
+        return true;
+    }
+    return false;
+}
+
+export function spotIsFreeByIndex(player: PlayerPieces, index: number) {
     // https://stackoverflow.com/a/62246924
     if ((player & (1 << index)) === 0) {
         return true;
@@ -22,6 +34,9 @@ export function spotIsFree(player: PlayerPieces, pos: BoardCoord) {
 
 export function placePlayerPiece(player: PlayerPieces, pos: BoardCoord) {
     const i = xyToIndex(pos);
+    if (i instanceof Error) {
+        throw i;
+    }
 
     return player + 2 ** i;
 }

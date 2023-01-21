@@ -24,10 +24,10 @@ describe('xyToIndex', () => {
         expect(xyToIndex({ x: 1, y: 2 })).toBe(1);
         expect(xyToIndex({ x: 2, y: 2 })).toBe(0);
 
-        expect(() => xyToIndex({ x: -1, y: 2 })).toThrow();
-        expect(() => xyToIndex({ x: 1, y: -2 })).toThrow();
-        expect(() => xyToIndex({ x: 10, y: 2 })).toThrow();
-        expect(() => xyToIndex({ x: 1, y: 20 })).toThrow();
+        expect(xyToIndex({ x: -1, y: 2 })).toBeInstanceOf(Error);
+        expect(xyToIndex({ x: 1, y: -2 })).toBeInstanceOf(Error);
+        expect(xyToIndex({ x: 10, y: 2 })).toBeInstanceOf(Error);
+        expect(xyToIndex({ x: 1, y: 20 })).toBeInstanceOf(Error);
     });
 });
 
@@ -45,7 +45,7 @@ describe('indexToXY', () => {
         expect(indexToXY(1)).toStrictEqual({ x: 1, y: 2 });
         expect(indexToXY(0)).toStrictEqual({ x: 2, y: 2 });
 
-        expect(() => indexToXY(-1)).toThrow();
-        expect(() => indexToXY(9)).toThrow();
+        expect(indexToXY(-1)).toBeInstanceOf(Error);
+        expect(indexToXY(9)).toBeInstanceOf(Error);
     });
 });
