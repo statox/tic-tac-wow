@@ -5,7 +5,7 @@ import {
     Player,
     type Board,
     type BoardCoord
-} from '../game';
+} from '../../game';
 import {
     moveTargetsCenter,
     moveTookCorner,
@@ -13,7 +13,7 @@ import {
     moveTookSide,
     playerBlocksOpponent,
     playerWins
-} from './heuristic/moveEvaluation';
+} from '../heuristic/moveEvaluation';
 
 export function getMoveHardcoded(board: Board, player: Player): BoardCoord {
     const freeSpots = getBoardFreeSpots(board);

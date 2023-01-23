@@ -1,4 +1,4 @@
-import { getBoardFreeSpots, indexToXY, makeMoveOnBoard, type Board, type Player } from '../game';
+import { getBoardFreeSpots, indexToXY, makeMoveOnBoard, type Board, type Player } from '../../game';
 import { boardAreEquivalent } from './boardRotation';
 
 export function getPossibleMoves(board: Board, player: Player) {

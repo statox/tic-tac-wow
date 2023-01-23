@@ -3,7 +3,7 @@ import {
     rotatePiecesClockwise,
     piecesAreEquivalent,
     boardAreEquivalent
-} from 'src/libs/services/tictactoe2/ia/boardRotation';
+} from 'src/libs/services/tictactoe2/ia/helpers';
 import { describe, expect, it } from 'vitest';
 
 describe('rotatePiecesClockwise', () => {

@@ -1,4 +1,4 @@
-import { getBoardFreeSpots, indexToXY, type Board, type BoardCoord } from '../game';
+import { getBoardFreeSpots, indexToXY, type Board, type BoardCoord } from '../../game';
 
 export function getMoveRandom(board: Board): BoardCoord {
     const freeSpots = getBoardFreeSpots(board);

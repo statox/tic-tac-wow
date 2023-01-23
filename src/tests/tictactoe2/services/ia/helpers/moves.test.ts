@@ -1,6 +1,6 @@
 import { getNewBoard, makeMoveOnBoard } from 'src/libs/services/tictactoe2';
 import { Player } from 'src/libs/services/tictactoe2';
-import { getPossibleMoves, getUniquePossibleMoves } from 'src/libs/services/tictactoe2/ia/moves';
+import { getPossibleMoves, getUniquePossibleMoves } from 'src/libs/services/tictactoe2/ia/helpers';
 import { describe, expect, it } from 'vitest';
 
 describe('moves functions for ia', () => {

@@ -16,7 +16,7 @@
     } from '../../services/tictactoe2';
     // import { getMoveRandom } from '../../services/tictactoe2/ia';
     import BoardInfo from './BoardInfo.svelte';
-    import { getMoveHardcoded } from '../../services/tictactoe2/ia/hardCodedStrategy';
+    import { getMoveHardcoded } from '../../services/tictactoe2/ia';
 
     let _p5: p5;
 

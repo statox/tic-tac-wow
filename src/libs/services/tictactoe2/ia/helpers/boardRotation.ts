@@ -1,4 +1,9 @@
-import { placePlayerPieceByIndex, spotIsFreeByIndex, type Board, type PlayerPieces } from '../game';
+import {
+    placePlayerPieceByIndex,
+    spotIsFreeByIndex,
+    type Board,
+    type PlayerPieces
+} from '../../game';
 
 // Clockwise rotation
 //
