@@ -1,4 +1,4 @@
-import type { Board, PlayerPieces } from 'src/libs/services/tictactoe2';
+import type { PlayerPieces } from 'src/libs/services/tictactoe2';
 import {
     rotatePiecesClockwise,
     piecesAreEquivalent,
