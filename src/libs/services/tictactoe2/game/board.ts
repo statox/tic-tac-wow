@@ -3,10 +3,17 @@ import { Player, type Board, type BoardCoord, type GameState } from './types';
 
 // Return a new board filled with zeroes
 export function getNewBoard(): Board {
-    return {
+    const board = {
         player: 0,
-        computer: 0
+        computer: 0,
+        toString: function (this: Board) {
+            return `player ${this.player.toString(2).padStart(9, '0')} computer ${this.computer
+                .toString(2)
+                .padStart(9, '0')}`;
+        }
     };
+
+    return board;
 }
 
 export function getPlayerPiecesFromBoard(board: Board, player: Player) {

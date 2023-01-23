@@ -14,8 +14,9 @@
         type BoardCoord,
         type GameState
     } from '../../services/tictactoe2';
-    import { getMoveRandom } from '../../services/tictactoe2/ia';
+    // import { getMoveRandom } from '../../services/tictactoe2/ia';
     import BoardInfo from './BoardInfo.svelte';
+    import { getMoveHardcoded } from '../../services/tictactoe2/ia/hardCodedStrategy';
 
     let _p5: p5;
 
@@ -43,7 +44,8 @@
             return;
         }
         setTimeout(() => {
-            const pos = getMoveRandom(board);
+            // const pos = getMoveRandom(board);
+            const pos = getMoveHardcoded(board, player);
             lastMove = pos;
             makeMoveOnBoard(board, player, pos);
             board = board;

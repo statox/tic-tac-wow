@@ -7,10 +7,11 @@
 // Then the computer placed their pieces on the 2nd column N, C, S
 //
 // https://rclayton.silvrback.com/winner-in-tic-tac-toe
-export type Board = {
+export interface Board {
     player: PlayerPieces;
     computer: PlayerPieces;
-};
+    toString: () => string;
+}
 
 export type PlayerPieces = number;
 
