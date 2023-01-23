@@ -124,6 +124,45 @@ export const blockMasks = [
     }
 ];
 
+export const centerMoveBlockMasks = [
+    {
+        // Central row
+        p: 0b000010000,
+        o: 0b000101000
+    },
+    {
+        // Central column
+        p: 0b000010000,
+        o: 0b010000010
+    }
+];
+
+export const cornerMoveBlockMasks = [
+    {
+        // Bottom row
+        p: 0b000000001,
+        o: 0b000000110
+    },
+    {
+        // Right column
+        p: 0b000000001,
+        o: 0b001001000
+    }
+];
+
+export const edgeMoveBlockMasks = [
+    {
+        // Bottom row
+        p: 0b000000010,
+        o: 0b000000101
+    },
+    {
+        // Central column
+        p: 0b000000010,
+        o: 0b010010000
+    }
+];
+
 export const matchMask = (piecesOnBoard: number, mask: number) => {
     return (piecesOnBoard & mask) === mask;
 };

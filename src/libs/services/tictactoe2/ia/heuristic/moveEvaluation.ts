@@ -2,6 +2,9 @@
 
 import {
     blockMasks,
+    centerMoveBlockMasks,
+    cornerMoveBlockMasks,
+    edgeMoveBlockMasks,
     getOpponentPiecesFromBoard,
     getPlayerPiecesFromBoard,
     matchMask,
@@ -12,6 +15,7 @@ import {
     type BoardCoord,
     type Player
 } from '../../game';
+import { rotateBoardClockwiseXtimes } from '../helpers';
 
 // The board contains a winning position for the player
 export function playerWins(board: Board, player: Player) {
@@ -35,6 +39,55 @@ export function playerBlocksOpponent(board: Board, player: Player) {
 
 export function moveTargetsCenter(move: BoardCoord) {
     return move?.y === 1 && move?.x === 1;
+}
+
+export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoord) {
+    const moveAsIndex = xyToIndex(move);
+    if (moveAsIndex instanceof Error) {
+        throw moveAsIndex;
+    }
+
+    const playerPieces = getPlayerPiecesFromBoard(board, player);
+    const opponentPieces = getOpponentPiecesFromBoard(board, player);
+
+    // Center: Check central row and central column
+    for (const { o, p } of centerMoveBlockMasks) {
+        if (matchMask(playerPieces, p) && matchMask(opponentPieces, o)) {
+            return true;
+        }
+    }
+
+    // Corner: Rotate until the move is in the bottom right corner
+    // then check for the right colum and the bottom row
+    if (cornerIndices.has(moveAsIndex)) {
+        const rotationsToMake = { 0: 0, 2: 3, 6: 1, 8: 2 }[moveAsIndex] || 0;
+        const rotated = rotateBoardClockwiseXtimes(board, rotationsToMake);
+
+        const rotatedPlayerPieces = getPlayerPiecesFromBoard(rotated, player);
+        const rotatedOpponentPieces = getOpponentPiecesFromBoard(rotated, player);
+        for (const { o, p } of cornerMoveBlockMasks) {
+            if (matchMask(rotatedPlayerPieces, p) && matchMask(rotatedOpponentPieces, o)) {
+                return true;
+            }
+        }
+    }
+
+    // Edge: Rotate until the move is in the bottom middle edge
+    // then check for the middle colum and the bottom row
+    if (sideIndices.has(moveAsIndex)) {
+        const rotationsToMake = { 1: 0, 3: 1, 5: 3, 7: 2 }[moveAsIndex] || 0;
+        const rotated = rotateBoardClockwiseXtimes(board, rotationsToMake);
+
+        const rotatedPlayerPieces = getPlayerPiecesFromBoard(rotated, player);
+        const rotatedOpponentPieces = getOpponentPiecesFromBoard(rotated, player);
+        for (const { o, p } of edgeMoveBlockMasks) {
+            if (matchMask(rotatedPlayerPieces, p) && matchMask(rotatedOpponentPieces, o)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 // The indices of the corners are
