@@ -41,6 +41,10 @@ export function placePlayerPiece(player: PlayerPieces, pos: BoardCoord) {
     return player + 2 ** i;
 }
 
+export function placePlayerPieceByIndex(player: PlayerPieces, i: number) {
+    return player + 2 ** i;
+}
+
 export const playerAligned3 = (player: PlayerPieces) => {
     for (const mask of winMasks) {
         if (matchMask(player, mask)) {
