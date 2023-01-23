@@ -4,3 +4,4 @@ Tic tac toe with different size pieces.
 
 # References
 https://docs.racket-lang.org/games/gobblet.html
+https://rclayton.silvrback.com/winner-in-tic-tac-toe
