@@ -1,8 +1,10 @@
+import { getNewBoard } from 'src/libs/services/tictactoe2';
 import type { PlayerPieces } from 'src/libs/services/tictactoe2';
 import {
     rotatePiecesClockwise,
     piecesAreEquivalent,
-    boardAreEquivalent
+    boardAreEquivalent,
+    rotateBoardClockwiseXtimes
 } from 'src/libs/services/tictactoe2/ia/helpers';
 import { describe, expect, it } from 'vitest';
 
@@ -153,5 +155,47 @@ describe('boardAreEquivalent', () => {
                 expect(boardAreEquivalent(b1, b2)).toBe(false);
             });
         }
+    });
+});
+
+describe('rotateBoardClockwiseXtimes', () => {
+    it('return a rotated board witout modifying the original', () => {
+        const board = getNewBoard();
+        board.player = 0b111001001;
+        board.computer = 0b000110110;
+
+        expect(board.player).toBe(0b111001001);
+        expect(board.computer).toBe(0b000110110);
+
+        // Same as original
+        const rotated0 = rotateBoardClockwiseXtimes(board, 0);
+        expect(rotated0.player).toBe(0b111001001);
+        expect(rotated0.computer).toBe(0b000110110);
+
+        const rotated1 = rotateBoardClockwiseXtimes(board, 1);
+        const rotated5 = rotateBoardClockwiseXtimes(board, 5);
+        expect(rotated1.player).toBe(0b001001111);
+        expect(rotated1.computer).toBe(0b110110000);
+        expect(rotated5.player).toBe(0b001001111);
+        expect(rotated5.computer).toBe(0b110110000);
+
+        const rotated2 = rotateBoardClockwiseXtimes(board, 2);
+        const rotated6 = rotateBoardClockwiseXtimes(board, 6);
+        expect(rotated2.player).toBe(0b100100111);
+        expect(rotated2.computer).toBe(0b011011000);
+        expect(rotated6.player).toBe(0b100100111);
+        expect(rotated6.computer).toBe(0b011011000);
+
+        const rotated3 = rotateBoardClockwiseXtimes(board, 3);
+        const rotated7 = rotateBoardClockwiseXtimes(board, 7);
+        expect(rotated3.player).toBe(0b111100100);
+        expect(rotated3.computer).toBe(0b000011011);
+        expect(rotated7.player).toBe(0b111100100);
+        expect(rotated7.computer).toBe(0b000011011);
+
+        // Same as original
+        const rotated4 = rotateBoardClockwiseXtimes(board, 4);
+        expect(rotated4.player).toBe(0b111001001);
+        expect(rotated4.computer).toBe(0b000110110);
     });
 });

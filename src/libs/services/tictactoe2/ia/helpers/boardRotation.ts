@@ -24,6 +24,23 @@ export function rotatePiecesClockwise(pieces: PlayerPieces): PlayerPieces {
     return rotated;
 }
 
+export function rotateBoardClockwiseXtimes(board: Board, x: number): Board {
+    if (x < 0) {
+        throw new Error('Cant rotate a negative amount of times');
+    }
+    if (x === 0) {
+        return { ...board };
+    }
+    // Dont rotate more than 3 times
+    x = x % 4;
+    const rotated = { ...board };
+    for (let i = 0; i < x; i++) {
+        rotated.player = rotatePiecesClockwise(rotated.player);
+        rotated.computer = rotatePiecesClockwise(rotated.computer);
+    }
+    return rotated;
+}
+
 // Vertical symetry
 //
 // 8 | 7 | 6 becomes 6 | 7 | 8
