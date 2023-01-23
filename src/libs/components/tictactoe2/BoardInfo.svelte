@@ -1,5 +1,6 @@
 <script lang="ts">
     import {
+        moveBlockedOpponent,
         moveTargetsCenter,
         moveTookCorner,
         moveTookOppositeCorner,
@@ -41,6 +42,9 @@
 
                 <span>Last move took opposite corner</span>
                 <span>{moveTookOppositeCorner(board, Player.player, lastMove) ? '✅' : '❌'}</span>
+
+                <span>Last move blocks opponent</span>
+                <span>{moveBlockedOpponent(board, Player.player, lastMove) ? '✅' : '❌'}</span>
             </div>
             <div class="grid2cols">
                 <span>Player 2</span><span>Computer, X</span>
@@ -55,6 +59,9 @@
                 <span>Last move took opposite corner</span>
                 <span>{moveTookOppositeCorner(board, Player.computer, lastMove) ? '✅' : '❌'}</span
                 >
+
+                <span>Last move blocks opponent</span>
+                <span>{moveBlockedOpponent(board, Player.computer, lastMove) ? '✅' : '❌'}</span>
             </div>
         </div>
     {/if}

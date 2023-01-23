@@ -48,4 +48,12 @@ describe('moveBlockedOpponent', () => {
         expect(moveBlockedOpponent(board, Player.computer, { x: 0, y: 1 })).toBe(true);
         expect(moveBlockedOpponent(board, Player.player, { x: 2, y: 1 })).toBe(false);
     });
+
+    it('Should not detect random non block moves', () => {
+        const board = getNewBoard();
+        board.player = 0b000011100;
+        board.computer = 0b000100011;
+
+        expect(moveBlockedOpponent(board, Player.computer, { x: 1, y: 2 })).toBe(false);
+    });
 });

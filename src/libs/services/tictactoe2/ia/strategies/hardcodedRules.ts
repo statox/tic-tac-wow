@@ -7,11 +7,11 @@ import {
     type BoardCoord
 } from '../../game';
 import {
+    moveBlockedOpponent,
     moveTargetsCenter,
     moveTookCorner,
     moveTookOppositeCorner,
     moveTookSide,
-    playerBlocksOpponent,
     playerWins
 } from '../heuristic/moveEvaluation';
 
@@ -71,7 +71,7 @@ function scoreMove(board: Board, player: Player, move: BoardCoord) {
     if (playerWins(board, Player.player)) {
         return 8;
     }
-    if (playerBlocksOpponent(board, player)) {
+    if (moveBlockedOpponent(board, player, move)) {
         return 7;
     }
     // TODO forks situations

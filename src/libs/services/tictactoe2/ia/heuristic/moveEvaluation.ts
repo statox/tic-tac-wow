@@ -44,7 +44,7 @@ export function moveTargetsCenter(move: BoardCoord) {
 export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoord) {
     const moveAsIndex = xyToIndex(move);
     if (moveAsIndex instanceof Error) {
-        throw moveAsIndex;
+        return moveAsIndex;
     }
 
     const playerPieces = getPlayerPiecesFromBoard(board, player);
