@@ -25,6 +25,7 @@
     let lastMove: BoardCoord;
     const gameState = writable<GameState>();
     let secondsBeforeReset = 0;
+    let player2Starts = true;
 
     // Put the player value in the board if the user clicked an empty cell
     function manualRound(player: Player, pos: BoardCoord) {
@@ -60,9 +61,14 @@
 
     function reset() {
         board = getNewBoard();
-        currentPlayer = Player.player;
+
+        player2Starts = !player2Starts;
+        currentPlayer = player2Starts ? Player.computer : Player.player;
         gameState.set(getGameState(board));
         lastMove = { x: -1, y: -1 };
+        if (player2Starts) {
+            automaticRound(Player.computer);
+        }
     }
 
     const sketch: Sketch = (p5) => {

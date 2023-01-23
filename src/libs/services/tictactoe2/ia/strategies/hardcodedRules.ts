@@ -41,9 +41,6 @@ export function getMoveHardcoded(board: Board, player: Player): BoardCoord {
     let bestScore = 0;
     let bestMove;
 
-    console.log('choose hardcoded');
-    console.log(board.toString());
-
     for (const spot of freeSpots) {
         const copy = { ...board };
         const move = indexToXY(spot);
@@ -55,9 +52,6 @@ export function getMoveHardcoded(board: Board, player: Player): BoardCoord {
         if (score > bestScore) {
             bestScore = score;
             bestMove = move;
-            console.log(move, score, 'new best');
-        } else {
-            console.log(move, score);
         }
     }
 
