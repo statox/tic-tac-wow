@@ -1,5 +1,10 @@
-import { countPlacedPieces, placePlayerPiece, playerAligned3, spotIsFree } from './player';
-import { Player, type Board, type BoardCoord, type GameState } from './types';
+import {
+    countPlacedPieces,
+    placePlayerPieceByIndex,
+    playerAligned3,
+    spotIsFreeByIndex
+} from './player';
+import { Player, type Board, type GameState } from './types';
 
 // Return a new board filled with zeroes
 export function getNewBoard(): Board {
@@ -53,19 +58,17 @@ export function getGameState(board: Board, ignoreInvalidState?: boolean): GameSt
     return 'not_over';
 }
 
-export function makeMoveOnBoard(board: Board, player: Player, pos: BoardCoord) {
-    if (!isValidMove(board, pos)) {
+export function makeMoveOnBoard(board: Board, player: Player, index: number) {
+    if (!isValidMove(board, index)) {
         throw new Error(
-            `Impossible move. player: ${board?.player}, computer: ${
-                board?.computer
-            }, ${JSON.stringify(pos)} `
+            `Impossible move. player: ${board?.player}, computer: ${board?.computer}, index ${index} `
         );
     }
 
     if (player === Player.player) {
-        board.player = placePlayerPiece(board.player, pos);
+        board.player = placePlayerPieceByIndex(board.player, index);
     } else {
-        board.computer = placePlayerPiece(board.computer, pos);
+        board.computer = placePlayerPieceByIndex(board.computer, index);
     }
 }
 
@@ -84,8 +87,8 @@ export function isValidBoard(board: Board) {
     return true;
 }
 
-export function isValidMove(board: Board, pos: BoardCoord) {
-    return spotIsFree(board.player, pos) && spotIsFree(board.computer, pos);
+export function isValidMove(board: Board, index: number) {
+    return spotIsFreeByIndex(board.player, index) && spotIsFreeByIndex(board.computer, index);
 }
 
 // Check if there are some empty cells in the board

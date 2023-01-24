@@ -1,12 +1,11 @@
-import { getBoardFreeSpots, indexToXY, makeMoveOnBoard, type Board, type Player } from '../../game';
+import { getBoardFreeSpots, makeMoveOnBoard, type Board, type Player } from '../../game';
 import { boardAreEquivalent } from './boardRotation';
 
 export function getPossibleMoves(board: Board, player: Player) {
     const freeSpots = getBoardFreeSpots(board);
     return freeSpots.map((moveAsIndex) => {
-        const move = indexToXY(moveAsIndex);
         const copy = { ...board };
-        makeMoveOnBoard(copy, player, move);
+        makeMoveOnBoard(copy, player, moveAsIndex);
         return copy;
     });
 }

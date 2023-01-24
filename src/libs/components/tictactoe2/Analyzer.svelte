@@ -8,6 +8,7 @@
         makeMoveOnBoard,
         Player,
         screenCoordsToGridCoords,
+        xyToIndex,
         type Board,
         type BoardCoord
     } from '../../services/tictactoe2';
@@ -22,7 +23,7 @@
 
     // Put the player value in the board if the user clicked an empty cell
     function manualRound(player: Player, pos: BoardCoord) {
-        makeMoveOnBoard(board, player, pos);
+        makeMoveOnBoard(board, player, xyToIndex(pos));
         lastMove = pos;
         board = board;
 

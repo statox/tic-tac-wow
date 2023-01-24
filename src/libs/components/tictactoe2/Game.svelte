@@ -10,6 +10,7 @@
         makeMoveOnBoard,
         Player,
         screenCoordsToGridCoords,
+        xyToIndex,
         type Board,
         type BoardCoord,
         type GameState
@@ -32,7 +33,7 @@
         if ($gameState !== 'not_over') {
             return;
         }
-        makeMoveOnBoard(board, player, pos);
+        makeMoveOnBoard(board, player, xyToIndex(pos));
         lastMove = pos;
         board = board;
         gameState.set(getGameState(board));
@@ -48,7 +49,7 @@
             // const pos = getMoveRandom(board);
             const pos = getMoveHardcoded(board, player);
             lastMove = pos;
-            makeMoveOnBoard(board, player, pos);
+            makeMoveOnBoard(board, player, xyToIndex(pos));
             board = board;
             gameState.set(getGameState(board));
             switchCurrentPlayer();

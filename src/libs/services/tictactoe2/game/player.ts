@@ -25,11 +25,6 @@ export function spotIsFreeByIndex(player: PlayerPieces, index: number) {
     return false;
 }
 
-export function placePlayerPiece(player: PlayerPieces, pos: BoardCoord) {
-    const i = xyToIndex(pos);
-    return placePlayerPieceByIndex(player, i);
-}
-
 export function placePlayerPieceByIndex(player: PlayerPieces, i: number) {
     return player + 2 ** i;
 }
