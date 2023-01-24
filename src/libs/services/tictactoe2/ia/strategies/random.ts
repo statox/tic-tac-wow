@@ -14,10 +14,5 @@ export function getMoveRandom(board: Board): BoardCoord {
     const randIndex = Math.floor(Math.random() * freeSpots.length);
     const moveAsIndex = freeSpots[randIndex];
 
-    const move = indexToXY(moveAsIndex);
-
-    if (move instanceof Error) {
-        throw move;
-    }
-    return move;
+    return indexToXY(moveAsIndex);
 }

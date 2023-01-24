@@ -5,9 +5,6 @@ export function getPossibleMoves(board: Board, player: Player) {
     const freeSpots = getBoardFreeSpots(board);
     return freeSpots.map((moveAsIndex) => {
         const move = indexToXY(moveAsIndex);
-        if (move instanceof Error) {
-            throw move;
-        }
         const copy = { ...board };
         makeMoveOnBoard(copy, player, move);
         return copy;

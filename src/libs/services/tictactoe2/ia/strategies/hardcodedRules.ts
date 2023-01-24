@@ -44,9 +44,6 @@ export function getMoveHardcoded(board: Board, player: Player): BoardCoord {
     for (const spot of freeSpots) {
         const copy = { ...board };
         const move = indexToXY(spot);
-        if (move instanceof Error) {
-            throw move;
-        }
         makeMoveOnBoard(copy, player, move);
         const score = scoreMove(copy, player, move);
         if (score > bestScore) {

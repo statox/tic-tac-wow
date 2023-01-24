@@ -43,9 +43,6 @@ export function moveTargetsCenter(move: BoardCoord) {
 
 export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoord) {
     const moveAsIndex = xyToIndex(move);
-    if (moveAsIndex instanceof Error) {
-        return moveAsIndex;
-    }
 
     const playerPieces = getPlayerPiecesFromBoard(board, player);
     const opponentPieces = getOpponentPiecesFromBoard(board, player);
@@ -105,9 +102,6 @@ const sideIndices = new Set([1, 3, 5, 7]);
 
 export function moveTookOppositeCorner(board: Board, player: Player, move: BoardCoord) {
     const moveIndex = xyToIndex(move);
-    if (moveIndex instanceof Error) {
-        return false;
-    }
     // If the move is not in a corner it can not have taken an opposite corner
     if (!cornerIndices.has(moveIndex)) {
         return false;
@@ -123,9 +117,6 @@ export function moveTookOppositeCorner(board: Board, player: Player, move: Board
 
 export function moveTookCorner(move: BoardCoord) {
     const moveIndex = xyToIndex(move);
-    if (moveIndex instanceof Error) {
-        return false;
-    }
     // If the move is not in a corner it can not have taken an opposite corner
     if (!cornerIndices.has(moveIndex)) {
         return false;
@@ -136,9 +127,6 @@ export function moveTookCorner(move: BoardCoord) {
 
 export function moveTookSide(move: BoardCoord) {
     const moveIndex = xyToIndex(move);
-    if (moveIndex instanceof Error) {
-        return false;
-    }
     // If the move is not in a corner it can not have taken an opposite corner
     if (!sideIndices.has(moveIndex)) {
         return false;
