@@ -103,19 +103,11 @@ export function moveTookOppositeCorner(board: Board, player: Player, move: Board
 export function moveTookCorner(move: BoardCoord) {
     const moveIndex = xyToIndex(move);
     // If the move is not in a corner it can not have taken an opposite corner
-    if (!cornerIndices.has(moveIndex)) {
-        return false;
-    }
-
-    return true;
+    return cornerIndices.has(moveIndex);
 }
 
 export function moveTookSide(move: BoardCoord) {
     const moveIndex = xyToIndex(move);
     // If the move is not in a corner it can not have taken an opposite corner
-    if (!sideIndices.has(moveIndex)) {
-        return false;
-    }
-
-    return true;
+    return sideIndices.has(moveIndex);
 }
