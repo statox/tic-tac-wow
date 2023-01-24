@@ -5,7 +5,6 @@
         moveTookCorner,
         moveTookOppositeCorner,
         moveTookSide,
-        playerBlocksOpponent,
         playerWins
     } from '../../services/tictactoe2/ia/heuristic/moveEvaluation';
 
@@ -37,9 +36,6 @@
 
                 <span>Wins</span><span>{playerWins(board, Player.player) ? '✅' : '❌'}</span>
 
-                <span>Blocks opponent</span>
-                <span>{playerBlocksOpponent(board, Player.player) ? '✅' : '❌'}</span>
-
                 <span>Last move took opposite corner</span>
                 <span>{moveTookOppositeCorner(board, Player.player, lastMove) ? '✅' : '❌'}</span>
 
@@ -52,9 +48,6 @@
                 <span>{board.computer}</span>
 
                 <span>Wins</span><span>{playerWins(board, Player.computer) ? '✅' : '❌'}</span>
-
-                <span>Blocks opponent</span>
-                <span>{playerBlocksOpponent(board, Player.computer) ? '✅' : '❌'}</span>
 
                 <span>Last move took opposite corner</span>
                 <span>{moveTookOppositeCorner(board, Player.computer, lastMove) ? '✅' : '❌'}</span
