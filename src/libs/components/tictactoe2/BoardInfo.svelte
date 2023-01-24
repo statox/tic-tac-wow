@@ -16,7 +16,7 @@
 
 <div>
     <h4>Board info</h4>
-    {#if board}
+    {#if board && lastMove?.x !== -1 && lastMove?.y !== -1}
         <div class="grid2cols">
             <span>State:</span>
             <span>{getGameState(board)}</span>
