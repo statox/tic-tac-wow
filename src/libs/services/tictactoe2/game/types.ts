@@ -32,3 +32,9 @@ export type GameState =
     | 'not_over'
     | 'invalid_board'
     | 'over';
+
+export type Game = {
+    board: Board;
+    currentPlayer: Player;
+    state: GameState;
+};
