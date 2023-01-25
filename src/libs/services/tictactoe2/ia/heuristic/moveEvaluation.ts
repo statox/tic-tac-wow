@@ -26,6 +26,108 @@ export function moveTargetsCenter(move: BoardCoord) {
     return move?.y === 1 && move?.x === 1;
 }
 
+// Check if the move creates two ways to win for the player
+// The cases are simplified to reduce the amount of tests to do
+//
+// First we reduce to 3 cases:
+//  If move is center, we just do the checks
+//      The check are middle column, middle row and both diagonals
+//      The move created a fork if at least two are open
+//  If move is corner, rotate the board to put the move on bottom right
+//      The checks are bottom row and right column
+//      The move created a fork if both are open
+//  If move is edge, rotate the board to put the move on bottom
+//      The checks are bottom row and middle column
+//      The move created a fork if both are open
+//
+// For each row, colum or diagonal we need to do 2 checks because
+// it can be open with either x.o or .xo
+// Where o is the target of the move
+// x is another piece of the player
+// . is a spot where the opponent has not played
+
+export function moveCreatedFork(board: Board, player: Player, move: BoardCoord) {
+    const moveAsIndex = xyToIndex(move);
+
+    const playerPieces = getPlayerPiecesFromBoard(board, player);
+    const opponentPieces = getOpponentPiecesFromBoard(board, player);
+
+    // Center: Check diagonals, middle column, middle row
+    if (moveAsIndex === 4) {
+        console.log('Center move');
+        const openMiddleRow =
+            (spotIsFreeByIndex(opponentPieces, 5) && !spotIsFreeByIndex(playerPieces, 3)) ||
+            (!spotIsFreeByIndex(playerPieces, 5) && spotIsFreeByIndex(opponentPieces, 3))
+                ? 1
+                : 0;
+
+        const openMiddleColumn =
+            (spotIsFreeByIndex(opponentPieces, 7) && !spotIsFreeByIndex(playerPieces, 1)) ||
+            (!spotIsFreeByIndex(playerPieces, 7) && spotIsFreeByIndex(opponentPieces, 1))
+                ? 1
+                : 0;
+
+        const openNWSE =
+            (spotIsFreeByIndex(opponentPieces, 8) && !spotIsFreeByIndex(playerPieces, 0)) ||
+            (!spotIsFreeByIndex(playerPieces, 8) && spotIsFreeByIndex(opponentPieces, 0))
+                ? 1
+                : 0;
+
+        const openNESW =
+            (spotIsFreeByIndex(opponentPieces, 6) && !spotIsFreeByIndex(playerPieces, 2)) ||
+            (!spotIsFreeByIndex(playerPieces, 6) && spotIsFreeByIndex(opponentPieces, 2))
+                ? 1
+                : 0;
+
+        return openMiddleRow + openMiddleColumn + openNWSE + openNESW >= 2;
+    }
+
+    if (cornerIndices.has(moveAsIndex)) {
+        const rotationsToMake = { 0: 0, 2: 3, 6: 1, 8: 2 }[moveAsIndex] || 0;
+        const rotated = rotateBoardClockwiseXtimes(board, rotationsToMake);
+
+        const rotatedPlayerPieces = getPlayerPiecesFromBoard(rotated, player);
+        const rotatedOpponentPieces = getOpponentPiecesFromBoard(rotated, player);
+
+        const openBottomRow =
+            (spotIsFreeByIndex(rotatedOpponentPieces, 2) &&
+                !spotIsFreeByIndex(rotatedPlayerPieces, 1)) ||
+            (!spotIsFreeByIndex(rotatedPlayerPieces, 2) &&
+                spotIsFreeByIndex(rotatedOpponentPieces, 1));
+
+        const openRightColumn =
+            (spotIsFreeByIndex(rotatedOpponentPieces, 6) &&
+                !spotIsFreeByIndex(rotatedPlayerPieces, 3)) ||
+            (!spotIsFreeByIndex(rotatedPlayerPieces, 6) &&
+                spotIsFreeByIndex(rotatedOpponentPieces, 3));
+
+        return openBottomRow && openRightColumn;
+    }
+
+    if (sideIndices.has(moveAsIndex)) {
+        const rotationsToMake = { 1: 0, 3: 1, 5: 3, 7: 2 }[moveAsIndex] || 0;
+        const rotated = rotateBoardClockwiseXtimes(board, rotationsToMake);
+
+        const rotatedPlayerPieces = getPlayerPiecesFromBoard(rotated, player);
+        const rotatedOpponentPieces = getOpponentPiecesFromBoard(rotated, player);
+
+        const openBottomRow =
+            (spotIsFreeByIndex(rotatedOpponentPieces, 2) &&
+                !spotIsFreeByIndex(rotatedPlayerPieces, 0)) ||
+            (!spotIsFreeByIndex(rotatedPlayerPieces, 2) &&
+                spotIsFreeByIndex(rotatedOpponentPieces, 0));
+
+        const openMiddleColumn =
+            (spotIsFreeByIndex(rotatedOpponentPieces, 7) &&
+                !spotIsFreeByIndex(rotatedPlayerPieces, 4)) ||
+            (!spotIsFreeByIndex(rotatedPlayerPieces, 7) &&
+                spotIsFreeByIndex(rotatedOpponentPieces, 4));
+
+        return openBottomRow && openMiddleColumn;
+    }
+    return false;
+}
+
 export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoord) {
     const moveAsIndex = xyToIndex(move);
 
