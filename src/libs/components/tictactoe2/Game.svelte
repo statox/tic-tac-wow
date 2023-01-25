@@ -1,15 +1,10 @@
 <script lang="ts">
-    import type p5 from 'p5';
-    import P5, { type Sketch } from 'p5-svelte';
     import { writable } from 'svelte/store';
-    import { onDestroy } from 'svelte';
     import {
-        drawBoard,
         getGameState,
         getNewBoard,
         makeMoveOnBoard,
         Player,
-        screenCoordsToGridCoords,
         xyToIndex,
         type Board,
         type BoardCoord,
@@ -17,9 +12,8 @@
     } from '../../services/tictactoe2';
     // import { getMoveRandom } from '../../services/tictactoe2/ia';
     import BoardInfo from './BoardInfo.svelte';
+    import BoardCanvas from './BoardCanvas.svelte';
     import { getMoveHardcoded } from '../../services/tictactoe2/ia';
-
-    let _p5: p5;
 
     let board: Board; // Holds the 2D array representing our game
     let currentPlayer: Player;
@@ -72,29 +66,11 @@
         }
     }
 
-    const sketch: Sketch = (p5) => {
-        p5.setup = () => {
-            _p5 = p5;
-            // Create the canvas and put it in its div
-            p5.createCanvas(400, 400);
-
-            // Create a new game
-            reset();
-        };
-        p5.draw = () => {
-            p5.background(0);
-            drawBoard(p5, board);
-        };
-        p5.mousePressed = () => {
-            if (p5.mouseX < 0 || p5.mouseX > p5.width || p5.mouseY < 0 || p5.mouseY > p5.height) {
-                return;
-            }
-            if (currentPlayer === Player.player) {
-                const boardPos = screenCoordsToGridCoords(p5);
-                manualRound(Player.player, boardPos);
-                automaticRound(Player.computer);
-            }
-        };
+    const onClick = (boardPos: BoardCoord) => {
+        if (currentPlayer === Player.player) {
+            manualRound(Player.player, boardPos);
+            automaticRound(Player.computer);
+        }
     };
 
     gameState.subscribe((newState) => {
@@ -112,14 +88,12 @@
         }, 1000);
     });
 
-    onDestroy(() => {
-        _p5?.remove();
-    });
+    reset();
 </script>
 
 <h2>Game</h2>
 <div>
-    <P5 {sketch} />
+    <BoardCanvas {board} {onClick} />
     <div>
         {#if $gameState === 'player_win'}
             <span>Player wins!</span>
