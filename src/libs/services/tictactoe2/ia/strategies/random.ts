@@ -1,10 +1,11 @@
-import { getBoardFreeSpots, indexToXY, type Board, type BoardCoord } from '../../game';
+import type { AIChoice } from '.';
+import { getBoardFreeSpots, indexToXY, type Board } from '../../game';
 
 /*
  * This is the most basic strategy to play tictactoe
  * List all the available spots on the board and choose one randomly
  */
-export function getMoveRandom(board: Board): BoardCoord {
+export function getMoveRandom(board: Board): AIChoice {
     const freeSpots = getBoardFreeSpots(board);
 
     if (freeSpots.length === 0) {
@@ -14,5 +15,5 @@ export function getMoveRandom(board: Board): BoardCoord {
     const randIndex = Math.floor(Math.random() * freeSpots.length);
     const moveAsIndex = freeSpots[randIndex];
 
-    return indexToXY(moveAsIndex);
+    return { score: 0, reason: 'random', move: indexToXY(moveAsIndex) };
 }

@@ -41,11 +41,16 @@
         {showMoveHistory ? 'Hide' : 'Show'} move history
     </button>
     {#if showMoveHistory}
-        <div class="grid3cols">
+        <div class="grid4cols">
             {#each [...game.moveHistory].reverse() as historyItem}
                 <span>{historyItem.moveCoord.x}, {historyItem.moveCoord.y}</span>
                 <span>Player {historyItem.player} - Method {historyItem.method}</span>
                 <span>{historyItem.board.toString()}</span>
+                {#if historyItem.aiChoice}
+                    <span>{JSON.stringify(historyItem.aiChoice)}</span>
+                {:else}
+                    <span>-</span>
+                {/if}
             {/each}
         </div>
     {/if}
@@ -57,9 +62,9 @@
         grid-template-columns: repeat(2, auto);
         grid-auto-flow: row;
     }
-    .grid3cols {
+    .grid4cols {
         display: grid;
-        grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(4, auto);
         grid-auto-flow: row;
     }
 </style>

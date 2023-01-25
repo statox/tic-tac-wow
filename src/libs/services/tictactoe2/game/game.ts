@@ -33,10 +33,16 @@ export const makeAutomaticMove = (game: Game, player: Player, methodName: Comput
         return;
     }
     const method = computerMethods[methodName];
-    const pos = method(game.board, player);
-    makeMoveOnBoard(game.board, player, xyToIndex(pos));
+    const choice = method(game.board, player);
+    makeMoveOnBoard(game.board, player, xyToIndex(choice.move));
     game.state = getGameState(game.board);
-    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player, method: methodName });
+    game.moveHistory.push({
+        board: { ...game.board },
+        moveCoord: choice.move,
+        player,
+        method: methodName,
+        aiChoice: choice
+    });
     switchCurrentPlayer(game);
 };
 

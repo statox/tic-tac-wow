@@ -8,10 +8,16 @@ export * from './hardcodedRules';
 
 export type ComputerMethodName = 'random' | 'hardcodedRules' | 'hardcodedRulesComplete';
 
+export type AIChoice = {
+    move: BoardCoord;
+    score: number;
+    reason: string;
+};
+
 export const computerMethods = {
     random: getMoveRandom,
     hardcodedRules: getMoveHardcoded,
     hardcodedRulesComplete: getMoveCompleteHardcoded
 } as {
-    [methodName in ComputerMethodName]: (...args: unknown[]) => BoardCoord;
+    [methodName in ComputerMethodName]: (...args: unknown[]) => AIChoice;
 };

@@ -13,7 +13,7 @@
 
 <div class="grid2cols">
     {#if historyItem}
-        {@const { moveCoord, player, board } = historyItem}
+        {@const { moveCoord, player, board, aiChoice } = historyItem}
         <span>Last move:</span>
         <span>{moveCoord.x}, {moveCoord.y}</span>
 
@@ -26,6 +26,13 @@
 
         <span> Last move blocks opponent</span>
         <span>{moveBlockedOpponent(board, player, moveCoord) ? '✅' : '❌'}</span>
+
+        {#if aiChoice}
+            <span>Score</span>
+            <span>{aiChoice.score}</span>
+            <span>Reason</span>
+            <span>{aiChoice.reason}</span>
+        {/if}
     {/if}
 </div>
 

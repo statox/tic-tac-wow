@@ -1,3 +1,4 @@
+import type { AIChoice } from '.';
 import {
     getBoardFreeSpots,
     indexToXY,
@@ -31,52 +32,50 @@ import {
  * To do that it gets all the available moves, score the previous criterion
  * and chooses the move with the highest score
  */
-export function getMoveHardcoded(board: Board, player: Player): BoardCoord {
+export function getMoveHardcoded(board: Board, player: Player): AIChoice {
     const freeSpots = getBoardFreeSpots(board);
 
     if (freeSpots.length === 0) {
         throw new Error('No available moves');
     }
 
-    let bestScore = 0;
-    let bestMove;
+    let bestChoice;
 
     for (const spot of freeSpots) {
         const copy = { ...board };
         const move = indexToXY(spot);
         makeMoveOnBoard(copy, player, spot);
-        const score = scoreMove(copy, player, move);
-        if (score > bestScore) {
-            bestScore = score;
-            bestMove = move;
+        const choice = scoreMove(copy, player, move);
+        if (choice.score > (bestChoice?.score ?? -1)) {
+            bestChoice = choice;
         }
     }
 
-    if (!bestMove) {
+    if (!bestChoice) {
         throw new Error('Error in getMoveHardcoded');
     }
-    return bestMove;
+    return bestChoice;
 }
 
 function scoreMove(board: Board, player: Player, move: BoardCoord) {
     if (playerWins(board, Player.player)) {
-        return 8;
+        return { score: 8, reason: 'win', move };
     }
     if (moveBlockedOpponent(board, player, move)) {
-        return 7;
+        return { score: 7, reason: 'block_opponent', move };
     }
     // TODO forks situations
     if (moveTargetsCenter(move)) {
-        return 4;
+        return { score: 4, reason: 'take_center', move };
     }
     if (moveTookOppositeCorner(board, player, move)) {
-        return 3;
+        return { score: 3, reason: 'take_opposite_corner', move };
     }
     if (moveTookCorner(move)) {
-        return 2;
+        return { score: 2, reason: 'take_corner', move };
     }
     if (moveTookSide(move)) {
-        return 1;
+        return { score: 1, reason: 'take_edge', move };
     }
-    return 0;
+    return { score: 0, reason: 'default_choice', move };
 }

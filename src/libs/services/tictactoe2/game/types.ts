@@ -7,7 +7,7 @@
 // Then the computer placed their pieces on the 2nd column N, C, S
 //
 
-import type { ComputerMethodName } from '../ia';
+import type { AIChoice, ComputerMethodName } from '../ia';
 
 // https://rclayton.silvrback.com/winner-in-tic-tac-toe
 export interface Board {
@@ -48,4 +48,5 @@ export type GameHistoryItem = {
     moveCoord: BoardCoord;
     player: Player;
     method: ComputerMethodName | 'manual';
+    aiChoice?: AIChoice;
 };

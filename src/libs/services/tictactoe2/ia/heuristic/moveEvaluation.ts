@@ -54,7 +54,6 @@ export function moveCreatedFork(board: Board, player: Player, move: BoardCoord) 
 
     // Center: Check diagonals, middle column, middle row
     if (moveAsIndex === 4) {
-        console.log('Center move');
         const openMiddleRow =
             (spotIsFreeByIndex(opponentPieces, 5) && !spotIsFreeByIndex(playerPieces, 3)) ||
             (!spotIsFreeByIndex(playerPieces, 5) && spotIsFreeByIndex(opponentPieces, 3))
