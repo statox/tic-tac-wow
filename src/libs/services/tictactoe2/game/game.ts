@@ -3,10 +3,10 @@ import { getGameState, getNewBoard, makeMoveOnBoard } from './board';
 import { xyToIndex } from './coordinates';
 import { Player, type BoardCoord, type Game } from './types';
 
-export const getNewGame = (): Game => {
+export const getNewGame = (firstPlayer?: Player): Game => {
     return {
         board: getNewBoard(),
-        currentPlayer: Player.player,
+        currentPlayer: firstPlayer ?? Player.player,
         state: 'not_over',
         moveHistory: []
     };

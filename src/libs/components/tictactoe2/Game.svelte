@@ -15,12 +15,19 @@
     let game: Game;
     let currentPlayer: Player;
     let secondsBeforeReset: number;
-    let computerMethod: ComputerMethodName = 'hardcodedRules';
+    let computerMethod: ComputerMethodName = 'hardcodedRulesComplete';
+    let player2start = false;
+
     reset();
 
     function reset() {
-        game = getNewGame();
+        game = getNewGame(player2start ? Player.computer : Player.player);
+        if (player2start) {
+            makeAutomaticMove(game, Player.computer, computerMethod);
+        }
+
         currentPlayer = game.currentPlayer;
+        player2start = !player2start;
     }
 
     const onClick = (boardPos: BoardCoord) => {
