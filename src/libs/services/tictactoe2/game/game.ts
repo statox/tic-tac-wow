@@ -1,4 +1,4 @@
-import { getMoveHardcoded } from '../ia';
+import { computerMethods, type ComputerMethodName } from '../ia';
 import { getGameState, getNewBoard, makeMoveOnBoard } from './board';
 import { xyToIndex } from './coordinates';
 import { Player, type BoardCoord, type Game } from './types';
@@ -23,20 +23,20 @@ export const makeManualMove = (game: Game, player: Player, pos: BoardCoord) => {
     }
     makeMoveOnBoard(game.board, player, xyToIndex(pos));
     game.state = getGameState(game.board);
-    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player });
+    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player, method: 'manual' });
     switchCurrentPlayer(game);
 };
 
 // Randomly select a cell to put the computer value in the board
-export const makeAutomaticMove = (game: Game, player: Player) => {
+export const makeAutomaticMove = (game: Game, player: Player, methodName: ComputerMethodName) => {
     if (game.state !== 'not_over') {
         return;
     }
-    // const pos = getMoveRandom(board);
-    const pos = getMoveHardcoded(game.board, player);
+    const method = computerMethods[methodName];
+    const pos = method(game.board, player);
     makeMoveOnBoard(game.board, player, xyToIndex(pos));
     game.state = getGameState(game.board);
-    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player });
+    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player, method: methodName });
     switchCurrentPlayer(game);
 };
 

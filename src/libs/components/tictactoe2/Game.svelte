@@ -10,10 +10,12 @@
     import BoardInfo from './BoardInfo.svelte';
     import BoardCanvas from './BoardCanvas.svelte';
     import GameInfo from './GameInfo.svelte';
+    import { computerMethods, type ComputerMethodName } from '../../services/tictactoe2/ia';
 
     let game: Game;
     let currentPlayer: Player;
     let secondsBeforeReset: number;
+    let computerMethod: ComputerMethodName = 'hardcodedRules';
     reset();
 
     function reset() {
@@ -26,7 +28,7 @@
             makeManualMove(game, Player.player, boardPos);
             game = game;
             setTimeout(() => {
-                makeAutomaticMove(game, Player.computer);
+                makeAutomaticMove(game, Player.computer, computerMethod);
                 game = game;
                 currentPlayer = game.currentPlayer;
 
@@ -48,8 +50,17 @@
 <h2>Game</h2>
 <div>
     {#if secondsBeforeReset > 0}
-        <span>Restarting in {secondsBeforeReset} seconds</span>
+        <p>Restarting in {secondsBeforeReset} seconds</p>
     {/if}
+
+    <select bind:value={computerMethod}>
+        {#each Object.keys(computerMethods) as method}
+            <option value={method}>
+                {method}
+            </option>
+        {/each}
+    </select>
+
     {#if game.board}
         <BoardCanvas board={game.board} {onClick} />
         <GameInfo {game} />

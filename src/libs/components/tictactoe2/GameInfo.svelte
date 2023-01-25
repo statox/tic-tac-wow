@@ -3,6 +3,7 @@
     import MoveInfo from './MoveInfo.svelte';
 
     export let game: Game;
+    let showMoveHistory = false;
 
     const getStateLabel = (game: Game): string => {
         if (!game || !game.state) {
@@ -35,12 +36,30 @@
         <MoveInfo historyItem={getPlayerLastMove(game, Player.player)} />
         <MoveInfo historyItem={getPlayerLastMove(game, Player.computer)} />
     </div>
+
+    <button on:click={() => (showMoveHistory = !showMoveHistory)}>
+        {showMoveHistory ? 'Hide' : 'Show'} move history
+    </button>
+    {#if showMoveHistory}
+        <div class="grid3cols">
+            {#each [...game.moveHistory].reverse() as historyItem}
+                <span>{historyItem.moveCoord.x}, {historyItem.moveCoord.y}</span>
+                <span>Player {historyItem.player} - Method {historyItem.method}</span>
+                <span>{historyItem.board.toString()}</span>
+            {/each}
+        </div>
+    {/if}
 </div>
 
 <style>
     .grid2cols {
         display: grid;
         grid-template-columns: repeat(2, auto);
+        grid-auto-flow: row;
+    }
+    .grid3cols {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
         grid-auto-flow: row;
     }
 </style>
