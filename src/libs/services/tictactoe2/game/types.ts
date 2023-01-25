@@ -37,4 +37,11 @@ export type Game = {
     board: Board;
     currentPlayer: Player;
     state: GameState;
+    moveHistory: GameHistoryItem[];
+};
+
+export type GameHistoryItem = {
+    board: Board;
+    moveCoord: BoardCoord;
+    player: Player;
 };

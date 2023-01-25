@@ -1,33 +1,16 @@
 <script lang="ts">
-    import {
-        moveBlockedOpponent,
-        moveTargetsCenter,
-        moveTookCorner,
-        moveTookOppositeCorner,
-        moveTookSide,
-        playerWins
-    } from '../../services/tictactoe2/ia/heuristic/moveEvaluation';
-
-    import { getGameState, Player, type Board, type BoardCoord } from '../../services/tictactoe2';
+    import { playerWins } from '../../services/tictactoe2/ia/heuristic/moveEvaluation';
+    import { getGameState, Player, type Board } from '../../services/tictactoe2';
 
     export let board: Board;
-    export let lastMove: BoardCoord;
 </script>
 
 <div>
     <h4>Board info</h4>
-    {#if board && lastMove?.x !== -1 && lastMove?.y !== -1}
+    {#if board}
         <div class="grid2cols">
             <span>State:</span>
             <span>{getGameState(board)}</span>
-
-            <span>Last move</span>
-            <ul>
-                <li>{lastMove?.x},{lastMove?.y}</li>
-                <li>center {moveTargetsCenter(lastMove) ? '✅' : '❌'}</li>
-                <li>corner {moveTookCorner(lastMove) ? '✅' : '❌'}</li>
-                <li>side {moveTookSide(lastMove) ? '✅' : '❌'}</li>
-            </ul>
 
             <div class="grid2cols">
                 <span>Player 1</span><span>Player, O</span>
@@ -35,12 +18,6 @@
                 <span>{board.player}</span>
 
                 <span>Wins</span><span>{playerWins(board, Player.player) ? '✅' : '❌'}</span>
-
-                <span>Last move took opposite corner</span>
-                <span>{moveTookOppositeCorner(board, Player.player, lastMove) ? '✅' : '❌'}</span>
-
-                <span>Last move blocks opponent</span>
-                <span>{moveBlockedOpponent(board, Player.player, lastMove) ? '✅' : '❌'}</span>
             </div>
             <div class="grid2cols">
                 <span>Player 2</span><span>Computer, X</span>
@@ -48,13 +25,6 @@
                 <span>{board.computer}</span>
 
                 <span>Wins</span><span>{playerWins(board, Player.computer) ? '✅' : '❌'}</span>
-
-                <span>Last move took opposite corner</span>
-                <span>{moveTookOppositeCorner(board, Player.computer, lastMove) ? '✅' : '❌'}</span
-                >
-
-                <span>Last move blocks opponent</span>
-                <span>{moveBlockedOpponent(board, Player.computer, lastMove) ? '✅' : '❌'}</span>
             </div>
         </div>
     {/if}

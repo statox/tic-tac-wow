@@ -53,6 +53,6 @@
     {#if game.board}
         <BoardCanvas board={game.board} {onClick} />
         <GameInfo {game} />
-        <BoardInfo board={game.board} lastMove={{ x: 1, y: 1 }} />
+        <BoardInfo board={game.board} />
     {/if}
 </div>

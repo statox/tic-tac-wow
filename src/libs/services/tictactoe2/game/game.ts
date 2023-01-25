@@ -7,7 +7,8 @@ export const getNewGame = (): Game => {
     return {
         board: getNewBoard(),
         currentPlayer: Player.player,
-        state: 'not_over'
+        state: 'not_over',
+        moveHistory: []
     };
 };
 
@@ -22,6 +23,7 @@ export const makeManualMove = (game: Game, player: Player, pos: BoardCoord) => {
     }
     makeMoveOnBoard(game.board, player, xyToIndex(pos));
     game.state = getGameState(game.board);
+    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player });
     switchCurrentPlayer(game);
 };
 
@@ -34,5 +36,22 @@ export const makeAutomaticMove = (game: Game, player: Player) => {
     const pos = getMoveHardcoded(game.board, player);
     makeMoveOnBoard(game.board, player, xyToIndex(pos));
     game.state = getGameState(game.board);
+    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player });
     switchCurrentPlayer(game);
+};
+
+export const getPlayerLastMove = (game: Game, player: Player) => {
+    if (game.moveHistory.length > 0) {
+        const lastMove = game.moveHistory[game.moveHistory.length - 1];
+        if (lastMove.player === player) {
+            return lastMove;
+        }
+    }
+    if (game.moveHistory.length > 1) {
+        const penultimateMove = game.moveHistory[game.moveHistory.length - 2];
+        if (penultimateMove.player === player) {
+            return penultimateMove;
+        }
+    }
+    return null;
 };
