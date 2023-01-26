@@ -134,9 +134,11 @@ export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoo
     const opponentPieces = getOpponentPiecesFromBoard(board, player);
 
     // Center: Check central row and central column
-    for (const { o, p } of centerMoveBlockMasks) {
-        if (matchMask(playerPieces, p) && matchMask(opponentPieces, o)) {
-            return true;
+    if (moveAsIndex === 4) {
+        for (const { o, p } of centerMoveBlockMasks) {
+            if (matchMask(playerPieces, p) && matchMask(opponentPieces, o)) {
+                return true;
+            }
         }
     }
 
