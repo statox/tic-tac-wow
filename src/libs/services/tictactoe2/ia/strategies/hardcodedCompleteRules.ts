@@ -59,7 +59,7 @@ export function getMoveCompleteHardcoded(board: Board, player: Player): AIChoice
 }
 
 function scoreMove(board: Board, player: Player, move: BoardCoord): AIChoice {
-    if (playerWins(board, Player.player)) {
+    if (playerWins(board, player)) {
         return { score: 8, reason: 'win', move };
     }
 
