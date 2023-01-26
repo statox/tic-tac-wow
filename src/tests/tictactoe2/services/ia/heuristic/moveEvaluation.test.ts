@@ -29,6 +29,14 @@ describe('moveBlockedOpponent', () => {
 
         expect(moveBlockedOpponent(board, Player.computer, CENTER)).toBe(true);
         expect(moveBlockedOpponent(board, Player.player, BOTTOM_LEFT)).toBe(false);
+
+        board.player = 0b001011000;
+        board.computer = 0b000100101;
+
+        board.player = 0b001010000;
+        board.computer = 0b000000100;
+
+        expect(moveBlockedOpponent(board, Player.computer, BOTTOM_LEFT)).toBe(true);
     });
 
     it('Should detect corner blocks when it is the last move', () => {

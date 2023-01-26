@@ -19,6 +19,16 @@ export const centerMoveBlockMasks = [
         // Central column
         p: 0b000010000,
         o: 0b010000010
+    },
+    {
+        // NWSE
+        p: 0b000010000,
+        o: 0b100000001
+    },
+    {
+        // NESW
+        p: 0b000010000,
+        o: 0b001000100
     }
 ];
 
@@ -32,6 +42,11 @@ export const cornerMoveBlockMasks = [
         // Right column
         p: 0b000000001,
         o: 0b001001000
+    },
+    {
+        // NWSE
+        p: 0b000000001,
+        o: 0b100010000
     }
 ];
 
