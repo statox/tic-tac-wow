@@ -7,12 +7,12 @@ import {
     getOpponentPiecesFromBoard,
     getPlayerPiecesFromBoard,
     matchMask,
+    Player,
     playerAligned3,
     spotIsFreeByIndex,
     xyToIndex,
     type Board,
-    type BoardCoord,
-    type Player
+    type BoardCoord
 } from '../../game';
 import { rotateBoardClockwiseXtimes } from '../helpers';
 
@@ -125,6 +125,18 @@ export function moveCreatedFork(board: Board, player: Player, move: BoardCoord) 
         return openBottomRow && openMiddleColumn;
     }
     return false;
+}
+
+export function moveBlockedFork(board: Board, player: Player, move: BoardCoord) {
+    const playerPieces = getPlayerPiecesFromBoard(board, player);
+    const opponentPieces = getOpponentPiecesFromBoard(board, player);
+
+    const testBoard = {
+        player: opponentPieces,
+        computer: playerPieces
+    };
+
+    return moveCreatedFork(testBoard, Player.player, move);
 }
 
 export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoord) {

@@ -8,6 +8,7 @@ import {
     type BoardCoord
 } from '../../game';
 import {
+    moveBlockedFork,
     moveBlockedOpponent,
     moveCreatedFork,
     moveTargetsCenter,
@@ -62,7 +63,7 @@ export function getMoveCompleteHardcoded(board: Board, player: Player): AIChoice
     return bestChoice;
 }
 
-function scoreMove(board: Board, player: Player, move: BoardCoord): AIChoice {
+export function scoreMove(board: Board, player: Player, move: BoardCoord): AIChoice {
     if (playerWins(board, player)) {
         return { score: 8, reason: 'win', move };
     }
@@ -73,7 +74,9 @@ function scoreMove(board: Board, player: Player, move: BoardCoord): AIChoice {
     if (moveCreatedFork(board, player, move)) {
         return { score: 6, reason: 'create_fork', move };
     }
-    // TODO forks situations
+    if (moveBlockedFork(board, player, move)) {
+        return { score: 5, reason: 'block_opponent_fork', move };
+    }
     if (moveTargetsCenter(move)) {
         return { score: 4, reason: 'take_center', move };
     }
