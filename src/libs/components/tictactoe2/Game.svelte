@@ -30,27 +30,42 @@
         player2start = !player2start;
     }
 
-    const onClick = (boardPos: BoardCoord) => {
-        if (currentPlayer === Player.player) {
-            makeManualMove(game, Player.player, boardPos);
-            game = game;
-            setTimeout(() => {
-                makeAutomaticMove(game, Player.computer, computerMethod);
-                game = game;
-                currentPlayer = game.currentPlayer;
-
-                if (game.state !== 'not_over') {
-                    secondsBeforeReset = 4;
-                    const resetInterval = setInterval(() => {
-                        secondsBeforeReset--;
-                        if (secondsBeforeReset === 0) {
-                            reset();
-                            clearInterval(resetInterval);
-                        }
-                    }, 1000);
-                }
-            }, 500);
+    const turn = (player1Method: ComputerMethodName | 'manual', boardPos?: BoardCoord) => {
+        if (currentPlayer !== Player.player) {
+            return;
         }
+
+        if (player1Method === 'manual') {
+            if (!boardPos) {
+                return;
+            }
+            makeManualMove(game, Player.player, boardPos);
+        } else {
+            makeAutomaticMove(game, Player.player, player1Method);
+        }
+        game = game;
+        currentPlayer = game.currentPlayer;
+
+        setTimeout(() => {
+            makeAutomaticMove(game, Player.computer, computerMethod);
+            game = game;
+            currentPlayer = game.currentPlayer;
+
+            if (game.state !== 'not_over') {
+                secondsBeforeReset = 4;
+                const resetInterval = setInterval(() => {
+                    secondsBeforeReset--;
+                    if (secondsBeforeReset === 0) {
+                        reset();
+                        clearInterval(resetInterval);
+                    }
+                }, 1000);
+            }
+        }, 500);
+    };
+
+    const onClick = (player1Method: ComputerMethodName | 'manual', boardPos?: BoardCoord) => {
+        turn(player1Method, boardPos);
     };
 </script>
 
@@ -60,13 +75,21 @@
         <p>Restarting in {secondsBeforeReset} seconds</p>
     {/if}
 
-    <select bind:value={computerMethod}>
+    <label for="aiType">AI type</label>
+    <select id="aiType" bind:value={computerMethod}>
         {#each Object.keys(computerMethods) as method}
             <option value={method}>
                 {method}
             </option>
         {/each}
     </select>
+
+    <div>
+        <span>Player automatic move</span>
+        <button on:click={() => onClick('random')}>Random move</button>
+        <button on:click={() => onClick('hardcodedRules')}>Hardcoded rules</button>
+        <button on:click={() => onClick('hardcodedRulesComplete')}>Complete hardcoded rules</button>
+    </div>
 
     {#if game.board}
         <BoardCanvas board={game.board} {onClick} />

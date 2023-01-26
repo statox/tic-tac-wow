@@ -10,7 +10,7 @@
     } from '../../services/tictactoe2';
 
     export let board: Board;
-    export let onClick: (b: BoardCoord) => void;
+    export let onClick: (method: 'manual', b: BoardCoord) => void;
 
     let _p5: p5;
 
@@ -28,7 +28,7 @@
             if (p5.mouseX < 0 || p5.mouseX > p5.width || p5.mouseY < 0 || p5.mouseY > p5.height) {
                 return;
             }
-            onClick(screenCoordsToGridCoords(p5));
+            onClick('manual', screenCoordsToGridCoords(p5));
         };
     };
 
