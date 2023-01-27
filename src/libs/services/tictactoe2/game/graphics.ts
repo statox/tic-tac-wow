@@ -2,6 +2,8 @@ import type p5 from 'p5';
 import { spotIsFree } from './player';
 import { Player, type Board, type BoardCoord } from './types';
 
+export const colorX = '#FF0000';
+export const colorO = '#64ccfc';
 export function drawBoard(
     p5: p5,
     board: Board,
@@ -55,7 +57,7 @@ export function drawBoard(
                     selection?.x === x &&
                     selection?.y === y)
             ) {
-                p5.stroke('#64ccfc');
+                p5.stroke(colorO);
                 p5.circle(
                     x * cellWidth + cellWidth / 2,
                     y * cellHeight + cellHeight / 2,
@@ -70,7 +72,7 @@ export function drawBoard(
                     selection?.x === x &&
                     selection?.y === y)
             ) {
-                p5.stroke('red');
+                p5.stroke(colorX);
                 p5.line(
                     x * cellWidth + cellWidth * 0.3,
                     y * cellHeight + cellHeight * 0.3,
