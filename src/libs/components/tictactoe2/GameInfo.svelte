@@ -1,5 +1,6 @@
 <script lang="ts">
     import { getPlayerLastMove, Player, type Game } from '../../services/tictactoe2';
+    import GameHistory from './GameHistory.svelte';
     import MoveInfo from './MoveInfo.svelte';
 
     export let game: Game;
@@ -41,18 +42,7 @@
         {showMoveHistory ? 'Hide' : 'Show'} move history
     </button>
     {#if showMoveHistory}
-        <div class="grid4cols">
-            {#each [...game.moveHistory].reverse() as historyItem}
-                <span>{historyItem.moveCoord.x}, {historyItem.moveCoord.y}</span>
-                <span>Player {historyItem.player} - Method {historyItem.method}</span>
-                <span>{historyItem.board.toString()}</span>
-                {#if historyItem.aiChoice}
-                    <span>{JSON.stringify(historyItem.aiChoice)}</span>
-                {:else}
-                    <span>-</span>
-                {/if}
-            {/each}
-        </div>
+        <GameHistory history={game.moveHistory} />
     {/if}
 </div>
 
@@ -60,11 +50,6 @@
     .grid2cols {
         display: grid;
         grid-template-columns: repeat(2, auto);
-        grid-auto-flow: row;
-    }
-    .grid4cols {
-        display: grid;
-        grid-template-columns: repeat(4, auto);
         grid-auto-flow: row;
     }
 </style>
