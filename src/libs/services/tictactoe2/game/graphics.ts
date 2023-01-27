@@ -15,11 +15,17 @@ export function drawBoard(
     // Draw the 4 lines of the board in white
     p5.noFill();
     p5.stroke(255);
+    p5.strokeWeight(1);
     p5.line(cellWidth, 0, cellWidth, height);
     p5.line(cellWidth * 2, 0, cellWidth * 2, height);
     p5.line(0, cellHeight, width, cellHeight);
     p5.line(0, cellHeight * 2, width, cellHeight * 2);
+    // Frame
+    p5.stroke(155);
+    p5.strokeWeight(3);
+    p5.rect(0, 0, p5.width, p5.height);
 
+    p5.strokeWeight(4);
     // For each grid in the board show the corresonding tile
     for (let y = 0; y < 3; y++) {
         for (let x = 0; x < 3; x++) {
@@ -30,7 +36,7 @@ export function drawBoard(
                     selection?.x === x &&
                     selection?.y === y)
             ) {
-                p5.stroke('blue');
+                p5.stroke('#64ccfc');
                 p5.circle(
                     x * cellWidth + cellWidth / 2,
                     y * cellHeight + cellHeight / 2,

@@ -9,8 +9,10 @@
         type BoardCoord
     } from '../../services/tictactoe2';
 
+    export let dimensionPx: { width: number; height: number };
     export let board: Board;
-    export let onClick: (method: 'manual', b: BoardCoord) => void;
+    // tslint:disable-next-line:no-empty
+    export let onClick: (method: 'manual', b: BoardCoord) => void = () => {};
 
     let _p5: p5;
 
@@ -18,7 +20,7 @@
         p5.setup = () => {
             _p5 = p5;
             // Create the canvas and put it in its div
-            p5.createCanvas(400, 400);
+            p5.createCanvas(dimensionPx.width, dimensionPx.height);
         };
         p5.draw = () => {
             p5.background(0);

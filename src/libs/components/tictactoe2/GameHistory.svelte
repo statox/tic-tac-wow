@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { GameHistoryItem } from '../../services/tictactoe2';
+    import BoardCanvas from './BoardCanvas.svelte';
 
     export let history: GameHistoryItem[];
 </script>
@@ -15,7 +16,9 @@
     {#each [...history].reverse() as historyItem}
         <span>{historyItem.moveCoord.x}, {historyItem.moveCoord.y}</span>
         <span>Player {historyItem.player} - Method {historyItem.method}</span>
-        <span>{historyItem.board.toString()}</span>
+
+        <BoardCanvas board={historyItem.board} dimensionPx={{ width: 50, height: 50 }} />
+
         {#if historyItem.aiChoice}
             <span>{JSON.stringify(historyItem.aiChoice)}</span>
         {:else}
