@@ -3,7 +3,7 @@
     import MoveInfo from './MoveInfo.svelte';
 
     export let game: Game;
-    let showMoveHistory = false;
+    let showMoveHistory = true;
 
     const getStateLabel = (game: Game): string => {
         if (!game || !game.state) {

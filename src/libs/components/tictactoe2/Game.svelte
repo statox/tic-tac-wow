@@ -92,8 +92,19 @@
     </div>
 
     {#if game.board}
-        <BoardCanvas board={game.board} {onClick} />
+        <div class="grid2colsResponsive">
+            <BoardCanvas board={game.board} {onClick} />
+            <BoardInfo board={game.board} />
+        </div>
         <GameInfo {game} />
-        <BoardInfo board={game.board} />
     {/if}
 </div>
+
+<style>
+    /* https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/ */
+    .grid2colsResponsive {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+        grid-auto-flow: row;
+    }
+</style>
