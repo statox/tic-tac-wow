@@ -93,7 +93,12 @@
 
     {#if game.board}
         <div class="grid2colsResponsive">
-            <BoardCanvas board={game.board} dimensionPx={{ width: 400, height: 400 }} {onClick} />
+            <BoardCanvas
+                board={game.board}
+                dimensionPx={{ width: 400, height: 400 }}
+                {onClick}
+                highlightMouse={true}
+            />
             <BoardInfo board={game.board} />
         </div>
         <GameInfo {game} />

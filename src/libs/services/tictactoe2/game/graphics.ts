@@ -5,13 +5,19 @@ import { Player, type Board, type BoardCoord } from './types';
 export function drawBoard(
     p5: p5,
     board: Board,
-    params?: { drawSelection: boolean; selection: BoardCoord; currentPlayer: Player }
+    params?: {
+        drawSelection?: boolean;
+        selection?: BoardCoord;
+        currentPlayer?: Player;
+        highlightCell: BoardCoord | undefined;
+    }
 ) {
     const cellWidth = p5.width / 3;
     const cellHeight = p5.height / 3;
 
     const { height, width } = p5;
     const { drawSelection, selection, currentPlayer } = params || {};
+    p5.rectMode(p5.CENTER);
     // Draw the 4 lines of the board in white
     p5.noFill();
     p5.stroke(255);
@@ -23,12 +29,25 @@ export function drawBoard(
     // Frame
     p5.stroke(155);
     p5.strokeWeight(3);
-    p5.rect(0, 0, p5.width, p5.height);
+    p5.rect(p5.width / 2, p5.height / 2, p5.width, p5.height);
 
     p5.strokeWeight(4);
     // For each grid in the board show the corresonding tile
     for (let y = 0; y < 3; y++) {
         for (let x = 0; x < 3; x++) {
+            // Highlight cell background if requested
+            if (params?.highlightCell?.x === x && params?.highlightCell.y === y) {
+                p5.noStroke();
+                p5.fill(30, 250, 80, 80);
+                p5.rect(
+                    x * cellWidth + cellWidth / 2,
+                    y * cellHeight + cellHeight / 2,
+                    cellWidth * 0.95,
+                    cellHeight * 0.95
+                );
+                p5.noFill();
+            }
+            // Draw O
             if (
                 !spotIsFree(board.player, { x, y }) ||
                 (drawSelection &&
@@ -43,6 +62,7 @@ export function drawBoard(
                     cellHeight / 2
                 );
             }
+            // Draw X
             if (
                 !spotIsFree(board.computer, { x, y }) ||
                 (drawSelection &&

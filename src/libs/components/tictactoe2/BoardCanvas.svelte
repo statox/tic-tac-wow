@@ -11,6 +11,8 @@
 
     export let dimensionPx: { width: number; height: number };
     export let board: Board;
+    export let highlightCell: BoardCoord | undefined = undefined;
+    export let highlightMouse = false;
     // tslint:disable-next-line:no-empty
     export let onClick: (method: 'manual', b: BoardCoord) => void = () => {};
 
@@ -24,7 +26,11 @@
         };
         p5.draw = () => {
             p5.background(0);
-            drawBoard(p5, board);
+            if (highlightMouse) {
+                drawBoard(p5, board, { highlightCell: screenCoordsToGridCoords(p5) });
+            } else {
+                drawBoard(p5, board, { highlightCell });
+            }
         };
         p5.mousePressed = () => {
             if (p5.mouseX < 0 || p5.mouseX > p5.width || p5.mouseY < 0 || p5.mouseY > p5.height) {

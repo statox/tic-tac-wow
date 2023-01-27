@@ -4,7 +4,6 @@
     import MoveInfo from './MoveInfo.svelte';
 
     export let game: Game;
-    let showMoveHistory = true;
 
     const getStateLabel = (game: Game): string => {
         if (!game || !game.state) {
@@ -38,12 +37,7 @@
         <MoveInfo historyItem={getPlayerLastMove(game, Player.computer)} />
     </div>
 
-    <button on:click={() => (showMoveHistory = !showMoveHistory)}>
-        {showMoveHistory ? 'Hide' : 'Show'} move history
-    </button>
-    {#if showMoveHistory}
-        <GameHistory history={game.moveHistory} />
-    {/if}
+    <GameHistory history={game.moveHistory} />
 </div>
 
 <style>
