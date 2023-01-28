@@ -7,6 +7,7 @@
     let games: Game[] = [];
     let computerMethodP1: ComputerMethodName = 'random';
     let computerMethodP2: ComputerMethodName = 'hardcodedRulesComplete';
+    let nbGames = 10;
 
     const runNewGame = () => {
         const game = getNewGame();
@@ -14,18 +15,29 @@
             makeAutomaticMove(game, Player.player, computerMethodP1);
             makeAutomaticMove(game, Player.computer, computerMethodP2);
         }
-        games = [game, ...games];
+        return game;
     };
 
-    const resetGames = () => {
+    let stats: any = { total: 0 };
+    const runXGames = () => {
         games = [];
+        stats = { total: 0 };
+        for (let i = 0; i < nbGames; i++) {
+            const game = runNewGame();
+            games = [game, ...games];
+            if (!stats[game.state]) {
+                stats[game.state] = 0;
+            }
+            stats[game.state] += 1;
+            stats.total += 1;
+        }
     };
 </script>
 
 <div>
     <h2>Generator</h2>
-    <button on:click={resetGames}>Delete games</button>
-    <button on:click={runNewGame}>Create game</button>
+    <button on:click={runXGames}>Create games</button>
+    <input type="number" bind:value={nbGames} />
 
     <div>
         <label for="aiType">AI type</label>
@@ -48,6 +60,18 @@
     </div>
 
     <div>
+        <h3>Stats</h3>
+        <div class="grid3cols">
+            {#each Object.keys(stats).sort() as ending}
+                <span>{ending}</span>
+                <span>{stats[ending]}</span>
+                <span>{(100 * stats[ending]) / stats.total} %</span>
+            {/each}
+        </div>
+    </div>
+
+    <div>
+        <h3>Games</h3>
         {#each games as game}
             {#if game.board}
                 <GameInfo {game} />
@@ -55,3 +79,11 @@
         {/each}
     </div>
 </div>
+
+<style>
+    .grid3cols {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-auto-flow: row;
+    }
+</style>
