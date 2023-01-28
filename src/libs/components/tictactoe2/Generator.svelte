@@ -1,12 +1,19 @@
 <script lang="ts">
     import { computerMethods, type ComputerMethodName } from '../../services/tictactoe2/ia';
 
-    import { getNewGame, makeAutomaticMove, Player, type Game } from '../../services/tictactoe2';
+    import {
+        getNewGame,
+        makeAutomaticMove,
+        Player,
+        type Game,
+        type GameState
+    } from '../../services/tictactoe2';
     import GameInfo from './GameInfo.svelte';
 
     let games: Game[] = [];
     let computerMethodP1: ComputerMethodName = 'random';
     let computerMethodP2: ComputerMethodName = 'hardcodedRulesComplete';
+    let stateFilter: 'all' | GameState | null;
     let nbGames = 10;
 
     const runNewGame = () => {
@@ -72,8 +79,17 @@
 
     <div>
         <h3>Games</h3>
+        <label for="stateFilter">Filter state</label>
+        <select id="stateFilter" bind:value={stateFilter}>
+            {#each ['all', 'player_win', 'computer_win', 'draw', 'over'] as state}
+                <option value={state}>
+                    {state}
+                </option>
+            {/each}
+        </select>
+        {JSON.stringify(stateFilter)}
         {#each games as game}
-            {#if game.board}
+            {#if stateFilter === 'all' || stateFilter === game.state}
                 <GameInfo {game} />
             {/if}
         {/each}
