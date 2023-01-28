@@ -4,6 +4,7 @@
         makeAutomaticMove,
         makeManualMove,
         Player,
+        xyToIndex,
         type BoardCoord,
         type Game
     } from '../../services/tictactoe2';
@@ -39,7 +40,7 @@
             if (!boardPos) {
                 return;
             }
-            makeManualMove(game, Player.player, boardPos);
+            makeManualMove(game, Player.player, xyToIndex(boardPos));
         } else {
             makeAutomaticMove(game, Player.player, player1Method);
         }

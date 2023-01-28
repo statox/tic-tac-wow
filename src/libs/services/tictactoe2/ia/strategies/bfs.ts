@@ -19,5 +19,5 @@ export function getMoveBFS(board: Board, player: Player): AIChoice {
         console.log(copy, move);
     }
 
-    return { score: 0, reason: 'random', move: indexToXY(1) };
+    return { score: 0, reason: 'random', move: 1 };
 }

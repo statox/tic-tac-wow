@@ -1,5 +1,5 @@
 import type { AIChoice } from '.';
-import { getBoardFreeSpots, indexToXY, type Board } from '../../game';
+import { getBoardFreeSpots, type Board } from '../../game';
 
 /*
  * This is the most basic strategy to play tictactoe
@@ -13,7 +13,7 @@ export function getMoveRandom(board: Board): AIChoice {
     }
 
     const randIndex = Math.floor(Math.random() * freeSpots.length);
-    const moveAsIndex = freeSpots[randIndex];
+    const move = freeSpots[randIndex];
 
-    return { score: 0, reason: 'random', move: indexToXY(moveAsIndex) };
+    return { score: 0, reason: 'random', move };
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { GameHistoryItem } from '../../services/tictactoe2';
+    import { indexToXY, type GameHistoryItem } from '../../services/tictactoe2';
     import BoardCanvas from './BoardCanvas.svelte';
     import MoveInfo from './MoveInfo.svelte';
 
@@ -22,7 +22,7 @@
                     <BoardCanvas
                         board={historyItem.board}
                         dimensionPx={{ width: 100, height: 100 }}
-                        highlightCell={historyItem.moveCoord}
+                        highlightCell={indexToXY(historyItem.moveAsIndex)}
                     />
                 </div>
 

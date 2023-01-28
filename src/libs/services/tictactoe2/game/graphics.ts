@@ -1,4 +1,5 @@
 import type p5 from 'p5';
+import { xyToIndex } from './coordinates';
 import { spotIsFree } from './player';
 import { Player, type Board, type BoardCoord } from './types';
 
@@ -51,7 +52,7 @@ export function drawBoard(
             }
             // Draw O
             if (
-                !spotIsFree(board.player, { x, y }) ||
+                !spotIsFree(board.player, xyToIndex({ x, y })) ||
                 (drawSelection &&
                     currentPlayer === Player.player &&
                     selection?.x === x &&
@@ -66,7 +67,7 @@ export function drawBoard(
             }
             // Draw X
             if (
-                !spotIsFree(board.computer, { x, y }) ||
+                !spotIsFree(board.computer, xyToIndex({ x, y })) ||
                 (drawSelection &&
                     currentPlayer === Player.computer &&
                     selection?.x === x &&

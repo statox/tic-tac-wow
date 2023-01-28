@@ -1,7 +1,6 @@
 import { computerMethods, type ComputerMethodName } from '../ia';
 import { getGameState, getNewBoard, makeMoveOnBoard } from './board';
-import { xyToIndex } from './coordinates';
-import { Player, type BoardCoord, type Game } from './types';
+import { Player, type Game } from './types';
 
 export const getNewGame = (firstPlayer?: Player): Game => {
     return {
@@ -17,13 +16,13 @@ function switchCurrentPlayer(game: Game) {
 }
 
 // Put the player value in the board if the user clicked an empty cell
-export const makeManualMove = (game: Game, player: Player, pos: BoardCoord) => {
+export const makeManualMove = (game: Game, player: Player, moveAsIndex: number) => {
     if (game.state !== 'not_over') {
         return;
     }
-    makeMoveOnBoard(game.board, player, xyToIndex(pos));
+    makeMoveOnBoard(game.board, player, moveAsIndex);
     game.state = getGameState(game.board);
-    game.moveHistory.push({ board: { ...game.board }, moveCoord: pos, player, method: 'manual' });
+    game.moveHistory.push({ board: { ...game.board }, moveAsIndex, player, method: 'manual' });
     switchCurrentPlayer(game);
 };
 
@@ -34,11 +33,11 @@ export const makeAutomaticMove = (game: Game, player: Player, methodName: Comput
     }
     const method = computerMethods[methodName];
     const choice = method(game.board, player);
-    makeMoveOnBoard(game.board, player, xyToIndex(choice.move));
+    makeMoveOnBoard(game.board, player, choice.move);
     game.state = getGameState(game.board);
     game.moveHistory.push({
         board: { ...game.board },
-        moveCoord: choice.move,
+        moveAsIndex: choice.move,
         player,
         method: methodName,
         aiChoice: choice

@@ -1,4 +1,3 @@
-import type { BoardCoord } from '../../game';
 import { getMoveBFS } from './bfs';
 import { getMoveCompleteHardcoded } from './hardcodedCompleteRules';
 import { getMoveHardcoded } from './hardcodedRules';
@@ -11,7 +10,7 @@ export * from './random';
 export type ComputerMethodName = 'random' | 'hardcodedRules' | 'hardcodedRulesComplete' | 'BFS';
 
 export type AIChoice = {
-    move: BoardCoord;
+    move: number;
     score: number;
     reason: string;
 };

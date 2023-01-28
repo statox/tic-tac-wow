@@ -1,6 +1,5 @@
-import { xyToIndex } from './coordinates';
 import { matchMask, winMasks } from './mask';
-import type { BoardCoord, PlayerPieces } from './types';
+import type { PlayerPieces } from './types';
 
 export function countPlacedPieces(player: PlayerPieces) {
     let n = player;
@@ -12,8 +11,7 @@ export function countPlacedPieces(player: PlayerPieces) {
     return count;
 }
 
-export function spotIsFree(player: PlayerPieces, pos: BoardCoord) {
-    const index = xyToIndex(pos);
+export function spotIsFree(player: PlayerPieces, index: number) {
     return spotIsFreeByIndex(player, index);
 }
 

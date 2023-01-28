@@ -10,9 +10,7 @@ import {
     Player,
     playerAligned3,
     spotIsFreeByIndex,
-    xyToIndex,
-    type Board,
-    type BoardCoord
+    type Board
 } from '../../game';
 import { rotateBoardClockwiseXtimes } from '../helpers';
 
@@ -22,8 +20,8 @@ export function playerWins(board: Board, player: Player) {
     return playerAligned3(pieces);
 }
 
-export function moveTargetsCenter(move: BoardCoord) {
-    return move?.y === 1 && move?.x === 1;
+export function moveTargetsCenter(moveAsIndex: number) {
+    return moveAsIndex === 4;
 }
 
 // Check if the move creates two ways to win for the player
@@ -46,9 +44,7 @@ export function moveTargetsCenter(move: BoardCoord) {
 // x is another piece of the player
 // . is a spot where the opponent has not played
 
-export function moveCreatedFork(board: Board, player: Player, move: BoardCoord) {
-    const moveAsIndex = xyToIndex(move);
-
+export function moveCreatedFork(board: Board, player: Player, moveAsIndex: number) {
     const playerPieces = getPlayerPiecesFromBoard(board, player);
     const opponentPieces = getOpponentPiecesFromBoard(board, player);
 
@@ -127,7 +123,7 @@ export function moveCreatedFork(board: Board, player: Player, move: BoardCoord) 
     return false;
 }
 
-export function moveBlockedFork(board: Board, player: Player, move: BoardCoord) {
+export function moveBlockedFork(board: Board, player: Player, moveAsIndex: number) {
     const playerPieces = getPlayerPiecesFromBoard(board, player);
     const opponentPieces = getOpponentPiecesFromBoard(board, player);
 
@@ -139,13 +135,11 @@ export function moveBlockedFork(board: Board, player: Player, move: BoardCoord) 
     return moveCreatedFork(
         testBoard,
         player === Player.player ? Player.computer : Player.player,
-        move
+        moveAsIndex
     );
 }
 
-export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoord) {
-    const moveAsIndex = xyToIndex(move);
-
+export function moveBlockedOpponent(board: Board, player: Player, moveAsIndex: number) {
     const playerPieces = getPlayerPiecesFromBoard(board, player);
     const opponentPieces = getOpponentPiecesFromBoard(board, player);
 
@@ -204,29 +198,26 @@ export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoo
 const cornerIndices = new Set([0, 2, 6, 8]);
 const sideIndices = new Set([1, 3, 5, 7]);
 
-export function moveTookOppositeCorner(board: Board, player: Player, move: BoardCoord) {
-    const moveIndex = xyToIndex(move);
+export function moveTookOppositeCorner(board: Board, player: Player, moveAsIndex: number) {
     // If the move is not in a corner it can not have taken an opposite corner
-    if (!cornerIndices.has(moveIndex)) {
+    if (!cornerIndices.has(moveAsIndex)) {
         return false;
     }
 
     // The indice of the opposite corner is 8-indice (0->8, 2->6, 6->2, 8->0)
-    const oppositeIndex = 8 - moveIndex;
+    const oppositeIndex = 8 - moveAsIndex;
 
     const opponentPieces = getOpponentPiecesFromBoard(board, player);
 
     return !spotIsFreeByIndex(opponentPieces, oppositeIndex);
 }
 
-export function moveTookCorner(move: BoardCoord) {
-    const moveIndex = xyToIndex(move);
+export function moveTookCorner(moveAsIndex: number) {
     // If the move is not in a corner it can not have taken an opposite corner
-    return cornerIndices.has(moveIndex);
+    return cornerIndices.has(moveAsIndex);
 }
 
-export function moveTookSide(move: BoardCoord) {
-    const moveIndex = xyToIndex(move);
+export function moveTookSide(moveAsIndex: number) {
     // If the move is not in a corner it can not have taken an opposite corner
-    return sideIndices.has(moveIndex);
+    return sideIndices.has(moveAsIndex);
 }

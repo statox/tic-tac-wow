@@ -45,7 +45,7 @@ export type Game = {
 
 export type GameHistoryItem = {
     board: Board;
-    moveCoord: BoardCoord;
+    moveAsIndex: number;
     player: Player;
     method: ComputerMethodName | 'manual';
     aiChoice?: AIChoice;

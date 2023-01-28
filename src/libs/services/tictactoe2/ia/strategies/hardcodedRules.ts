@@ -1,12 +1,5 @@
 import type { AIChoice } from '.';
-import {
-    getBoardFreeSpots,
-    indexToXY,
-    makeMoveOnBoard,
-    Player,
-    type Board,
-    type BoardCoord
-} from '../../game';
+import { getBoardFreeSpots, makeMoveOnBoard, Player, type Board } from '../../game';
 import {
     moveBlockedOpponent,
     moveTargetsCenter,
@@ -45,10 +38,9 @@ export function getMoveHardcoded(board: Board, player: Player): AIChoice {
 
     let bestChoice;
 
-    for (const spot of freeSpots) {
+    for (const move of freeSpots) {
         const copy = { ...board };
-        const move = indexToXY(spot);
-        makeMoveOnBoard(copy, player, spot);
+        makeMoveOnBoard(copy, player, move);
         const choice = scoreMove(copy, player, move);
         if (choice.score > (bestChoice?.score ?? -1)) {
             bestChoice = choice;
@@ -61,7 +53,7 @@ export function getMoveHardcoded(board: Board, player: Player): AIChoice {
     return bestChoice;
 }
 
-function scoreMove(board: Board, player: Player, move: BoardCoord) {
+function scoreMove(board: Board, player: Player, move: number): AIChoice {
     if (playerWins(board, Player.player)) {
         return { score: 8, reason: 'win', move };
     }

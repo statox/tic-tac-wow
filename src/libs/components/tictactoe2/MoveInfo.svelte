@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { GameHistoryItem } from '../../services/tictactoe2';
+
     import {
         moveBlockedFork,
         moveBlockedOpponent,
@@ -14,12 +15,12 @@
 </script>
 
 {#if historyItem}
-    {@const { moveCoord, player, board } = historyItem}
+    {@const { moveAsIndex, player, board } = historyItem}
     <div class="grid2cols">
         <span>Position</span>
-        {#if moveTargetsCenter(moveCoord)}
+        {#if moveTargetsCenter(moveAsIndex)}
             <span>Center</span>
-        {:else if moveTookCorner(moveCoord)}
+        {:else if moveTookCorner(moveAsIndex)}
             <span>Corner</span>
         {:else}
             <span>Edge</span>
@@ -29,19 +30,19 @@
         <span>{playerWins(board, player) ? '✅' : '❌'}</span>
 
         <span>Move blocks opponent</span>
-        <span>{moveBlockedOpponent(board, player, moveCoord) ? '✅' : '❌'}</span>
+        <span>{moveBlockedOpponent(board, player, moveAsIndex) ? '✅' : '❌'}</span>
 
         <span>Move creates fork</span>
-        <span>{moveCreatedFork(board, player, moveCoord) ? '✅' : '❌'}</span>
+        <span>{moveCreatedFork(board, player, moveAsIndex) ? '✅' : '❌'}</span>
 
         <span>Move blocks opponent's fork</span>
-        <span>{moveBlockedFork(board, player, moveCoord) ? '✅' : '❌'}</span>
+        <span>{moveBlockedFork(board, player, moveAsIndex) ? '✅' : '❌'}</span>
 
         <span>Took opposite corner</span>
-        <span>{moveTookOppositeCorner(board, player, moveCoord) ? '✅' : '❌'}</span>
+        <span>{moveTookOppositeCorner(board, player, moveAsIndex) ? '✅' : '❌'}</span>
 
         <span> Last move blocks opponent</span>
-        <span>{moveBlockedOpponent(board, player, moveCoord) ? '✅' : '❌'}</span>
+        <span>{moveBlockedOpponent(board, player, moveAsIndex) ? '✅' : '❌'}</span>
     </div>
 {/if}
 
