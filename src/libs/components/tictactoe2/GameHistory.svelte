@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { GameHistoryItem } from '../../services/tictactoe2';
     import BoardCanvas from './BoardCanvas.svelte';
+    import MoveInfo from './MoveInfo.svelte';
 
     export let history: GameHistoryItem[];
     let showMoveHistory = true;
@@ -18,20 +19,29 @@
             <h4>Move</h4>
             <h4>Selection</h4>
             <h4>AI</h4>
+            <h4>Stats</h4>
             {#each [...history].reverse() as historyItem}
-                <BoardCanvas
-                    board={historyItem.board}
-                    dimensionPx={{ width: 90, height: 90 }}
-                    highlightCell={historyItem.moveCoord}
-                />
+                <div class="item">
+                    <BoardCanvas
+                        board={historyItem.board}
+                        dimensionPx={{ width: 100, height: 100 }}
+                        highlightCell={historyItem.moveCoord}
+                    />
+                </div>
 
-                <span>{historyItem.method}</span>
+                <span class="item">{historyItem.method}</span>
 
                 {#if historyItem.aiChoice}
-                    <span>{historyItem.aiChoice.score} - {historyItem.aiChoice.reason}</span>
+                    <span class="item">
+                        {historyItem.aiChoice.score} - {historyItem.aiChoice.reason}
+                    </span>
                 {:else}
-                    <span />
+                    <span class="item" />
                 {/if}
+
+                <div class="item">
+                    <MoveInfo {historyItem} />
+                </div>
             {/each}
         </div>
     {/if}
@@ -40,7 +50,10 @@
 <style>
     .grid4cols {
         display: grid;
-        grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(4, auto);
         grid-auto-flow: row;
+    }
+    .item {
+        margin-bottom: 5vh;
     }
 </style>

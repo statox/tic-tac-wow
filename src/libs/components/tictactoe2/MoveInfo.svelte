@@ -1,40 +1,50 @@
 <script lang="ts">
     import type { GameHistoryItem } from '../../services/tictactoe2';
     import {
+        moveBlockedFork,
         moveBlockedOpponent,
+        moveCreatedFork,
         moveTargetsCenter,
         moveTookCorner,
         moveTookOppositeCorner,
-        moveTookSide
+        moveTookSide,
+        playerWins
     } from '../../services/tictactoe2/ia/heuristic/moveEvaluation';
 
     export let historyItem: GameHistoryItem | null;
 </script>
 
-<div class="grid2cols">
-    {#if historyItem}
-        {@const { moveCoord, player, board, aiChoice } = historyItem}
-        <span>Last move:</span>
-        <span>{moveCoord.x}, {moveCoord.y}</span>
+{#if historyItem}
+    {@const { moveCoord, player, board } = historyItem}
+    <div class="grid2cols">
+        <span>Position</span>
+        {#if moveTargetsCenter(moveCoord)}
+            <span>Center</span>
+        {:else if moveTookCorner(moveCoord)}
+            <span>Corner</span>
+        {:else}
+            <span>Edge</span>
+        {/if}
 
-        <span>center</span><span>{moveTargetsCenter(moveCoord) ? '✅' : '❌'}</span>
-        <span>corner</span><span>{moveTookCorner(moveCoord) ? '✅' : '❌'}</span>
-        <span>side</span><span>{moveTookSide(moveCoord) ? '✅' : '❌'}</span>
+        <span>Player win</span>
+        <span>{playerWins(board, player) ? '✅' : '❌'}</span>
+
+        <span>Move blocks opponent</span>
+        <span>{moveBlockedOpponent(board, player, moveCoord) ? '✅' : '❌'}</span>
+
+        <span>Move creates fork</span>
+        <span>{moveCreatedFork(board, player, moveCoord) ? '✅' : '❌'}</span>
+
+        <span>Move blocks opponent's fork</span>
+        <span>{moveBlockedFork(board, player, moveCoord) ? '✅' : '❌'}</span>
 
         <span>Took opposite corner</span>
         <span>{moveTookOppositeCorner(board, player, moveCoord) ? '✅' : '❌'}</span>
 
         <span> Last move blocks opponent</span>
         <span>{moveBlockedOpponent(board, player, moveCoord) ? '✅' : '❌'}</span>
-
-        {#if aiChoice}
-            <span>Score</span>
-            <span>{aiChoice.score}</span>
-            <span>Reason</span>
-            <span>{aiChoice.reason}</span>
-        {/if}
-    {/if}
-</div>
+    </div>
+{/if}
 
 <style>
     .grid2cols {

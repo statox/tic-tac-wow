@@ -1,10 +1,8 @@
 <script lang="ts">
-    import { getPlayerLastMove, Player, type Game } from '../../services/tictactoe2';
+    import { Player, type Game } from '../../services/tictactoe2';
     import GameHistory from './GameHistory.svelte';
-    import MoveInfo from './MoveInfo.svelte';
 
     export let game: Game;
-    export let showMoveInfo = false;
 
     const getStateLabel = (game: Game): string => {
         if (!game || !game.state) {
@@ -32,21 +30,5 @@
 <div>
     <h4>Game info</h4>
     <span>{getStateLabel(game)}</span>
-
-    {#if showMoveInfo}
-        <div class="grid2cols">
-            <MoveInfo historyItem={getPlayerLastMove(game, Player.player)} />
-            <MoveInfo historyItem={getPlayerLastMove(game, Player.computer)} />
-        </div>
-    {/if}
-
     <GameHistory history={game.moveHistory} />
 </div>
-
-<style>
-    .grid2cols {
-        display: grid;
-        grid-template-columns: repeat(2, auto);
-        grid-auto-flow: row;
-    }
-</style>
