@@ -16,7 +16,7 @@
     let game: Game;
     let currentPlayer: Player;
     let secondsBeforeReset: number;
-    let computerMethod: ComputerMethodName = 'hardcodedRulesComplete';
+    let computerMethod: ComputerMethodName = 'minmax';
     let player2start = false;
 
     reset();
@@ -90,6 +90,7 @@
         <button on:click={() => onClick('random')}>Random move</button>
         <button on:click={() => onClick('hardcodedRules')}>Hardcoded rules</button>
         <button on:click={() => onClick('hardcodedRulesComplete')}>Complete hardcoded rules</button>
+        <button on:click={() => onClick('minmax')}>minmax</button>
     </div>
 
     {#if game.board}

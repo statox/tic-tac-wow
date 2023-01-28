@@ -1,13 +1,12 @@
-import { getMoveBFS } from './bfs';
+import { getMoveMinmax } from './minmax';
 import { getMoveCompleteHardcoded } from './hardcodedCompleteRules';
 import { getMoveHardcoded } from './hardcodedRules';
 import { getMoveRandom } from './random';
 
-export * from './bfs';
 export * from './hardcodedRules';
 export * from './random';
 
-export type ComputerMethodName = 'random' | 'hardcodedRules' | 'hardcodedRulesComplete' | 'BFS';
+export type ComputerMethodName = 'random' | 'hardcodedRules' | 'hardcodedRulesComplete' | 'minmax';
 
 export type AIChoice = {
     move: number;
@@ -19,7 +18,7 @@ export const computerMethods = {
     random: getMoveRandom,
     hardcodedRules: getMoveHardcoded,
     hardcodedRulesComplete: getMoveCompleteHardcoded,
-    BFS: getMoveBFS
+    minmax: getMoveMinmax
 } as {
     [methodName in ComputerMethodName]: (...args: unknown[]) => AIChoice;
 };
