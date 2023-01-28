@@ -4,13 +4,10 @@
     import MoveInfo from './MoveInfo.svelte';
 
     export let history: GameHistoryItem[];
-    let showMoveHistory = true;
+    export let showMoveHistory: boolean;
 </script>
 
 <div>
-    <button on:click={() => (showMoveHistory = !showMoveHistory)}>
-        {showMoveHistory ? 'Hide' : 'Show'} move history
-    </button>
     {#if showMoveHistory}
         <div class="grid4cols">
             {#if history.length === 0}

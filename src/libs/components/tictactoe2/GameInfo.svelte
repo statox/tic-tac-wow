@@ -1,8 +1,10 @@
 <script lang="ts">
     import { Player, type Game } from '../../services/tictactoe2';
+    import BoardCanvas from './BoardCanvas.svelte';
     import GameHistory from './GameHistory.svelte';
 
     export let game: Game;
+    let showMoveHistory = false;
 
     const getStateLabel = (game: Game): string => {
         if (!game || !game.state) {
@@ -30,5 +32,13 @@
 <div>
     <h4>Game info</h4>
     <span>{getStateLabel(game)}</span>
-    <GameHistory history={game.moveHistory} />
+
+    <button on:click={() => (showMoveHistory = !showMoveHistory)}>
+        {showMoveHistory ? 'Hide' : 'Show'} move history
+    </button>
+    {#if showMoveHistory}
+        <GameHistory history={game.moveHistory} {showMoveHistory} />
+    {:else}
+        <BoardCanvas board={game.board} dimensionPx={{ width: 100, height: 100 }} />
+    {/if}
 </div>
