@@ -1,7 +1,8 @@
-import { getNewBoard, makeMoveOnBoard, xyToIndex } from 'src/libs/services/tictactoe2';
+import { getNewBoard, makeMoveOnBoard } from 'src/libs/services/tictactoe2';
 import { Player } from 'src/libs/services/tictactoe2';
 import { getPossibleMoves, getUniquePossibleMoves } from 'src/libs/services/tictactoe2/ia/helpers';
 import { describe, expect, it } from 'vitest';
+import { CENTER_INDEX } from '../../game/helpers';
 
 describe('moves functions for ia', () => {
     it('getPossibleMoves should return all moves for the first two steps', () => {
@@ -14,7 +15,7 @@ describe('moves functions for ia', () => {
             1, 2, 4, 8, 16, 32, 64, 128, 256
         ]);
 
-        makeMoveOnBoard(board, Player.player, xyToIndex({ x: 1, y: 1 }));
+        makeMoveOnBoard(board, Player.player, CENTER_INDEX);
         const computerMoves = getPossibleMoves(board, Player.player);
         expect(computerMoves).toHaveLength(8);
     });
@@ -27,7 +28,7 @@ describe('moves functions for ia', () => {
         expect(playerMoves.filter((board) => board.computer !== 0)).toHaveLength(0);
         expect(playerMoves.map((board) => board.player)).toStrictEqual([1, 2, 16]);
 
-        makeMoveOnBoard(board, Player.player, xyToIndex({ x: 1, y: 1 }));
+        makeMoveOnBoard(board, Player.player, CENTER_INDEX);
         const computerMoves = getUniquePossibleMoves(board, Player.player);
         expect(computerMoves).toHaveLength(2);
     });

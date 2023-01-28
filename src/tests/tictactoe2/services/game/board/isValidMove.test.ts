@@ -1,47 +1,54 @@
-import { isValidMove, xyToIndex, type PlayerPieces } from 'src/libs/services/tictactoe2';
+import { isValidMove, type PlayerPieces } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
+import {
+    BOTTOM_LEFT_INDEX,
+    CENTER_INDEX,
+    RIGHT_INDEX,
+    TOP_INDEX,
+    TOP_LEFT_INDEX
+} from '../helpers';
 
 const cases = {
     'Valid 1': {
         player: 0b000000000,
         comput: 0b000000000,
-        move: xyToIndex({ x: 0, y: 0 }),
+        move: TOP_LEFT_INDEX,
         result: true
     },
     'Valid 2': {
         player: 0b111000000,
         comput: 0b000111000,
-        move: xyToIndex({ x: 0, y: 2 }),
+        move: BOTTOM_LEFT_INDEX,
         result: true
     },
     'Valid 3': {
         player: 0b100100100,
         comput: 0b010010010,
-        move: xyToIndex({ x: 2, y: 1 }),
+        move: RIGHT_INDEX,
         result: true
     },
     'Valid 4': {
         player: 0b110000011,
         comput: 0b001101100,
-        move: xyToIndex({ x: 1, y: 1 }),
+        move: CENTER_INDEX,
         result: true
     },
     'Invalid 4': {
         player: 0b100000000,
         comput: 0b011111111,
-        move: xyToIndex({ x: 0, y: 0 }),
+        move: TOP_LEFT_INDEX,
         result: false
     },
     'Invalid 5': {
         player: 0b100000000,
         comput: 0b011111111,
-        move: xyToIndex({ x: 1, y: 0 }),
+        move: TOP_INDEX,
         result: false
     },
     'Invalid on invalid board': {
         player: 0b100000000,
         comput: 0b100000000,
-        move: xyToIndex({ x: 0, y: 0 }),
+        move: TOP_LEFT_INDEX,
         result: false
     }
 } as {

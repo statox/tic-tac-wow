@@ -1,55 +1,62 @@
-import {
-    placePlayerPieceByIndex,
-    xyToIndex,
-    type PlayerPieces
-} from 'src/libs/services/tictactoe2';
+import { placePlayerPieceByIndex, type PlayerPieces } from 'src/libs/services/tictactoe2';
 import { describe, expect, it } from 'vitest';
+import {
+    BOTTOM_INDEX,
+    BOTTOM_LEFT_INDEX,
+    BOTTOM_RIGHT_INDEX,
+    CENTER_INDEX,
+    LEFT_INDEX,
+    RIGHT_INDEX,
+    TOP_INDEX,
+    TOP_LEFT_INDEX,
+    TOP_RIGHT_INDEX
+} from '../helpers';
 
 const cases = {
     NW: {
         pieces: 0b000000000,
         result: 0b100000000,
-        index: xyToIndex({ x: 0, y: 0 })
+        index: TOP_LEFT_INDEX
     },
     N: {
         pieces: 0b000000000,
         result: 0b010000000,
-        index: xyToIndex({ x: 1, y: 0 })
+        index: TOP_INDEX
     },
     NE: {
         pieces: 0b000000000,
         result: 0b001000000,
-        index: xyToIndex({ x: 2, y: 0 })
+        index: TOP_RIGHT_INDEX
     },
     W: {
         pieces: 0b000000000,
         result: 0b000100000,
-        index: xyToIndex({ x: 0, y: 1 })
+        index: LEFT_INDEX
     },
     C: {
         pieces: 0b000000000,
         result: 0b000010000,
-        index: xyToIndex({ x: 1, y: 1 })
+        index: CENTER_INDEX
     },
     E: {
         pieces: 0b000000000,
         result: 0b000001000,
-        index: xyToIndex({ x: 2, y: 1 })
+        index: RIGHT_INDEX
     },
     SW: {
         pieces: 0b000000000,
         result: 0b000000100,
-        index: xyToIndex({ x: 0, y: 2 })
+        index: BOTTOM_LEFT_INDEX
     },
     S: {
         pieces: 0b000000000,
         result: 0b000000010,
-        index: xyToIndex({ x: 1, y: 2 })
+        index: BOTTOM_INDEX
     },
     SE: {
         pieces: 0b000000000,
         result: 0b000000001,
-        index: xyToIndex({ x: 2, y: 2 })
+        index: BOTTOM_RIGHT_INDEX
     }
 } as {
     [key: string]: {

@@ -1,3 +1,12 @@
+// 0,0     1,0     2,0
+//  8       7       6
+
+// 0,1     1,1     2,1
+//  5       4       3
+
+// 0,2     1,2     2,2
+//  2       1       0
+
 export const TOP_LEFT = { x: 0, y: 0 };
 export const TOP = { x: 1, y: 0 };
 export const TOP_RIGHT = { x: 2, y: 0 };
