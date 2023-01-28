@@ -27,11 +27,7 @@ export function getMoveMinmax(board: Board, player: Player): AIChoice {
     }
 
     const node = { board, player, depth: 1, moves: [] };
-    const start = Date.now();
     const child = chooseChildDFS(node);
-    const end = Date.now();
-    const duration = end - start;
-    console.log({ duration });
     return {
         score: child.score,
         reason: child.reason,
