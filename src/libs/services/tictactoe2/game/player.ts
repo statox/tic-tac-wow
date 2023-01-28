@@ -1,5 +1,5 @@
 import { matchMask, winMasks } from './mask';
-import type { PlayerPieces } from './types';
+import { Player, type PlayerPieces } from './types';
 
 export function countPlacedPieces(player: PlayerPieces) {
     let n = player;
@@ -34,4 +34,12 @@ export const playerAligned3 = (player: PlayerPieces) => {
         }
     }
     return false;
+};
+
+const opponent = {
+    1: Player.computer,
+    2: Player.player
+};
+export const getOpponent = (player: Player) => {
+    return opponent[player];
 };
