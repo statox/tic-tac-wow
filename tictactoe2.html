@@ -8,7 +8,7 @@
     <meta http-equiv="content-security-policy" content="">
 		<link href="./_app/immutable/assets/_layout-463a3aa1.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/_page-0cdcae01.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-a961ed6a.js">
+		<link rel="modulepreload" href="./_app/immutable/start-095284bd.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-1d785069.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-da70a5cb.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-c5a64178.js">
@@ -16,7 +16,7 @@
 		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-9a0568c9.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/tictactoe2/_page.svelte-511a375d.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/tictactoe2/_page.svelte-cc8e613d.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/P5-76a6b36f.js">
 </head>
 
@@ -51,13 +51,14 @@
     <select id="aiType"><option value="random">random
             </option><option value="hardcodedRules">hardcodedRules
             </option><option value="hardcodedRulesComplete">hardcodedRulesComplete
-            </option><option value="BFS">BFS
+            </option><option value="minmax">minmax
             </option></select>
 
     <div><span>Player automatic move</span>
         <button>Random move</button>
         <button>Hardcoded rules</button>
-        <button>Complete hardcoded rules</button></div>
+        <button>Complete hardcoded rules</button>
+        <button>minmax</button></div>
 
     <div class="grid2colsResponsive svelte-1epiyf5"><div><div style="display: block;" class="m-0"></div></div>
             <div><h4>Board info</h4>
@@ -88,14 +89,14 @@
     <div id="svelte-tabs-6" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"></div></div>
 
 
-		<script type="module" data-sveltekit-hydrate="d71yap">
-			import { start } from "./_app/immutable/start-a961ed6a.js";
+		<script type="module" data-sveltekit-hydrate="1ojyg4a">
+			import { start } from "./_app/immutable/start-095284bd.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="d71yap"]').parentNode,
-				version: "1674934317091",
+				target: document.querySelector('[data-sveltekit-hydrate="1ojyg4a"]').parentNode,
+				version: "1674948292484",
 				hydrate: {
 					node_ids: [0, 6],
 					data: [null,null],
