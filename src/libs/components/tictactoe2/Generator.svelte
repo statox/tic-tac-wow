@@ -9,11 +9,12 @@
         type GameState
     } from '../../services/tictactoe2';
     import GameInfo from './GameInfo.svelte';
+    import * as async from 'async';
 
     let games: Game[] = [];
     let computerMethodP1: ComputerMethodName = 'random';
     let computerMethodP2: ComputerMethodName = 'hardcodedRulesComplete';
-    let stateFilter: 'all' | GameState | null;
+    let stateFilter: 'none' | 'all' | GameState | null = 'none';
     let nbGames = 10;
 
     const runNewGame = () => {
@@ -26,18 +27,23 @@
     };
 
     let stats: any = { total: 0 };
+
     const runXGames = () => {
         games = [];
         stats = { total: 0 };
-        for (let i = 0; i < nbGames; i++) {
-            const game = runNewGame();
-            games = [game, ...games];
-            if (!stats[game.state]) {
-                stats[game.state] = 0;
-            }
-            stats[game.state] += 1;
-            stats.total += 1;
-        }
+
+        async.timesSeries(nbGames, (_, next) => {
+            setTimeout(() => {
+                const game = runNewGame();
+                games = [game, ...games];
+                if (!stats[game.state]) {
+                    stats[game.state] = 0;
+                }
+                stats[game.state] += 1;
+                stats.total += 1;
+                return next();
+            }, 0);
+        });
     };
 </script>
 
@@ -81,13 +87,12 @@
         <h3>Games</h3>
         <label for="stateFilter">Filter state</label>
         <select id="stateFilter" bind:value={stateFilter}>
-            {#each ['all', 'player_win', 'computer_win', 'draw', 'over'] as state}
+            {#each ['none', 'all', 'player_win', 'computer_win', 'draw', 'over'] as state}
                 <option value={state}>
                     {state}
                 </option>
             {/each}
         </select>
-        {JSON.stringify(stateFilter)}
         {#each games as game}
             {#if stateFilter === 'all' || stateFilter === game.state}
                 <GameInfo {game} />
