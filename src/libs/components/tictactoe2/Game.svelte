@@ -101,7 +101,7 @@
             />
             <BoardInfo board={game.board} />
         </div>
-        <GameInfo {game} showMoveInfo={true} />
+        <GameInfo {game} />
     {/if}
 </div>
 

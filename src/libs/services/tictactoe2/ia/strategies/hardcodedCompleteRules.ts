@@ -25,7 +25,7 @@ import {
  * 8 Win: If the player has two in a row, they can place a third to get three in a row.
  * 7 Block: If the opponent has two in a row, the player must play the third themselves to block the opponent.
  * 6 Fork: Cause a scenario where the player has two ways to win (two non-blocked lines of 2).
- * 5 NOT IMPLEMENTED Blocking an opponent's fork:
+ * 5 NOT IMPLEMENTED COMPLETELY Blocking an opponent's fork:
  *  - If there is only one possible fork for the opponent, the player should block it.
  *  - Otherwise, the player should block all forks in any way that simultaneously allows them to make two in a row.
  *  - Otherwise, the player should make a two in a row to force the opponent into defending, as long as it does not result in them producing a fork.

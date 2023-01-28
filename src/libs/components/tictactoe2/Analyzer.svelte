@@ -19,12 +19,10 @@
     let boardHistory: Board[];
     let board: Board; // Holds the 2D array representing our game
     let currentPlayer = Player.player;
-    let lastMove: BoardCoord;
 
     // Put the player value in the board if the user clicked an empty cell
     function manualRound(player: Player, pos: BoardCoord) {
         makeMoveOnBoard(board, player, xyToIndex(pos));
-        lastMove = pos;
         board = board;
 
         boardHistory.push({ ...board });
@@ -39,7 +37,6 @@
     function reset() {
         board = getNewBoard();
         boardHistory = [{ ...board }];
-        lastMove = { x: -1, y: -1 };
     }
 
     function previous() {
@@ -98,5 +95,5 @@
         <button on:click={previous} disabled={(boardHistory || []).length < 2}>Previous</button>
         <button on:click={reset}>Reset</button>
     </div>
-    <BoardInfo {board} {lastMove} />
+    <BoardInfo {board} />
 </div>

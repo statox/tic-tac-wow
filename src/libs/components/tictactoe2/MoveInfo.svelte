@@ -7,7 +7,6 @@
         moveTargetsCenter,
         moveTookCorner,
         moveTookOppositeCorner,
-        moveTookSide,
         playerWins
     } from '../../services/tictactoe2/ia/heuristic/moveEvaluation';
 

@@ -11,7 +11,7 @@ export function drawBoard(
         drawSelection?: boolean;
         selection?: BoardCoord;
         currentPlayer?: Player;
-        highlightCell: BoardCoord | undefined;
+        highlightCell?: BoardCoord | undefined;
     }
 ) {
     const cellWidth = p5.width / 3;

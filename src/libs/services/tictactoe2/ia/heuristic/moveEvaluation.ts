@@ -136,7 +136,11 @@ export function moveBlockedFork(board: Board, player: Player, move: BoardCoord) 
         computer: playerPieces
     };
 
-    return moveCreatedFork(testBoard, Player.player, move);
+    return moveCreatedFork(
+        testBoard,
+        player === Player.player ? Player.computer : Player.player,
+        move
+    );
 }
 
 export function moveBlockedOpponent(board: Board, player: Player, move: BoardCoord) {
