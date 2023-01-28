@@ -6,20 +6,20 @@ export function getPossibleMoves(board: Board, player: Player) {
     return freeSpots.map((moveAsIndex) => {
         const copy = { ...board };
         makeMoveOnBoard(copy, player, moveAsIndex);
-        return copy;
+        return { move: moveAsIndex, board: copy };
     });
 }
 
 export function getUniquePossibleMoves(board: Board, player: Player) {
-    const boards = getPossibleMoves(board, player);
+    const moves = getPossibleMoves(board, player);
 
-    return boards.reduce((dedupMoves, board) => {
-        for (const existingBoard of dedupMoves) {
-            if (boardAreEquivalent(existingBoard, board)) {
+    return moves.reduce((dedupMoves, move) => {
+        for (const existingMove of dedupMoves) {
+            if (boardAreEquivalent(existingMove.board, move.board)) {
                 return dedupMoves;
             }
         }
-        dedupMoves.push(board);
+        dedupMoves.push(move);
         return dedupMoves;
-    }, [] as Board[]);
+    }, [] as { board: Board; move: number }[]);
 }

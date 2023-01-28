@@ -10,8 +10,8 @@ describe('moves functions for ia', () => {
         const playerMoves = getPossibleMoves(board, Player.player);
 
         expect(playerMoves).toHaveLength(9);
-        expect(playerMoves.filter((board) => board.computer !== 0)).toHaveLength(0);
-        expect(playerMoves.map((board) => board.player)).toStrictEqual([
+        expect(playerMoves.filter((move) => move.board.computer !== 0)).toHaveLength(0);
+        expect(playerMoves.map((move) => move.board.player)).toStrictEqual([
             1, 2, 4, 8, 16, 32, 64, 128, 256
         ]);
 
@@ -25,8 +25,8 @@ describe('moves functions for ia', () => {
         const playerMoves = getUniquePossibleMoves(board, Player.player);
 
         expect(playerMoves).toHaveLength(3);
-        expect(playerMoves.filter((board) => board.computer !== 0)).toHaveLength(0);
-        expect(playerMoves.map((board) => board.player)).toStrictEqual([1, 2, 16]);
+        expect(playerMoves.filter((move) => move.board.computer !== 0)).toHaveLength(0);
+        expect(playerMoves.map((move) => move.board.player)).toStrictEqual([1, 2, 16]);
 
         makeMoveOnBoard(board, Player.player, CENTER_INDEX);
         const computerMoves = getUniquePossibleMoves(board, Player.player);
