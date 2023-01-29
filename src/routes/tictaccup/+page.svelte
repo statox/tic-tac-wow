@@ -1,5 +1,5 @@
 <script>
-    import TicTacCup from '../../libs/components/tictaccup/Game.svelte';
+    import TicTacCup from '../../libs/components/tictaccup/Container.svelte';
 </script>
 
 <TicTacCup />
