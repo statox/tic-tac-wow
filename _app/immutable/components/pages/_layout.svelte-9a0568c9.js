@@ -1,9 +1,0 @@
-import{S as I,i as J,s as K,C as M,k as v,q as i,a as V,l as m,m as d,r as f,h as c,c as B,n as u,b as j,D as a,E as O,F as P,G as Q,f as U,t as X}from"../../chunks/index-1d785069.js";function Y(E){let r,A,$,t,o,z,x,_,H,b,h,q,w,T,R,S,p,W,C,y;const k=E[1].default,s=M(k,E,E[0],null);return{c(){r=v("h1"),A=i("Tic Tac Wow"),$=V(),t=v("nav"),o=v("a"),z=i("Home"),x=i(` |
-    `),_=v("a"),H=i("Tic Tac Cup"),b=i(` |
-    `),h=v("a"),q=i("Tic Tac Cup Runner"),w=i(` |
-    `),T=v("a"),R=i("Tic Tac Toe"),S=i(` |
-    `),p=v("a"),W=i("Tic Tac Toe 2"),C=V(),s&&s.c(),this.h()},l(e){r=m(e,"H1",{});var l=d(r);A=f(l,"Tic Tac Wow"),l.forEach(c),$=B(e),t=m(e,"NAV",{});var n=d(t);o=m(n,"A",{href:!0,class:!0});var D=d(o);z=f(D,"Home"),D.forEach(c),x=f(n,` |
-    `),_=m(n,"A",{href:!0,class:!0});var F=d(_);H=f(F,"Tic Tac Cup"),F.forEach(c),b=f(n,` |
-    `),h=m(n,"A",{href:!0,class:!0});var G=d(h);q=f(G,"Tic Tac Cup Runner"),G.forEach(c),w=f(n,` |
-    `),T=m(n,"A",{href:!0,class:!0});var L=d(T);R=f(L,"Tic Tac Toe"),L.forEach(c),S=f(n,` |
-    `),p=m(n,"A",{href:!0,class:!0});var N=d(p);W=f(N,"Tic Tac Toe 2"),N.forEach(c),n.forEach(c),C=B(e),s&&s.l(e),this.h()},h(){u(o,"href","/"),u(o,"class","svelte-zosj2x"),u(_,"href","/tictaccup"),u(_,"class","svelte-zosj2x"),u(h,"href","/runner"),u(h,"class","svelte-zosj2x"),u(T,"href","/tictactoe"),u(T,"class","svelte-zosj2x"),u(p,"href","/tictactoe2"),u(p,"class","svelte-zosj2x")},m(e,l){j(e,r,l),a(r,A),j(e,$,l),j(e,t,l),a(t,o),a(o,z),a(t,x),a(t,_),a(_,H),a(t,b),a(t,h),a(h,q),a(t,w),a(t,T),a(T,R),a(t,S),a(t,p),a(p,W),j(e,C,l),s&&s.m(e,l),y=!0},p(e,[l]){s&&s.p&&(!y||l&1)&&O(s,k,e,e[0],y?Q(k,e[0],l,null):P(e[0]),null)},i(e){y||(U(s,e),y=!0)},o(e){X(s,e),y=!1},d(e){e&&c(r),e&&c($),e&&c(t),e&&c(C),s&&s.d(e)}}}function Z(E,r,A){let{$$slots:$={},$$scope:t}=r;return E.$$set=o=>{"$$scope"in o&&A(0,t=o.$$scope)},[t,$]}class ee extends I{constructor(r){super(),J(this,r,Z,Y,K,{})}}export{ee as default};
