@@ -3,7 +3,6 @@
 <nav>
     <a href="/">Home</a> |
     <a href="/tictaccup">Tic Tac Cup</a> |
-    <a href="/tictactoe">Tic Tac Toe</a> |
     <a href="/tictactoe2">Tic Tac Toe 2</a>
 </nav>
 

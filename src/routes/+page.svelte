@@ -8,11 +8,6 @@
 </p>
 
 <p>
-    The <a href="/tictactoe">Tic Tac Toe</a> page is unsurprisingly a classical tic tac toe game with
-    a random AI.
-</p>
-
-<p>
     The <a href="/tictactoe2">Tic Tac Toe 2</a> page is more interesting as this is a complete tic tac
     toe implementation with different set of AIs and a "Runner" section to benchmark the AIs against
     each other. a random AI.
