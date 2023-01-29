@@ -2,8 +2,8 @@
 
 <nav>
     <a href="/">Home</a> |
-    <a href="/tictaccup">Tic Tac Cup</a> |
-    <a href="/tictactoe">Tic Tac Toe 2</a>
+    <a href="/tictactoe">Tic Tac Toe</a> |
+    <a href="/gobblet">Gobblet</a> |
 </nav>
 
 <slot />

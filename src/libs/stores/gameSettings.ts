@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { Strategy } from '../services/tictaccup/ia/strategies/types';
+import type { Strategy } from '../services/gobblet/ia/strategies/types';
 
 export type GameSettings = {
     player2Auto: boolean;

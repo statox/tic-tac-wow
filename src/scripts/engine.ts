@@ -1,4 +1,4 @@
-import { compareStrats } from '../libs/services/tictaccup/engine/compareStrats';
+import { compareStrats } from '../libs/services/gobblet/engine/compareStrats';
 
 const NB_GAMES = 30;
 // compareStrats('random', 'random', NB_GAMES);
