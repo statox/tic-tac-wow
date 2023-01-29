@@ -13,6 +13,7 @@
     export let board: Board;
     export let highlightCell: BoardCoord | undefined = undefined;
     export let highlightMouse = false;
+    export let noLoop = false;
     // tslint:disable-next-line:no-empty
     export let onClick: (method: 'manual', b: BoardCoord) => void = () => {};
 
@@ -31,13 +32,23 @@
             } else {
                 drawBoard(p5, board, { highlightCell });
             }
-        };
-        p5.mousePressed = () => {
-            if (p5.mouseX < 0 || p5.mouseX > p5.width || p5.mouseY < 0 || p5.mouseY > p5.height) {
-                return;
+            if (noLoop) {
+                p5.noLoop();
             }
-            onClick('manual', screenCoordsToGridCoords(p5));
         };
+        if (!noLoop) {
+            p5.mousePressed = () => {
+                if (
+                    p5.mouseX < 0 ||
+                    p5.mouseX > p5.width ||
+                    p5.mouseY < 0 ||
+                    p5.mouseY > p5.height
+                ) {
+                    return;
+                }
+                onClick('manual', screenCoordsToGridCoords(p5));
+            };
+        }
     };
 
     onDestroy(() => {

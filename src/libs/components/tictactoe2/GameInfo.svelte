@@ -39,6 +39,6 @@
     {#if showMoveHistory}
         <GameHistory history={game.moveHistory} {showMoveHistory} />
     {:else}
-        <BoardCanvas board={game.board} dimensionPx={{ width: 100, height: 100 }} />
+        <BoardCanvas board={game.board} dimensionPx={{ width: 100, height: 100 }} noLoop={true} />
     {/if}
 </div>

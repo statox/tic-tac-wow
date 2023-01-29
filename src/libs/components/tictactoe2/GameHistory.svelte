@@ -23,6 +23,7 @@
                         board={historyItem.board}
                         dimensionPx={{ width: 100, height: 100 }}
                         highlightCell={indexToXY(historyItem.moveAsIndex)}
+                        noLoop={true}
                     />
                 </div>
 
