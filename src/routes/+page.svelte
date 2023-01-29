@@ -1,5 +1,6 @@
 <p>This is my Tic Tac Toe based games playground</p>
 
+<h2>Tic Tac Toe</h2>
 <p>
     The <a href="/tictactoe">Tic Tac Toe</a> page is a implementation of the classical Tic Tac Toe game.
     The "Game" section allows a player to play against different AI opponent. Buttons also allow the
@@ -41,6 +42,7 @@
     player's move
 </p>
 
+<h2>Gobblet</h2>
 <p>
     <a href="/gobblet">Gobblet</a> is a tic tac toe game with pieces of different dimensions,
     inspired by <a href="https://en.wikipedia.org/wiki/Gobblet" target="noopener">Gobblet</a> played
@@ -98,9 +100,15 @@
     these games.
 </p>
 
-<br />
+<h2>Misere</h2>
 
-<p>Some interesting readings:</p>
+<p>
+    The <a href="/misere">Misere</a> page a variant of Tic Tac Toe where the player wins if the opponent
+    aligns 3 pieces. The "Game" section allows a player to play against different AI opponent. Only the
+    random and minmax are implemented because they reused the code of the regular Tic Tac Toe AI.
+</p>
+
+<h2>Some interesting readings:</h2>
 <ul>
     <li>
         <a href="https://en.wikipedia.org/wiki/Tic-tac-toe_variants" target="noopener">

@@ -1,6 +1,5 @@
 <script lang="ts">
     import {
-        getNewGame,
         makeAutomaticMove,
         makeManualMove,
         Player,
@@ -8,10 +7,11 @@
         type BoardCoord,
         type Game
     } from '../../services/tictactoe';
+    import { getNewGame } from '../../services/misere';
     import BoardInfo from '../tictactoe/BoardInfo.svelte';
     import BoardCanvas from '../tictactoe/BoardCanvas.svelte';
     import GameInfo from '../tictactoe/GameInfo.svelte';
-    import { computerMethods, type ComputerMethodName } from '../../services/tictactoe/ia';
+    import type { ComputerMethodName } from 'src/libs/services/tictactoe/ia';
 
     let game: Game;
     let currentPlayer: Player;
@@ -78,7 +78,7 @@
 
     <label for="aiType">AI type</label>
     <select id="aiType" bind:value={computerMethod}>
-        {#each Object.keys(computerMethods) as method}
+        {#each ['random', 'minmax'] as method}
             <option value={method}>
                 {method}
             </option>
@@ -89,12 +89,6 @@
         <span>Player automatic move</span>
         <ul>
             <li><button on:click={() => onClick('random')}>Random move</button></li>
-            <li><button on:click={() => onClick('hardcodedRules')}>Hardcoded rules</button></li>
-            <li>
-                <button on:click={() => onClick('hardcodedRulesComplete')}>
-                    Complete hardcoded rules
-                </button>
-            </li>
             <li><button on:click={() => onClick('minmax')}>minmax</button></li>
         </ul>
     </div>

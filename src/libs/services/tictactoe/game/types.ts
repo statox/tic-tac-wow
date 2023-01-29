@@ -36,7 +36,9 @@ export type GameState =
     | 'invalid_board'
     | 'over';
 
+export type GameType = 'tictactoe' | 'misere';
 export type Game = {
+    type: GameType;
     board: Board;
     currentPlayer: Player;
     state: GameState;
