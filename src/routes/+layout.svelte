@@ -4,6 +4,7 @@
     <a href="/">Home</a> |
     <a href="/tictactoe">Tic Tac Toe</a> |
     <a href="/gobblet">Gobblet</a> |
+    <a href="/misere">Misere</a> |
 </nav>
 
 <slot />
