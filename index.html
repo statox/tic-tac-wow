@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     <link rel="stylesheet" href="https://newcss.net/theme/night.css">
     <meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./_app/immutable/start-2342d8e7.js">
+		<link rel="modulepreload" href="./_app/immutable/start-11820b68.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-e565ab33.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-5766cb16.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-bcec075a.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-887fed89.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-b1f72c58.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-133c6c1e.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-922dbb9e.js">
 </head>
 
 <body data-sveltekit-preload-data="hover">
@@ -28,24 +28,44 @@
 
 <nav><a href="/">Home</a> |
     <a href="/tictaccup">Tic Tac Cup</a> |
-    <a href="/tictactoe">Tic Tac Toe</a> |
-    <a href="/tictactoe2">Tic Tac Toe 2</a></nav>
+    <a href="/tictactoe">Tic Tac Toe 2</a></nav>
 
 <p>This is my Tic Tac Toe based games playground</p>
+
+<p>The <a href="/tictactoe">Tic Tac Toe</a> page is a implementation of the classical Tic Tac Toe game.
+    The &quot;Game&quot; section allows a player to play against different AI opponent:
+</p>
+<ul><li><b>random</b> is a dumb AI where the next move is chosen randomly amongst the valid moves
+    </li>
+    <li><b>hardcodedrules</b> is a strategy based on
+        <a href="https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy" target="noopener">Newell and Simon&#39;s 1972 tic-tac-toe program
+        </a> as described on Wikipedia. This version does not look for move creating forks or blocking
+        the opponent&#39;s forks making it easy to beat.
+    </li>
+    <li><b>hardcodedrulesComplete</b> is based on the previous strategy but it also checks for forks
+        and try to block opponent&#39;s fork. However my implementation of this last check is not complete
+        and thus the AI is not perfect, it can lose some games.
+    </li>
+    <li><b>minmax</b> is an implementation of
+        <a href="https://en.wikipedia.org/wiki/Minimax">the minmax algorith</a> is according to my tests
+        it is a perfect opponent which never loses.
+    </li></ul>
+
+<p>The &quot;Generator&quot; section can be used to make the AIs play several games against each other. The
+    interesting use case is to compare the performances of the different AIs against a random
+    player. This is by this means that I empirically determined that my hard coded rules strategies
+    are not perfect unlike my minmax strategy.
+</p>
+
+<p>The &quot;Analyzer&quot; section is used for debugging and writting tests. It allows the users to create
+    any tic tac toe board and visualize some information like the bynary representation of each
+    player&#39;s move
+</p>
 
 <p><a href="/tictaccup">Tic Tac Cup</a> is a tic tac toe game with pieces of different dimensions,
     inspired by <a href="https://en.wikipedia.org/wiki/Gobblet" target="noopener">Gobblet</a>
     In the &quot;Game&quot; section you can play against different level of AIs. The &quot;Runner&quot; section allows to
     make the AIs play games against each other and get statistics of these games.
-</p>
-
-<p>The <a href="/tictactoe">Tic Tac Toe</a> page is unsurprisingly a classical tic tac toe game with
-    a random AI.
-</p>
-
-<p>The <a href="/tictactoe2">Tic Tac Toe 2</a> page is more interesting as this is a complete tic tac
-    toe implementation with different set of AIs and a &quot;Runner&quot; section to benchmark the AIs against
-    each other. a random AI.
 </p>
 
 <br>
@@ -61,14 +81,14 @@
         </a></li></ul>
 
 
-		<script type="module" data-sveltekit-hydrate="hd91ad">
-			import { start } from "./_app/immutable/start-2342d8e7.js";
+		<script type="module" data-sveltekit-hydrate="1dkv9v1">
+			import { start } from "./_app/immutable/start-11820b68.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="hd91ad"]').parentNode,
-				version: "1674955480740",
+				target: document.querySelector('[data-sveltekit-hydrate="1dkv9v1"]').parentNode,
+				version: "1675017519431",
 				hydrate: {
 					node_ids: [0, 2],
 					data: [null,null],
