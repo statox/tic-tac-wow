@@ -7,7 +7,7 @@
 
 <Tabs>
     <TabList>
-        <Tab>Game</Tab>
+        <Tab>Tic Tac Toe</Tab>
         <Tab>Generator</Tab>
         <Tab>Analyzer</Tab>
     </TabList>

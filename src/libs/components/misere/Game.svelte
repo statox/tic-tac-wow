@@ -70,27 +70,29 @@
     };
 </script>
 
-<h2>Game</h2>
 <div>
     {#if secondsBeforeReset > 0}
         <p>Restarting in {secondsBeforeReset} seconds</p>
     {/if}
 
-    <label for="aiType">AI type</label>
-    <select id="aiType" bind:value={computerMethod}>
-        {#each ['random', 'minmax'] as method}
-            <option value={method}>
-                {method}
-            </option>
-        {/each}
-    </select>
-
-    <div>
-        <span>Player automatic move</span>
-        <ul>
-            <li><button on:click={() => onClick('random')}>Random move</button></li>
-            <li><button on:click={() => onClick('minmax')}>minmax</button></li>
-        </ul>
+    <div class="grid2colsResponsive">
+        <div>
+            <span>Player automatic move</span>
+            <ul>
+                <li><button on:click={() => onClick('random')}>Random move</button></li>
+                <li><button on:click={() => onClick('minmax')}>minmax</button></li>
+            </ul>
+        </div>
+        <div>
+            <label for="aiType">AI type</label>
+            <select id="aiType" bind:value={computerMethod}>
+                {#each ['random', 'minmax'] as method}
+                    <option value={method}>
+                        {method}
+                    </option>
+                {/each}
+            </select>
+        </div>
     </div>
 
     {#if game.board}

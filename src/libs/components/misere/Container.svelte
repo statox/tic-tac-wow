@@ -5,7 +5,7 @@
 
 <Tabs>
     <TabList>
-        <Tab>Game</Tab>
+        <Tab>Misere</Tab>
     </TabList>
 
     <TabPanel>

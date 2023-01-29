@@ -85,7 +85,6 @@
     };
 </script>
 
-<h2>Tic Tac Cup</h2>
 <GameSettings />
 
 <Modal><GameHistoryModal {game} /></Modal>

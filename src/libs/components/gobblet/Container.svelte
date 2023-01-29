@@ -6,7 +6,7 @@
 
 <Tabs>
     <TabList>
-        <Tab>Game</Tab>
+        <Tab>Gobblet</Tab>
         <Tab>Runner</Tab>
     </TabList>
 
