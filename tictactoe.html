@@ -7,17 +7,16 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
-    <link rel="stylesheet" href="https://newcss.net/theme/night.css">
     <meta http-equiv="content-security-policy" content="">
 		<link href="./_app/immutable/assets/_page-4e6019c5.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/TabPanel-6417fb07.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/GameInfo-8a18d81c.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-867789ac.js">
+		<link rel="modulepreload" href="./_app/immutable/start-4baccc1d.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-e565ab33.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-5766cb16.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-bcec075a.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-f04a8e9e.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-3bfb7a42.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
 		<link rel="modulepreload" href="./_app/immutable/components/pages/tictactoe/_page.svelte-a1b850d4.js">
@@ -30,13 +29,13 @@
     <div style="display: contents">
 
 
-<h1>Tic Tac Wow</h1>
+<header><h1>Tic Tac Wow</h1>
 
-<nav><a href="/">Home</a> |
-    <a href="/tictactoe">Tic Tac Toe</a> |
-    <a href="/gobblet">Gobblet</a> |
-    <a href="/misere">Misere</a> |
-</nav>
+    <nav><a href="/">Home</a> |
+        <a href="/tictactoe">Tic Tac Toe</a> |
+        <a href="/gobblet">Gobblet</a> |
+        <a href="/misere">Misere</a> |
+    </nav></header>
 
 <div class="svelte-tabs"><ul role="tablist" class="svelte-tabs__tab-list svelte-12yby2a"><li role="tab" id="svelte-tabs-7" aria-selected="true" tabindex="0" class="svelte-tabs__tab svelte-1fbofsd svelte-tabs__selected">Tic Tac Toe</li>
         <li role="tab" id="svelte-tabs-8" aria-selected="false" tabindex="-1" class="svelte-tabs__tab svelte-1fbofsd">Generator</li>
@@ -86,14 +85,14 @@
     <div id="svelte-tabs-12" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"></div></div>
 
 
-		<script type="module" data-sveltekit-hydrate="iumzf">
-			import { start } from "./_app/immutable/start-867789ac.js";
+		<script type="module" data-sveltekit-hydrate="14fvkvo">
+			import { start } from "./_app/immutable/start-4baccc1d.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="iumzf"]').parentNode,
-				version: "1675027529322",
+				target: document.querySelector('[data-sveltekit-hydrate="14fvkvo"]').parentNode,
+				version: "1675028145719",
 				hydrate: {
 					node_ids: [0, 5],
 					data: [null,null],
@@ -108,6 +107,26 @@
 <style>
     body {
         max-width: 900px;
+    }
+
+    :root {
+        --nc-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        --nc-font-mono: Consolas, monaco, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace;
+        --is-light-theme: 1;
+
+
+        /* Dark theme */
+        --nc-tx-1: #FFFFFF;
+        --nc-tx-2: #B7B7B7;
+        --nc-tx-3: #8a8d87;
+        --nc-bg-1: #1E272C;
+        --nc-bg-2: #161d21;
+        --nc-bg-3: #263238;
+        --nc-lk-1: #5E92FF;
+        --nc-lk-2: #99b2e8;
+        --nc-lk-tx: #2E3C43;
+        --nc-ac-1: #C3E88D;
+        --nc-ac-tx: #263238;
     }
 </style>
 

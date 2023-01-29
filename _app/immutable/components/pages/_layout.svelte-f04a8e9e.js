@@ -1,7 +1,0 @@
-import{S as z,i as B,s as I,C as J,k as v,q as f,a as V,l as T,m as b,r as c,h as o,c as j,n as A,b as y,D as s,E as K,F as O,G as P,f as Q,t as R}from"../../chunks/index-e565ab33.js";function U(_){let r,$,u,t,i,G,H,h,q,w,m,C,M,p,S,W,E,d;const k=_[1].default,a=J(k,_,_[0],null);return{c(){r=v("h1"),$=f("Tic Tac Wow"),u=V(),t=v("nav"),i=v("a"),G=f("Home"),H=f(` |
-    `),h=v("a"),q=f("Tic Tac Toe"),w=f(` |
-    `),m=v("a"),C=f("Gobblet"),M=f(` |
-    `),p=v("a"),S=f("Misere"),W=f(" |"),E=V(),a&&a.c(),this.h()},l(e){r=T(e,"H1",{});var l=b(r);$=c(l,"Tic Tac Wow"),l.forEach(o),u=j(e),t=T(e,"NAV",{});var n=b(t);i=T(n,"A",{href:!0});var D=b(i);G=c(D,"Home"),D.forEach(o),H=c(n,` |
-    `),h=T(n,"A",{href:!0});var F=b(h);q=c(F,"Tic Tac Toe"),F.forEach(o),w=c(n,` |
-    `),m=T(n,"A",{href:!0});var L=b(m);C=c(L,"Gobblet"),L.forEach(o),M=c(n,` |
-    `),p=T(n,"A",{href:!0});var N=b(p);S=c(N,"Misere"),N.forEach(o),W=c(n," |"),n.forEach(o),E=j(e),a&&a.l(e),this.h()},h(){A(i,"href","/"),A(h,"href","/tictactoe"),A(m,"href","/gobblet"),A(p,"href","/misere")},m(e,l){y(e,r,l),s(r,$),y(e,u,l),y(e,t,l),s(t,i),s(i,G),s(t,H),s(t,h),s(h,q),s(t,w),s(t,m),s(m,C),s(t,M),s(t,p),s(p,S),s(t,W),y(e,E,l),a&&a.m(e,l),d=!0},p(e,[l]){a&&a.p&&(!d||l&1)&&K(a,k,e,e[0],d?P(k,e[0],l,null):O(e[0]),null)},i(e){d||(Q(a,e),d=!0)},o(e){R(a,e),d=!1},d(e){e&&o(r),e&&o(u),e&&o(t),e&&o(E),a&&a.d(e)}}}function X(_,r,$){let{$$slots:u={},$$scope:t}=r;return _.$$set=i=>{"$$scope"in i&&$(0,t=i.$$scope)},[t,u]}class Z extends z{constructor(r){super(),B(this,r,X,U,I,{})}}export{Z as default};
