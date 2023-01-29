@@ -49,12 +49,13 @@
 
 <div>
     <h2>Generator</h2>
-    <button on:click={runXGames}>Create games</button>
-    <input type="number" bind:value={nbGames} />
 
-    <div>
-        <label for="aiType">AI type</label>
-        <select id="aiType" bind:value={computerMethodP1}>
+    <div class="grid2cols">
+        <label for="nbGames"> Games to generate</label>
+        <input id="nbGames" type="number" bind:value={nbGames} />
+
+        <label for="playerAiType">Player AI type</label>
+        <select id="playerAiType" bind:value={computerMethodP1}>
             {#each Object.keys(computerMethods) as method}
                 <option value={method}>
                     {method}
@@ -62,14 +63,16 @@
             {/each}
         </select>
 
-        <label for="aiType">AI type</label>
-        <select id="aiType" bind:value={computerMethodP2}>
+        <label for="computerAiType">Computer AI type</label>
+        <select id="computerAiType" bind:value={computerMethodP2}>
             {#each Object.keys(computerMethods) as method}
                 <option value={method}>
                     {method}
                 </option>
             {/each}
         </select>
+
+        <button on:click={runXGames}>Create games</button>
     </div>
 
     <div>
@@ -78,7 +81,11 @@
             {#each Object.keys(stats).sort() as ending}
                 <span>{ending}</span>
                 <span>{stats[ending]}</span>
-                <span>{(100 * stats[ending]) / stats.total} %</span>
+                {#if ending !== 'total'}
+                    <span>{(100 * stats[ending]) / stats.total} %</span>
+                {:else}
+                    <span>-</span>
+                {/if}
             {/each}
         </div>
     </div>
@@ -102,6 +109,11 @@
 </div>
 
 <style>
+    .grid2cols {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-auto-flow: row;
+    }
     .grid3cols {
         display: grid;
         grid-template-columns: repeat(3, auto);
