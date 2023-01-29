@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://newcss.net/theme/night.css">
     <meta http-equiv="content-security-policy" content="">
 		<link href="./_app/immutable/assets/_page-6f854b62.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-db84150a.js">
+		<link rel="modulepreload" href="./_app/immutable/start-26a68a72.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-1d785069.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-da70a5cb.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-c5a64178.js">
@@ -18,7 +18,7 @@
 		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-dbfe69f1.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/tictactoe2/_page.svelte-fbda4b02.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/tictactoe2/_page.svelte-4734bcbb.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/P5-76a6b36f.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/async-8fd893d5.js">
 </head>
@@ -50,10 +50,11 @@
             </option></select>
 
     <div><span>Player automatic move</span>
-        <button>Random move</button>
-        <button>Hardcoded rules</button>
-        <button>Complete hardcoded rules</button>
-        <button>minmax</button></div>
+        <ul><li><button>Random move</button></li>
+            <li><button>Hardcoded rules</button></li>
+            <li><button>Complete hardcoded rules
+                </button></li>
+            <li><button>minmax</button></li></ul></div>
 
     <div class="grid2colsResponsive svelte-1epiyf5"><div><div style="display: block;" class="m-0"></div></div>
             <div><h4>Board info</h4>
@@ -84,14 +85,14 @@
     <div id="svelte-tabs-6" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"></div></div>
 
 
-		<script type="module" data-sveltekit-hydrate="1blpiu7">
-			import { start } from "./_app/immutable/start-db84150a.js";
+		<script type="module" data-sveltekit-hydrate="zef0be">
+			import { start } from "./_app/immutable/start-26a68a72.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="1blpiu7"]').parentNode,
-				version: "1674954079667",
+				target: document.querySelector('[data-sveltekit-hydrate="zef0be"]').parentNode,
+				version: "1674954670896",
 				hydrate: {
 					node_ids: [0, 6],
 					data: [null,null],
@@ -101,5 +102,12 @@
 		</script>
 	</div>
 </body>
+
+<!-- Override newcss -->
+<style>
+    body {
+        max-width: 900px;
+    }
+</style>
 
 </html>
