@@ -9,15 +9,3 @@
 </nav>
 
 <slot />
-
-<style>
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
-    a:visited {
-        text-decoration: none;
-        color: white;
-    }
-</style>

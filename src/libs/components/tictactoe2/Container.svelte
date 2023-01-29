@@ -30,7 +30,7 @@
         color: white;
     }
     :global(.svelte-tabs li.svelte-tabs__selected) {
-        background-color: #92a4fc;
+        background-color: var(--nc-lk-1);
         border-radius: 3%;
     }
 </style>
