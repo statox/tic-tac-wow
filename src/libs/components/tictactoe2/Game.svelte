@@ -87,10 +87,16 @@
 
     <div>
         <span>Player automatic move</span>
-        <button on:click={() => onClick('random')}>Random move</button>
-        <button on:click={() => onClick('hardcodedRules')}>Hardcoded rules</button>
-        <button on:click={() => onClick('hardcodedRulesComplete')}>Complete hardcoded rules</button>
-        <button on:click={() => onClick('minmax')}>minmax</button>
+        <ul>
+            <li><button on:click={() => onClick('random')}>Random move</button></li>
+            <li><button on:click={() => onClick('hardcodedRules')}>Hardcoded rules</button></li>
+            <li>
+                <button on:click={() => onClick('hardcodedRulesComplete')}>
+                    Complete hardcoded rules
+                </button>
+            </li>
+            <li><button on:click={() => onClick('minmax')}>minmax</button></li>
+        </ul>
     </div>
 
     {#if game.board}
