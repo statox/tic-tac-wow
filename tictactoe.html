@@ -12,7 +12,7 @@
 		<link href="./_app/immutable/assets/_page-4e6019c5.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/TabPanel-6417fb07.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/GameInfo-8a18d81c.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-351b277f.js">
+		<link rel="modulepreload" href="./_app/immutable/start-867789ac.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-e565ab33.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-5766cb16.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-bcec075a.js">
@@ -20,7 +20,7 @@
 		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-f04a8e9e.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/tictactoe/_page.svelte-82314586.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/tictactoe/_page.svelte-a1b850d4.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/TabPanel-015edfb5.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/GameInfo-10f3aa38.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/async-8fd893d5.js">
@@ -38,26 +38,24 @@
     <a href="/misere">Misere</a> |
 </nav>
 
-<div class="svelte-tabs"><ul role="tablist" class="svelte-tabs__tab-list svelte-12yby2a"><li role="tab" id="svelte-tabs-7" aria-selected="true" tabindex="0" class="svelte-tabs__tab svelte-1fbofsd svelte-tabs__selected">Game</li>
+<div class="svelte-tabs"><ul role="tablist" class="svelte-tabs__tab-list svelte-12yby2a"><li role="tab" id="svelte-tabs-7" aria-selected="true" tabindex="0" class="svelte-tabs__tab svelte-1fbofsd svelte-tabs__selected">Tic Tac Toe</li>
         <li role="tab" id="svelte-tabs-8" aria-selected="false" tabindex="-1" class="svelte-tabs__tab svelte-1fbofsd">Generator</li>
         <li role="tab" id="svelte-tabs-9" aria-selected="false" tabindex="-1" class="svelte-tabs__tab svelte-1fbofsd">Analyzer</li></ul>
 
-    <div id="svelte-tabs-10" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"><h2>Game</h2>
-<div>
+    <div id="svelte-tabs-10" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"><div>
 
-    <label for="aiType">AI type</label>
-    <select id="aiType"><option value="random">random
-            </option><option value="hardcodedRules">hardcodedRules
-            </option><option value="hardcodedRulesComplete">hardcodedRulesComplete
-            </option><option value="minmax">minmax
-            </option></select>
-
-    <div><span>Player automatic move</span>
-        <ul><li><button>Random move</button></li>
-            <li><button>Hardcoded rules</button></li>
-            <li><button>Complete hardcoded rules
-                </button></li>
-            <li><button>minmax</button></li></ul></div>
+    <div class="grid2colsResponsive svelte-1epiyf5"><div><span>Player automatic move</span>
+            <ul><li><button>Random move</button></li>
+                <li><button>Hardcoded rules</button></li>
+                <li><button>Complete hardcoded rules
+                    </button></li>
+                <li><button>minmax</button></li></ul></div>
+        <div><label for="aiType">AI type</label>
+            <select id="aiType"><option value="random">random
+                    </option><option value="hardcodedRules">hardcodedRules
+                    </option><option value="hardcodedRulesComplete">hardcodedRulesComplete
+                    </option><option value="minmax">minmax
+                    </option></select></div></div>
 
     <div class="grid2colsResponsive svelte-1epiyf5"><div><div style="display: block;" class="m-0"></div></div>
             <div><h4>Board info</h4>
@@ -88,14 +86,14 @@
     <div id="svelte-tabs-12" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"></div></div>
 
 
-		<script type="module" data-sveltekit-hydrate="15ejiv7">
-			import { start } from "./_app/immutable/start-351b277f.js";
+		<script type="module" data-sveltekit-hydrate="iumzf">
+			import { start } from "./_app/immutable/start-867789ac.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="15ejiv7"]').parentNode,
-				version: "1675026625353",
+				target: document.querySelector('[data-sveltekit-hydrate="iumzf"]').parentNode,
+				version: "1675027529322",
 				hydrate: {
 					node_ids: [0, 5],
 					data: [null,null],
