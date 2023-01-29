@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     <link rel="stylesheet" href="https://newcss.net/theme/night.css">
     <meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./_app/immutable/start-26a68a72.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-1d785069.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-da70a5cb.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-c5a64178.js">
+		<link rel="modulepreload" href="./_app/immutable/start-2342d8e7.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-e565ab33.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-5766cb16.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-bcec075a.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-dbfe69f1.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-887fed89.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-5e914887.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-133c6c1e.js">
 </head>
 
 <body data-sveltekit-preload-data="hover">
@@ -28,39 +28,47 @@
 
 <nav><a href="/">Home</a> |
     <a href="/tictaccup">Tic Tac Cup</a> |
-    <a href="/runner">Tic Tac Cup Runner</a> |
     <a href="/tictactoe">Tic Tac Toe</a> |
     <a href="/tictactoe2">Tic Tac Toe 2</a></nav>
 
 <p>This is my Tic Tac Toe based games playground</p>
 
-<p>Try <a href="/tictaccup">Tic Tac Cup</a> a tic tac toe game with pieces of different dimensions.
-    You can play against different level of AIs.
+<p><a href="/tictaccup">Tic Tac Cup</a> is a tic tac toe game with pieces of different dimensions,
+    inspired by <a href="https://en.wikipedia.org/wiki/Gobblet" target="noopener">Gobblet</a>
+    In the &quot;Game&quot; section you can play against different level of AIs. The &quot;Runner&quot; section allows to
+    make the AIs play games against each other and get statistics of these games.
 </p>
 
-<p>On <a href="/runner">the runner page</a> you can simulate several games of tic tac cup with different
-    AIs playing against each other
+<p>The <a href="/tictactoe">Tic Tac Toe</a> page is unsurprisingly a classical tic tac toe game with
+    a random AI.
 </p>
 
-<p>The <a href="/tictactoe">Tic Tac Toe</a> page is unsurprisingly a classical tic tac toe game.
+<p>The <a href="/tictactoe2">Tic Tac Toe 2</a> page is more interesting as this is a complete tic tac
+    toe implementation with different set of AIs and a &quot;Runner&quot; section to benchmark the AIs against
+    each other. a random AI.
 </p>
 
 <br>
 
-<p>I&#39;m getting inspiration from
-    <a href="https://en.wikipedia.org/wiki/Tic-tac-toe_variants" target="noopener">this wiki page
-    </a>.
-</p>
+<p>Some interesting readings:</p>
+<ul><li><a href="https://en.wikipedia.org/wiki/Tic-tac-toe_variants" target="noopener">Tic Tac Toe variants on Wikipedia
+        </a></li>
+    <li><a href="https://docs.racket-lang.org/games/gobblet.html" target="noopener">Gobblet rules
+        </a></li>
+    <li><a href="https://rclayton.silvrback.com/winner-in-tic-tac-toe" target="noopener">Bitwise operations for tic tac toe
+        </a></li>
+    <li><a href="https://www.egr.msu.edu/~kdeb/papers/k2007002.pdf" target="noopener">Evolution of No-loss Strategies for the Game of Tic-Tac-Toe
+        </a></li></ul>
 
 
-		<script type="module" data-sveltekit-hydrate="nf88pm">
-			import { start } from "./_app/immutable/start-26a68a72.js";
+		<script type="module" data-sveltekit-hydrate="hd91ad">
+			import { start } from "./_app/immutable/start-2342d8e7.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="nf88pm"]').parentNode,
-				version: "1674954670896",
+				target: document.querySelector('[data-sveltekit-hydrate="hd91ad"]').parentNode,
+				version: "1674955480740",
 				hydrate: {
 					node_ids: [0, 2],
 					data: [null,null],
