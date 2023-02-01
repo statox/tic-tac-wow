@@ -1,4 +1,5 @@
-import { getNewGame, type Piece, type PieceStack } from '../../libs/services/gobblet';
+import { getNewGame } from '../service';
+import type { Piece, PieceStack } from '../types';
 
 export const convertFixtureGridToGame = (grid: PieceStack[][]) => {
     const game = getNewGame();
