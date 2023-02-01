@@ -13,7 +13,7 @@
 
     let games: Game[] = [];
     let computerMethodP1: ComputerMethodName = 'random';
-    let computerMethodP2: ComputerMethodName = 'hardcodedRulesComplete';
+    let computerMethodP2: ComputerMethodName = 'random';
     let stateFilter: 'none' | 'all' | GameState | null = 'none';
     let nbGames = 10;
 

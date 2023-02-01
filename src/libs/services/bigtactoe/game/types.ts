@@ -10,13 +10,7 @@
 import type { AIChoice, ComputerMethodName } from '../ia';
 
 // https://rclayton.silvrback.com/winner-in-tic-tac-toe
-export interface Board {
-    player: PlayerPieces;
-    computer: PlayerPieces;
-    toString: () => string;
-}
-
-export type PlayerPieces = number;
+export type Board = number[]; // An array of length 16: 0=emtpy, 1,2=player
 
 export type BoardCoord = {
     x: number;
@@ -37,6 +31,7 @@ export type GameState =
     | 'over';
 
 export type GameType = 'tictactoe' | 'misere';
+
 export type Game = {
     type: GameType;
     board: Board;

@@ -1,24 +1,38 @@
 import { indexToXY, xyToIndex } from 'src/libs/services/bigtactoe';
 import { describe, expect, it } from 'vitest';
 import {
-    BOTTOM,
-    BOTTOM_INDEX,
-    BOTTOM_LEFT,
-    BOTTOM_LEFT_INDEX,
-    BOTTOM_RIGHT,
-    BOTTOM_RIGHT_INDEX,
-    CENTER,
-    CENTER_INDEX,
-    LEFT,
-    LEFT_INDEX,
-    RIGHT,
-    RIGHT_INDEX,
-    TOP,
-    TOP_INDEX,
-    TOP_LEFT,
-    TOP_LEFT_INDEX,
-    TOP_RIGHT,
-    TOP_RIGHT_INDEX
+    R1_C1,
+    R1_C2,
+    R1_C3,
+    R1_C4,
+    R2_C1,
+    R2_C2,
+    R2_C3,
+    R2_C4,
+    R3_C1,
+    R3_C2,
+    R3_C3,
+    R3_C4,
+    R4_C1,
+    R4_C2,
+    R4_C3,
+    R4_C4,
+    R1_C1_INDEX,
+    R1_C2_INDEX,
+    R1_C3_INDEX,
+    R1_C4_INDEX,
+    R2_C1_INDEX,
+    R2_C2_INDEX,
+    R2_C3_INDEX,
+    R2_C4_INDEX,
+    R3_C1_INDEX,
+    R3_C2_INDEX,
+    R3_C3_INDEX,
+    R3_C4_INDEX,
+    R4_C1_INDEX,
+    R4_C2_INDEX,
+    R4_C3_INDEX,
+    R4_C4_INDEX
 } from 'src/libs/services/bigtactoe';
 
 // 0,0     1,0     2,0
@@ -32,17 +46,22 @@ import {
 
 describe('xyToIndex', () => {
     it('should work', () => {
-        expect(xyToIndex(TOP_LEFT)).toBe(TOP_LEFT_INDEX);
-        expect(xyToIndex(TOP)).toBe(TOP_INDEX);
-        expect(xyToIndex(TOP_RIGHT)).toBe(TOP_RIGHT_INDEX);
-
-        expect(xyToIndex(LEFT)).toBe(LEFT_INDEX);
-        expect(xyToIndex(CENTER)).toBe(CENTER_INDEX);
-        expect(xyToIndex(RIGHT)).toBe(RIGHT_INDEX);
-
-        expect(xyToIndex(BOTTOM_LEFT)).toBe(BOTTOM_LEFT_INDEX);
-        expect(xyToIndex(BOTTOM)).toBe(BOTTOM_INDEX);
-        expect(xyToIndex(BOTTOM_RIGHT)).toBe(BOTTOM_RIGHT_INDEX);
+        expect(xyToIndex(R1_C1)).toBe(R1_C1_INDEX);
+        expect(xyToIndex(R1_C2)).toBe(R1_C2_INDEX);
+        expect(xyToIndex(R1_C3)).toBe(R1_C3_INDEX);
+        expect(xyToIndex(R1_C4)).toBe(R1_C4_INDEX);
+        expect(xyToIndex(R2_C1)).toBe(R2_C1_INDEX);
+        expect(xyToIndex(R2_C2)).toBe(R2_C2_INDEX);
+        expect(xyToIndex(R2_C3)).toBe(R2_C3_INDEX);
+        expect(xyToIndex(R2_C4)).toBe(R2_C4_INDEX);
+        expect(xyToIndex(R3_C1)).toBe(R3_C1_INDEX);
+        expect(xyToIndex(R3_C2)).toBe(R3_C2_INDEX);
+        expect(xyToIndex(R3_C3)).toBe(R3_C3_INDEX);
+        expect(xyToIndex(R3_C4)).toBe(R3_C4_INDEX);
+        expect(xyToIndex(R4_C1)).toBe(R4_C1_INDEX);
+        expect(xyToIndex(R4_C2)).toBe(R4_C2_INDEX);
+        expect(xyToIndex(R4_C3)).toBe(R4_C3_INDEX);
+        expect(xyToIndex(R4_C4)).toBe(R4_C4_INDEX);
 
         expect(() => xyToIndex({ x: -1, y: 2 })).toThrow();
         expect(() => xyToIndex({ x: 1, y: -2 })).toThrow();
@@ -53,19 +72,24 @@ describe('xyToIndex', () => {
 
 describe('indexToXY', () => {
     it('should work', () => {
-        expect(indexToXY(TOP_LEFT_INDEX)).toStrictEqual(TOP_LEFT);
-        expect(indexToXY(TOP_INDEX)).toStrictEqual(TOP);
-        expect(indexToXY(TOP_RIGHT_INDEX)).toStrictEqual(TOP_RIGHT);
-
-        expect(indexToXY(LEFT_INDEX)).toStrictEqual(LEFT);
-        expect(indexToXY(CENTER_INDEX)).toStrictEqual(CENTER);
-        expect(indexToXY(RIGHT_INDEX)).toStrictEqual(RIGHT);
-
-        expect(indexToXY(BOTTOM_LEFT_INDEX)).toStrictEqual(BOTTOM_LEFT);
-        expect(indexToXY(BOTTOM_INDEX)).toStrictEqual(BOTTOM);
-        expect(indexToXY(BOTTOM_RIGHT_INDEX)).toStrictEqual(BOTTOM_RIGHT);
+        expect(indexToXY(R1_C1_INDEX)).toStrictEqual(R1_C1);
+        expect(indexToXY(R1_C2_INDEX)).toStrictEqual(R1_C2);
+        expect(indexToXY(R1_C3_INDEX)).toStrictEqual(R1_C3);
+        expect(indexToXY(R1_C4_INDEX)).toStrictEqual(R1_C4);
+        expect(indexToXY(R2_C1_INDEX)).toStrictEqual(R2_C1);
+        expect(indexToXY(R2_C2_INDEX)).toStrictEqual(R2_C2);
+        expect(indexToXY(R2_C3_INDEX)).toStrictEqual(R2_C3);
+        expect(indexToXY(R2_C4_INDEX)).toStrictEqual(R2_C4);
+        expect(indexToXY(R3_C1_INDEX)).toStrictEqual(R3_C1);
+        expect(indexToXY(R3_C2_INDEX)).toStrictEqual(R3_C2);
+        expect(indexToXY(R3_C3_INDEX)).toStrictEqual(R3_C3);
+        expect(indexToXY(R3_C4_INDEX)).toStrictEqual(R3_C4);
+        expect(indexToXY(R4_C1_INDEX)).toStrictEqual(R4_C1);
+        expect(indexToXY(R4_C2_INDEX)).toStrictEqual(R4_C2);
+        expect(indexToXY(R4_C3_INDEX)).toStrictEqual(R4_C3);
+        expect(indexToXY(R4_C4_INDEX)).toStrictEqual(R4_C4);
 
         expect(() => indexToXY(-1)).toThrow();
-        expect(() => indexToXY(9)).toThrow();
+        expect(() => indexToXY(16)).toThrow();
     });
 });

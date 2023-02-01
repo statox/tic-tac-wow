@@ -3,47 +3,36 @@ import { describe, expect, it } from 'vitest';
 
 const cases = {
     'Full 1': {
-        player: 0b111000000,
-        comput: 0b000111111,
-        result: false
-    },
-    'Full 2': {
-        player: 0b101010101,
-        comput: 0b010101010,
+        board: '1212121212121212',
         result: false
     },
     'Full with invalid plays': {
-        player: 0b101010101,
-        comput: 0b110101010,
+        board: '1111111111111111',
         result: false
     },
     '1 spot free': {
-        player: 0b111000000,
-        comput: 0b000101111,
+        board: '1212012121212121',
         result: true
     },
     '2 spots free': {
-        player: 0b101000101,
-        comput: 0b000101010,
+        board: '1212012121012121',
         result: true
     },
     '1 spot free with invalid  plays': {
-        player: 0b101010101,
-        comput: 0b100101010,
+        board: '1111011111111111',
         result: true
     }
 } as {
     [key: string]: {
-        player: number;
-        comput: number;
+        board: string;
         result: boolean;
     };
 };
 describe('boardHasFreeSpots', () => {
     for (const test of Object.keys(cases) as string[]) {
-        const { player, comput, result } = cases[test];
+        const { board, result } = cases[test];
         it(test, () => {
-            expect(boardHasFreeSpots({ player, computer: comput })).toBe(result);
+            expect(boardHasFreeSpots([...board].map(Number))).toBe(result);
         });
     }
 });

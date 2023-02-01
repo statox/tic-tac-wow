@@ -1,31 +1,30 @@
 <script lang="ts">
-    import { playerWins } from '../../../services/bigtactoe/ia/heuristic/moveEvaluation';
-    import { getGameState, Player, type Board } from '../../../services/bigtactoe';
+    import { getGameState, type Board } from '../../../services/bigtactoe';
 
     export let board: Board;
 </script>
 
 <div>
     <h4>Board info</h4>
-    {#if board}
+    {#if board && board.length > 0}
         <div class="grid2cols">
             <span>State:</span>
             <span>{getGameState(board)}</span>
 
-            <div class="grid2cols">
-                <span>Player 1</span><span>Player, O</span>
-                <span>0b{board.player.toString(2).padStart(9, '0')}</span>
-                <span>{board.player}</span>
+            <!-- <div class="grid2cols"> -->
+            <!--     <span>Player 1</span><span>Player, O</span> -->
+            <!--     <span>0b{board.player.toString(2).padStart(9, '0')}</span> -->
+            <!--     <span>{board.player}</span> -->
 
-                <span>Wins</span><span>{playerWins(board, Player.player) ? '✅' : '❌'}</span>
-            </div>
-            <div class="grid2cols">
-                <span>Player 2</span><span>Computer, X</span>
-                <span>0b{board.computer.toString(2).padStart(9, '0')}</span>
-                <span>{board.computer}</span>
+            <!--     <span>Wins</span><span>{playerWins(board, Player.player) ? '✅' : '❌'}</span> -->
+            <!-- </div> -->
+            <!-- <div class="grid2cols"> -->
+            <!--     <span>Player 2</span><span>Computer, X</span> -->
+            <!--     <span>0b{board.computer.toString(2).padStart(9, '0')}</span> -->
+            <!--     <span>{board.computer}</span> -->
 
-                <span>Wins</span><span>{playerWins(board, Player.computer) ? '✅' : '❌'}</span>
-            </div>
+            <!--     <span>Wins</span><span>{playerWins(board, Player.computer) ? '✅' : '❌'}</span> -->
+            <!-- </div> -->
         </div>
     {/if}
 </div>

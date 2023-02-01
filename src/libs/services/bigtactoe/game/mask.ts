@@ -1,12 +1,14 @@
+import type { Board, Player } from './types';
+
 export const winMasks = [
     // Rows
-    0b111000000, 0b000111000, 0b000000111,
+    0b1111000000000000, 0b0000111100000000, 0b0000000011110000, 0b0000000000001111,
     // Columns
-    0b100100100, 0b010010010, 0b001001001,
+    0b1000100010001000, 0b0100010001000100, 0b0010001000100010, 0b0001000100010001,
     // NW/SE
-    0b100010001,
+    0b1000010000100001,
     // NE/SW
-    0b001010100
+    0b0001001001001000
 ];
 
 export const centerMoveBlockMasks = [
@@ -63,6 +65,16 @@ export const edgeMoveBlockMasks = [
     }
 ];
 
-export const matchMask = (piecesOnBoard: number, mask: number) => {
-    return (piecesOnBoard & mask) === mask;
+export const playerPiecesAsNumber = (board: Board, player: Player) => {
+    return board.reduce((digit: number, piece: number, i: number) => {
+        if (piece === player) {
+            digit = digit + 2 ** i;
+        }
+        return digit;
+    }, 0);
+};
+
+export const matchMask = (board: Board, player: Player, mask: number) => {
+    const playerAsNumber = playerPiecesAsNumber(board, player);
+    return (playerAsNumber & mask) === mask;
 };

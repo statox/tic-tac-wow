@@ -1,35 +1,13 @@
 import { matchMask, winMasks } from './mask';
-import { Player, type PlayerPieces } from './types';
+import { Player, type Board } from './types';
 
-export function countPlacedPieces(player: PlayerPieces) {
-    let n = player;
-    let count = 0;
-    while (n) {
-        count += n & 1;
-        n >>= 1;
-    }
-    return count;
+export function spotIsFree(board: Board, i: number) {
+    return i >= 0 && i < 16 && board[i] === 0;
 }
 
-export function spotIsFree(player: PlayerPieces, index: number) {
-    return spotIsFreeByIndex(player, index);
-}
-
-export function spotIsFreeByIndex(player: PlayerPieces, index: number) {
-    // https://stackoverflow.com/a/62246924
-    if ((player & (1 << index)) === 0) {
-        return true;
-    }
-    return false;
-}
-
-export function placePlayerPieceByIndex(player: PlayerPieces, i: number) {
-    return player + 2 ** i;
-}
-
-export const playerAligned3 = (player: PlayerPieces) => {
+export const playerAligned4 = (board: Board, player: Player) => {
     for (const mask of winMasks) {
-        if (matchMask(player, mask)) {
+        if (matchMask(board, player, mask)) {
             return true;
         }
     }

@@ -1,6 +1,5 @@
 import type p5 from 'p5';
 import { xyToIndex } from './coordinates';
-import { spotIsFree } from './player';
 import { Player, type Board, type BoardCoord } from './types';
 
 export const colorX = '#FF0000';
@@ -15,8 +14,8 @@ export function drawBoard(
         highlightCell?: BoardCoord | undefined;
     }
 ) {
-    const cellWidth = p5.width / 3;
-    const cellHeight = p5.height / 3;
+    const cellWidth = p5.width / 4;
+    const cellHeight = p5.height / 4;
 
     const { height, width } = p5;
     const { drawSelection, selection, currentPlayer } = params || {};
@@ -25,10 +24,11 @@ export function drawBoard(
     p5.noFill();
     p5.stroke(255);
     p5.strokeWeight(1);
-    p5.line(cellWidth, 0, cellWidth, height);
-    p5.line(cellWidth * 2, 0, cellWidth * 2, height);
-    p5.line(0, cellHeight, width, cellHeight);
-    p5.line(0, cellHeight * 2, width, cellHeight * 2);
+
+    for (let i = 0; i < 4; i++) {
+        p5.line(cellWidth * i, 0, cellWidth * i, height);
+        p5.line(0, cellHeight * i, width, cellHeight * i);
+    }
     // Frame
     p5.stroke(155);
     p5.strokeWeight(3);
@@ -36,8 +36,8 @@ export function drawBoard(
 
     p5.strokeWeight(4);
     // For each grid in the board show the corresonding tile
-    for (let y = 0; y < 3; y++) {
-        for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 4; x++) {
             // Highlight cell background if requested
             if (params?.highlightCell?.x === x && params?.highlightCell.y === y) {
                 p5.noStroke();
@@ -52,7 +52,7 @@ export function drawBoard(
             }
             // Draw O
             if (
-                !spotIsFree(board.player, xyToIndex({ x, y })) ||
+                board[xyToIndex({ x, y })] === Player.player ||
                 (drawSelection &&
                     currentPlayer === Player.player &&
                     selection?.x === x &&
@@ -67,7 +67,7 @@ export function drawBoard(
             }
             // Draw X
             if (
-                !spotIsFree(board.computer, xyToIndex({ x, y })) ||
+                board[xyToIndex({ x, y })] === Player.computer ||
                 (drawSelection &&
                     currentPlayer === Player.computer &&
                     selection?.x === x &&
@@ -97,7 +97,7 @@ export function drawBoard(
 // and return the corresponding coordinates in the board
 export function screenCoordsToGridCoords(p5: p5) {
     const { mouseX, mouseY, width, height } = p5;
-    const x = Math.floor(p5.map(mouseX, 0, width, 0, 3));
-    const y = Math.floor(p5.map(mouseY, 0, height, 0, 3));
+    const x = Math.floor(p5.map(mouseX, 0, width, 0, 4));
+    const y = Math.floor(p5.map(mouseY, 0, height, 0, 4));
     return { x, y };
 }

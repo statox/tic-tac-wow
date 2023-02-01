@@ -1,69 +1,30 @@
-import { isValidMove, type PlayerPieces } from 'src/libs/services/bigtactoe';
+import { isValidMove } from 'src/libs/services/bigtactoe';
 import { describe, expect, it } from 'vitest';
-import {
-    BOTTOM_LEFT_INDEX,
-    CENTER_INDEX,
-    RIGHT_INDEX,
-    TOP_INDEX,
-    TOP_LEFT_INDEX
-} from 'src/libs/services/bigtactoe';
+import { R1_C1_INDEX, R1_C2_INDEX } from 'src/libs/services/bigtactoe';
 
 const cases = {
     'Valid 1': {
-        player: 0b000000000,
-        comput: 0b000000000,
-        move: TOP_LEFT_INDEX,
-        result: true
-    },
-    'Valid 2': {
-        player: 0b111000000,
-        comput: 0b000111000,
-        move: BOTTOM_LEFT_INDEX,
-        result: true
-    },
-    'Valid 3': {
-        player: 0b100100100,
-        comput: 0b010010010,
-        move: RIGHT_INDEX,
-        result: true
-    },
-    'Valid 4': {
-        player: 0b110000011,
-        comput: 0b001101100,
-        move: CENTER_INDEX,
+        board: '0110000000000000',
+        move: R1_C1_INDEX,
         result: true
     },
     'Invalid 4': {
-        player: 0b100000000,
-        comput: 0b011111111,
-        move: TOP_LEFT_INDEX,
-        result: false
-    },
-    'Invalid 5': {
-        player: 0b100000000,
-        comput: 0b011111111,
-        move: TOP_INDEX,
-        result: false
-    },
-    'Invalid on invalid board': {
-        player: 0b100000000,
-        comput: 0b100000000,
-        move: TOP_LEFT_INDEX,
+        board: '0110000000000000',
+        move: R1_C2_INDEX,
         result: false
     }
 } as {
     [key: string]: {
-        player: PlayerPieces;
-        comput: PlayerPieces;
+        board: string;
         move: number;
         result: boolean;
     };
 };
 describe('isValidMove', () => {
     for (const test of Object.keys(cases) as string[]) {
-        const { player, comput, move, result } = cases[test];
+        const { board, move, result } = cases[test];
         it(test, () => {
-            expect(isValidMove({ player, computer: comput }, move)).toBe(result);
+            expect(isValidMove([...board].map(Number), move)).toBe(result);
         });
     }
 });

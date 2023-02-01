@@ -1,39 +1,24 @@
-import { makeMoveOnBoard, Player } from 'src/libs/services/bigtactoe';
-import { describe, expect, it } from 'vitest';
 import {
-    CENTER_INDEX,
-    TOP_INDEX,
-    TOP_LEFT_INDEX,
-    TOP_RIGHT_INDEX
+    getNewBoard,
+    getPlayerPiecesFromBoard,
+    makeMoveOnBoard,
+    Player
 } from 'src/libs/services/bigtactoe';
+import { describe, expect, it } from 'vitest';
+import { R1_C1_INDEX, R2_C2_INDEX } from 'src/libs/services/bigtactoe';
 
 describe('makeMoveOnBoard', () => {
     it('Should work', () => {
-        const board = {
-            player: 0b000000000,
-            computer: 0b000000000
-        };
+        const board = getNewBoard();
 
-        makeMoveOnBoard(board, Player.player, TOP_LEFT_INDEX);
-        expect(board.player).toBe(0b100000000);
-        expect(board.computer).toBe(0b000000000);
+        makeMoveOnBoard(board, Player.player, R1_C1_INDEX);
+        expect(getPlayerPiecesFromBoard(board, Player.player)).toStrictEqual([R1_C1_INDEX]);
+        expect(getPlayerPiecesFromBoard(board, Player.computer)).toStrictEqual([]);
 
-        makeMoveOnBoard(board, Player.computer, TOP_INDEX);
-        expect(board.player).toBe(0b100000000);
-        expect(board.computer).toBe(0b010000000);
+        makeMoveOnBoard(board, Player.computer, R2_C2_INDEX);
+        expect(getPlayerPiecesFromBoard(board, Player.player)).toStrictEqual([R1_C1_INDEX]);
+        expect(getPlayerPiecesFromBoard(board, Player.computer)).toStrictEqual([R2_C2_INDEX]);
 
-        makeMoveOnBoard(board, Player.player, TOP_RIGHT_INDEX);
-        expect(board.player).toBe(0b101000000);
-        expect(board.computer).toBe(0b010000000);
-
-        makeMoveOnBoard(board, Player.computer, CENTER_INDEX);
-        expect(board.player).toBe(0b101000000);
-        expect(board.computer).toBe(0b010010000);
-
-        expect(() => makeMoveOnBoard(board, Player.computer, CENTER_INDEX)).toThrow();
-        expect(() => makeMoveOnBoard(board, Player.player, CENTER_INDEX)).toThrow();
-
-        expect(() => makeMoveOnBoard(board, Player.computer, TOP_LEFT_INDEX)).toThrow();
-        expect(() => makeMoveOnBoard(board, Player.player, TOP_LEFT_INDEX)).toThrow();
+        expect(() => makeMoveOnBoard(board, Player.computer, R1_C1_INDEX)).toThrow();
     });
 });

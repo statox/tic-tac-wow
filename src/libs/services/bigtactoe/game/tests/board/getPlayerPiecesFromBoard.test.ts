@@ -3,13 +3,11 @@ import { describe, expect, it } from 'vitest';
 
 describe('getPlayerPiecesFromBoard', () => {
     it('Should work', () => {
-        const board = getNewBoard();
+        let board = getNewBoard();
 
-        let player = getPlayerPiecesFromBoard(board, Player.player);
-        expect(board.player).toBe(0b000000000);
-        expect(player).toBe(0b000000000);
-        player = 0b111111111;
-        expect(player).toBe(0b111111111);
-        expect(board.player).toBe(0b000000000);
+        expect(getPlayerPiecesFromBoard(board, Player.player)).toHaveLength(0);
+        board = [0, 1, 1, 2, 0, 0, 0, 2, 0, 1, 0, 2, 0, 0, 1, 0];
+        expect(getPlayerPiecesFromBoard(board, Player.player)).toStrictEqual([1, 2, 9, 14]);
+        expect(getPlayerPiecesFromBoard(board, Player.computer)).toStrictEqual([3, 7, 11]);
     });
 });
