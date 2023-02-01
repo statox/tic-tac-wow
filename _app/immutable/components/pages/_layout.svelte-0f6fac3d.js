@@ -1,0 +1,9 @@
+import{S as K,i as O,s as P,C as Q,k as c,q as n,a as z,l as h,m as _,r as i,h as f,c as I,n as g,b as J,D as t,E as U,F as X,G as Y,f as Z,t as x}from"../../chunks/index-5ee46145.js";function ee(d){let r,u,A,m,a,p,y,G,T,q,w,v,B,C,E,D,M,b,S,W,H,$;const k=d[1].default,s=Q(k,d,d[0],null);return{c(){r=c("header"),u=c("h1"),A=n("Tic Tac Wow"),m=z(),a=c("nav"),p=c("a"),y=n("Home"),G=n(` |
+        `),T=c("a"),q=n("Tic Tac Toe"),w=n(` |
+        `),v=c("a"),B=n("Gobblet"),C=n(` |
+        `),E=c("a"),D=n("Misere"),M=n(` |
+        `),b=c("a"),S=n("Big Tac Toe"),W=n(" |"),H=z(),s&&s.c(),this.h()},l(e){r=h(e,"HEADER",{});var l=_(r);u=h(l,"H1",{});var F=_(u);A=i(F,"Tic Tac Wow"),F.forEach(f),m=I(l),a=h(l,"NAV",{});var o=_(a);p=h(o,"A",{href:!0});var L=_(p);y=i(L,"Home"),L.forEach(f),G=i(o,` |
+        `),T=h(o,"A",{href:!0});var N=_(T);q=i(N,"Tic Tac Toe"),N.forEach(f),w=i(o,` |
+        `),v=h(o,"A",{href:!0});var R=_(v);B=i(R,"Gobblet"),R.forEach(f),C=i(o,` |
+        `),E=h(o,"A",{href:!0});var V=_(E);D=i(V,"Misere"),V.forEach(f),M=i(o,` |
+        `),b=h(o,"A",{href:!0});var j=_(b);S=i(j,"Big Tac Toe"),j.forEach(f),W=i(o," |"),o.forEach(f),l.forEach(f),H=I(e),s&&s.l(e),this.h()},h(){g(p,"href","/"),g(T,"href","/tictactoe"),g(v,"href","/gobblet"),g(E,"href","/misere"),g(b,"href","/bigtactoe")},m(e,l){J(e,r,l),t(r,u),t(u,A),t(r,m),t(r,a),t(a,p),t(p,y),t(a,G),t(a,T),t(T,q),t(a,w),t(a,v),t(v,B),t(a,C),t(a,E),t(E,D),t(a,M),t(a,b),t(b,S),t(a,W),J(e,H,l),s&&s.m(e,l),$=!0},p(e,[l]){s&&s.p&&(!$||l&1)&&U(s,k,e,e[0],$?Y(k,e[0],l,null):X(e[0]),null)},i(e){$||(Z(s,e),$=!0)},o(e){x(s,e),$=!1},d(e){e&&f(r),e&&f(H),s&&s.d(e)}}}function te(d,r,u){let{$$slots:A={},$$scope:m}=r;return d.$$set=a=>{"$$scope"in a&&u(0,m=a.$$scope)},[m,A]}class se extends K{constructor(r){super(),O(this,r,te,ee,P,{})}}export{se as default};
