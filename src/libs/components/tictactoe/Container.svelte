@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
-    import Game from './Game.svelte';
+    import Game from './game/Game.svelte';
     import Generator from './Generator.svelte';
     import Analyzer from './Analyzer.svelte';
 </script>

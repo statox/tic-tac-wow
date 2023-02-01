@@ -7,7 +7,7 @@
         screenCoordsToGridCoords,
         type Board,
         type BoardCoord
-    } from '../../services/tictactoe';
+    } from '../../../services/tictactoe';
 
     export let dimensionPx: { width: number; height: number };
     export let board: Board;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Player, type Game } from '../../services/tictactoe';
+    import { Player, type Game } from '../../../services/tictactoe';
     import BoardCanvas from './BoardCanvas.svelte';
     import GameHistory from './GameHistory.svelte';
 

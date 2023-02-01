@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { playerWins } from '../../services/tictactoe/ia/heuristic/moveEvaluation';
-    import { getGameState, Player, type Board } from '../../services/tictactoe';
+    import { playerWins } from '../../../services/tictactoe/ia/heuristic/moveEvaluation';
+    import { getGameState, Player, type Board } from '../../../services/tictactoe';
 
     export let board: Board;
 </script>

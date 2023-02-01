@@ -12,7 +12,7 @@
         type Board,
         type BoardCoord
     } from '../../services/tictactoe';
-    import BoardInfo from './BoardInfo.svelte';
+    import BoardInfo from './game/BoardInfo.svelte';
 
     let _p5: p5;
 

@@ -7,11 +7,11 @@
         xyToIndex,
         type BoardCoord,
         type Game
-    } from '../../services/tictactoe';
+    } from '../../../services/tictactoe';
     import BoardInfo from './BoardInfo.svelte';
     import BoardCanvas from './BoardCanvas.svelte';
     import GameInfo from './GameInfo.svelte';
-    import { computerMethods, type ComputerMethodName } from '../../services/tictactoe/ia';
+    import { computerMethods, type ComputerMethodName } from '../../../services/tictactoe/ia';
 
     let game: Game;
     let currentPlayer: Player;

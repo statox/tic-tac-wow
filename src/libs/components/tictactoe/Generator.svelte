@@ -8,7 +8,7 @@
         type Game,
         type GameState
     } from '../../services/tictactoe';
-    import GameInfo from './GameInfo.svelte';
+    import GameInfo from './game/GameInfo.svelte';
     import * as async from 'async';
 
     let games: Game[] = [];

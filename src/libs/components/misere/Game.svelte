@@ -8,9 +8,9 @@
         type Game
     } from '../../services/tictactoe';
     import { getNewGame } from '../../services/misere';
-    import BoardInfo from '../tictactoe/BoardInfo.svelte';
-    import BoardCanvas from '../tictactoe/BoardCanvas.svelte';
-    import GameInfo from '../tictactoe/GameInfo.svelte';
+    import BoardInfo from '../tictactoe/game/BoardInfo.svelte';
+    import BoardCanvas from '../tictactoe/game/BoardCanvas.svelte';
+    import GameInfo from '../tictactoe/game/GameInfo.svelte';
     import type { ComputerMethodName } from 'src/libs/services/tictactoe/ia';
 
     let game: Game;

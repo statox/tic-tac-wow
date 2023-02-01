@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { GameHistoryItem } from '../../services/tictactoe';
+    import type { GameHistoryItem } from '../../../services/tictactoe';
 
     import {
         moveBlockedFork,
@@ -9,7 +9,7 @@
         moveTookCorner,
         moveTookOppositeCorner,
         playerWins
-    } from '../../services/tictactoe/ia/heuristic/moveEvaluation';
+    } from '../../../services/tictactoe/ia/heuristic/moveEvaluation';
 
     export let historyItem: GameHistoryItem | null;
 </script>
