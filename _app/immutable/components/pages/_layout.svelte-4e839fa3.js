@@ -1,4 +1,4 @@
-import{S as K,i as O,s as P,C as Q,k as c,q as n,a as z,l as h,m as _,r as i,h as f,c as I,n as g,b as J,D as t,E as U,F as X,G as Y,f as Z,t as x}from"../../chunks/index-5ee46145.js";function ee(d){let r,u,A,m,a,p,y,G,T,q,w,v,B,C,E,D,M,b,S,W,H,$;const k=d[1].default,s=Q(k,d,d[0],null);return{c(){r=c("header"),u=c("h1"),A=n("Tic Tac Wow"),m=z(),a=c("nav"),p=c("a"),y=n("Home"),G=n(` |
+import{S as K,i as O,s as P,C as Q,k as c,q as n,a as z,l as h,m as _,r as i,h as f,c as I,n as g,b as J,D as t,E as U,F as X,G as Y,f as Z,t as x}from"../../chunks/index-0ce3b86f.js";function ee(d){let r,u,A,m,a,p,y,G,T,q,w,v,B,C,E,D,M,b,S,W,H,$;const k=d[1].default,s=Q(k,d,d[0],null);return{c(){r=c("header"),u=c("h1"),A=n("Tic Tac Wow"),m=z(),a=c("nav"),p=c("a"),y=n("Home"),G=n(` |
         `),T=c("a"),q=n("Tic Tac Toe"),w=n(` |
         `),v=c("a"),B=n("Gobblet"),C=n(` |
         `),E=c("a"),D=n("Misere"),M=n(` |

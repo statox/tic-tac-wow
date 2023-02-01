@@ -8,19 +8,20 @@
     <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     <meta http-equiv="content-security-policy" content="">
-		<link href="./_app/immutable/assets/_page-d026e290.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/_page-1f79d234.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/TabPanel-6417fb07.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-f6c9f978.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-5ee46145.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-5ba316ae.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-984ca202.js">
+		<link rel="modulepreload" href="./_app/immutable/start-e210875c.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-0ce3b86f.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-0815d1c0.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-85f2de2e.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper-41c905a7.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-0f6fac3d.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-4e839fa3.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/bigtactoe/_page.svelte-440b1ca6.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/TabPanel-06444975.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/P5-38694d20.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/bigtactoe/_page.svelte-73152c39.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/TabPanel-6a393c50.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/P5-522f2e95.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/async-8fd893d5.js">
 </head>
 
 <body data-sveltekit-preload-data="hover">
@@ -36,19 +37,62 @@
         <a href="/bigtactoe">Big Tac Toe</a> |
     </nav></header>
 
-<div class="svelte-tabs"><ul role="tablist" class="svelte-tabs__tab-list svelte-12yby2a"><li role="tab" id="svelte-tabs-1" aria-selected="true" tabindex="0" class="svelte-tabs__tab svelte-1fbofsd svelte-tabs__selected">Big Tac Toe</li></ul>
+<div class="svelte-tabs"><ul role="tablist" class="svelte-tabs__tab-list svelte-12yby2a"><li role="tab" id="svelte-tabs-1" aria-selected="true" tabindex="0" class="svelte-tabs__tab svelte-1fbofsd svelte-tabs__selected">Tic Tac Toe</li>
+        <li role="tab" id="svelte-tabs-2" aria-selected="false" tabindex="-1" class="svelte-tabs__tab svelte-1fbofsd">Generator</li>
+        <li role="tab" id="svelte-tabs-3" aria-selected="false" tabindex="-1" class="svelte-tabs__tab svelte-1fbofsd">Analyzer</li></ul>
 
-    <div id="svelte-tabs-2" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"><div><div style="display: block;" class="m-0"></div></div></div></div>
+    <div id="svelte-tabs-4" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"><div>
+
+    <div class="grid2colsResponsive svelte-1epiyf5"><div><span>Player automatic move</span>
+            <ul><li><button>Random move</button></li>
+                <li><button>Hardcoded rules</button></li>
+                <li><button>Complete hardcoded rules
+                    </button></li>
+                <li><button>minmax</button></li></ul></div>
+        <div><label for="aiType">AI type</label>
+            <select id="aiType"><option value="random">random
+                    </option><option value="hardcodedRules">hardcodedRules
+                    </option><option value="hardcodedRulesComplete">hardcodedRulesComplete
+                    </option><option value="minmax">minmax
+                    </option></select></div></div>
+
+    <div class="grid2colsResponsive svelte-1epiyf5"><div><div style="display: block;" class="m-0"></div></div>
+            <div><h4>Board info</h4>
+    <div class="grid2cols svelte-1lw5ne4"><span>State:</span>
+            <span>not_over</span>
+
+            <div class="grid2cols svelte-1lw5ne4"><span>Player 1</span><span>Player, O</span>
+                <span>0b000000000</span>
+                <span>0</span>
+
+                <span>Wins</span><span>❌</span></div>
+            <div class="grid2cols svelte-1lw5ne4"><span>Player 2</span><span>Computer, X</span>
+                <span>0b000000000</span>
+                <span>0</span>
+
+                <span>Wins</span><span>❌</span></div></div>
+</div></div>
+        <div><h4>Game info</h4>
+    <span>Turn: Player</span>
+
+    <button>Show move history
+    </button>
+    <div><div style="display: block;" class="m-0"></div></div></div>
+</div></div>
+
+    <div id="svelte-tabs-5" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"></div>
+
+    <div id="svelte-tabs-6" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"></div></div>
 
 
-		<script type="module" data-sveltekit-hydrate="uiefgw">
-			import { start } from "./_app/immutable/start-f6c9f978.js";
+		<script type="module" data-sveltekit-hydrate="1kbaz1x">
+			import { start } from "./_app/immutable/start-e210875c.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="uiefgw"]').parentNode,
-				version: "1675285497765",
+				target: document.querySelector('[data-sveltekit-hydrate="1kbaz1x"]').parentNode,
+				version: "1675286129720",
 				hydrate: {
 					node_ids: [0, 3],
 					data: [null,null],
