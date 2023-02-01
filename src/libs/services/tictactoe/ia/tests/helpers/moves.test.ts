@@ -1,8 +1,7 @@
-import { getNewBoard, makeMoveOnBoard } from 'src/libs/services/tictactoe';
+import { CENTER_INDEX, getNewBoard, makeMoveOnBoard } from 'src/libs/services/tictactoe';
 import { Player } from 'src/libs/services/tictactoe';
 import { getPossibleMoves, getUniquePossibleMoves } from 'src/libs/services/tictactoe/ia/helpers';
 import { describe, expect, it } from 'vitest';
-import { CENTER_INDEX } from '../../game/helpers';
 
 describe('moves functions for ia', () => {
     it('getPossibleMoves should return all moves for the first two steps', () => {

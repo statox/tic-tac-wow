@@ -1,6 +1,5 @@
-import { spotIsFree } from 'src/libs/services/tictactoe';
-import { describe, expect, it } from 'vitest';
 import {
+    spotIsFree,
     BOTTOM_INDEX,
     BOTTOM_LEFT_INDEX,
     BOTTOM_RIGHT_INDEX,
@@ -10,7 +9,8 @@ import {
     TOP_INDEX,
     TOP_LEFT_INDEX,
     TOP_RIGHT_INDEX
-} from '../helpers';
+} from 'src/libs/services/tictactoe';
+import { describe, expect, it } from 'vitest';
 
 describe('spotIsFree', () => {
     it('Should work', () => {

@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { getNewBoard, Player } from 'src/libs/services/tictactoe';
+import { BOTTOM_INDEX, getNewBoard, Player } from 'src/libs/services/tictactoe';
 import { scoreMove } from 'src/libs/services/tictactoe/ia/strategies/hardcodedCompleteRules';
-import { BOTTOM_INDEX } from '../game/helpers';
 
 describe('scoreMove', () => {
     it('should work', () => {

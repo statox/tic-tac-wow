@@ -6,7 +6,7 @@ import {
     RIGHT_INDEX,
     TOP_INDEX,
     TOP_LEFT_INDEX
-} from '../helpers';
+} from 'src/libs/services/tictactoe';
 
 const cases = {
     'Valid 1': {

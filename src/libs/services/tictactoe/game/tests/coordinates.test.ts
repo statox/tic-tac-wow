@@ -19,7 +19,7 @@ import {
     TOP_LEFT_INDEX,
     TOP_RIGHT,
     TOP_RIGHT_INDEX
-} from './helpers';
+} from 'src/libs/services/tictactoe';
 
 // 0,0     1,0     2,0
 //  8       7       6

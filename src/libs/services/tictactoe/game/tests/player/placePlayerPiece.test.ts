@@ -10,7 +10,7 @@ import {
     TOP_INDEX,
     TOP_LEFT_INDEX,
     TOP_RIGHT_INDEX
-} from '../helpers';
+} from 'src/libs/services/tictactoe';
 
 const cases = {
     NW: {

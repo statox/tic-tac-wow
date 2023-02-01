@@ -1,10 +1,3 @@
-import { getNewBoard } from 'src/libs/services/tictactoe';
-import { Player } from 'src/libs/services/tictactoe';
-import {
-    moveBlockedOpponent,
-    moveCreatedFork
-} from 'src/libs/services/tictactoe/ia/heuristic/moveEvaluation';
-import { describe, expect, it } from 'vitest';
 import {
     BOTTOM_INDEX,
     BOTTOM_LEFT_INDEX,
@@ -13,8 +6,15 @@ import {
     LEFT_INDEX,
     RIGHT_INDEX,
     TOP_INDEX,
-    TOP_LEFT_INDEX
-} from '../../game/helpers';
+    TOP_LEFT_INDEX,
+    getNewBoard
+} from 'src/libs/services/tictactoe';
+import { Player } from 'src/libs/services/tictactoe';
+import {
+    moveBlockedOpponent,
+    moveCreatedFork
+} from 'src/libs/services/tictactoe/ia/heuristic/moveEvaluation';
+import { describe, expect, it } from 'vitest';
 
 describe('moveBlockedOpponent', () => {
     it('Should detect center blocks when it is the last move', () => {

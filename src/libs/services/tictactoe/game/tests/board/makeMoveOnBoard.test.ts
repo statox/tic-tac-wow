@@ -1,6 +1,11 @@
 import { makeMoveOnBoard, Player } from 'src/libs/services/tictactoe';
 import { describe, expect, it } from 'vitest';
-import { CENTER_INDEX, TOP_INDEX, TOP_LEFT_INDEX, TOP_RIGHT_INDEX } from '../helpers';
+import {
+    CENTER_INDEX,
+    TOP_INDEX,
+    TOP_LEFT_INDEX,
+    TOP_RIGHT_INDEX
+} from 'src/libs/services/tictactoe';
 
 describe('makeMoveOnBoard', () => {
     it('Should work', () => {
