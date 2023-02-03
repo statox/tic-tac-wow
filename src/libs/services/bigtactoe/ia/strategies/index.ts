@@ -1,6 +1,7 @@
+import { getMoveMinmax } from './minmax';
 import { getMoveRandom } from './random';
 
-export type ComputerMethodName = 'random';
+export type ComputerMethodName = 'random' | 'minmax';
 
 export type AIChoice = {
     move: number;
@@ -9,7 +10,8 @@ export type AIChoice = {
 };
 
 export const computerMethods = {
-    random: getMoveRandom
+    random: getMoveRandom,
+    minmax: getMoveMinmax
 } as {
     [methodName in ComputerMethodName]: (...args: unknown[]) => AIChoice;
 };

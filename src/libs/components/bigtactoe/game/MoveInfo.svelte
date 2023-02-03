@@ -11,7 +11,7 @@
         <span>{player}</span>
 
         <span>Position</span>
-        <span>{indexToXY(moveAsIndex)}</span>
+        <span>{JSON.stringify(indexToXY(moveAsIndex))}</span>
     </div>
 {/if}
 

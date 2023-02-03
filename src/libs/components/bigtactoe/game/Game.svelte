@@ -16,7 +16,7 @@
     let game: Game;
     let currentPlayer: Player;
     let secondsBeforeReset: number;
-    let computerMethod: ComputerMethodName = 'random';
+    let computerMethod: ComputerMethodName = 'minmax';
     let player2start = false;
 
     reset();
@@ -80,6 +80,7 @@
             <span>Player automatic move</span>
             <ul>
                 <li><button on:click={() => onClick('random')}>Random move</button></li>
+                <li><button on:click={() => onClick('minmax')}>Minmax move</button></li>
             </ul>
         </div>
         <div>

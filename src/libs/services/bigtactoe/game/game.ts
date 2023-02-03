@@ -23,7 +23,7 @@ export const makeManualMove = (game: Game, player: Player, moveAsIndex: number) 
     }
     makeMoveOnBoard(game.board, player, moveAsIndex);
     game.state = getGameState(game.board);
-    game.moveHistory.push({ board: { ...game.board }, moveAsIndex, player, method: 'manual' });
+    game.moveHistory.push({ board: [...game.board], moveAsIndex, player, method: 'manual' });
     switchCurrentPlayer(game);
 };
 
@@ -41,7 +41,7 @@ export const makeAutomaticMove = (game: Game, player: Player, methodName: Comput
         throw new Error('Couldnt get move');
     }
     game.moveHistory.push({
-        board: { ...game.board },
+        board: [...game.board],
         moveAsIndex: choice.move,
         player,
         method: methodName,

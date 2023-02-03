@@ -17,7 +17,7 @@
             <h4>Selection</h4>
             <h4>AI</h4>
             <h4>Stats</h4>
-            {#each [...history].reverse() as historyItem}
+            {#each history as historyItem}
                 <div class="item">
                     <BoardCanvas
                         board={historyItem.board}
