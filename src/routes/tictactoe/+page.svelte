@@ -1,5 +1,5 @@
 <script lang="ts">
-    import TicTacToe from '../../libs/components/tictactoe/Container.svelte';
+    import TicTacToe from '$lib/components/tictactoe/Container.svelte';
 </script>
 
 <TicTacToe />

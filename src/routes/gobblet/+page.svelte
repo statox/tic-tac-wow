@@ -1,5 +1,5 @@
 <script>
-    import Gobblet from '../../libs/components/gobblet/Container.svelte';
+    import Gobblet from '$lib/components/gobblet/Container.svelte';
 </script>
 
 <Gobblet />

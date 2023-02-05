@@ -1,5 +1,5 @@
 <script lang="ts">
-    import BigTacToe from '../../libs/components/bigtactoe/Container.svelte';
+    import BigTacToe from '$lib/components/bigtactoe/Container.svelte';
 </script>
 
 <BigTacToe />
