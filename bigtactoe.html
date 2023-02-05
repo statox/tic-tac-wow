@@ -10,7 +10,7 @@
     <meta http-equiv="content-security-policy" content="">
 		<link href="./_app/immutable/assets/_page-1f79d234.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/TabPanel-6417fb07.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-d22c0c46.js">
+		<link rel="modulepreload" href="./_app/immutable/start-cdec5cdb.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-0ce3b86f.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-0815d1c0.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-85f2de2e.js">
@@ -18,7 +18,7 @@
 		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-4e839fa3.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.js-9cbb603b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/bigtactoe/_page.svelte-44879602.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/bigtactoe/_page.svelte-b7e047be.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/TabPanel-6a393c50.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/P5-0064e986.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/async-8fd893d5.js">
@@ -37,16 +37,18 @@
         <a href="/bigtactoe">Big Tac Toe</a> |
     </nav></header>
 
-<div class="svelte-tabs"><ul role="tablist" class="svelte-tabs__tab-list svelte-12yby2a"><li role="tab" id="svelte-tabs-1" aria-selected="true" tabindex="0" class="svelte-tabs__tab svelte-1fbofsd svelte-tabs__selected">Tic Tac Toe</li>
+<div class="svelte-tabs"><ul role="tablist" class="svelte-tabs__tab-list svelte-12yby2a"><li role="tab" id="svelte-tabs-1" aria-selected="true" tabindex="0" class="svelte-tabs__tab svelte-1fbofsd svelte-tabs__selected">Big Tac Toe</li>
         <li role="tab" id="svelte-tabs-2" aria-selected="false" tabindex="-1" class="svelte-tabs__tab svelte-1fbofsd">Generator</li>
         <li role="tab" id="svelte-tabs-3" aria-selected="false" tabindex="-1" class="svelte-tabs__tab svelte-1fbofsd">Analyzer</li></ul>
 
     <div id="svelte-tabs-4" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"><div>
 
     <div class="grid2colsResponsive svelte-1epiyf5"><div><span>Player automatic move</span>
-            <ul><li><button>Random move</button></li></ul></div>
+            <ul><li><button>Random move</button></li>
+                <li><button>Minmax move</button></li></ul></div>
         <div><label for="aiType">AI type</label>
             <select id="aiType"><option value="random">random
+                    </option><option value="minmax">minmax
                     </option></select></div></div>
 
     <div class="grid2colsResponsive svelte-1epiyf5"><div><div style="display: block;" class="m-0"></div></div>
@@ -82,14 +84,14 @@
     <div id="svelte-tabs-6" class="svelte-tabs__tab-panel svelte-epfyet" role="tabpanel"></div></div>
 
 
-		<script type="module" data-sveltekit-hydrate="wdcekx">
-			import { start } from "./_app/immutable/start-d22c0c46.js";
+		<script type="module" data-sveltekit-hydrate="ysgydx">
+			import { start } from "./_app/immutable/start-cdec5cdb.js";
 
 			start({
 				env: {},
 				paths: {"base":"","assets":""},
-				target: document.querySelector('[data-sveltekit-hydrate="wdcekx"]').parentNode,
-				version: "1675294240508",
+				target: document.querySelector('[data-sveltekit-hydrate="ysgydx"]').parentNode,
+				version: "1675615620143",
 				hydrate: {
 					node_ids: [0, 3],
 					data: [null,null],
